@@ -72,11 +72,14 @@ class PrescriptionMenu extends BaseMenu {
       final doctor = await doctorRepository.getDoctorById(doctorId);
 
       // Generate prescription ID
-      final allPrescriptions = await prescriptionRepository.getAllPrescriptions();
-      final prescriptionId = 'RX${(allPrescriptions.length + 1).toString().padLeft(3, '0')}';
+      final allPrescriptions =
+          await prescriptionRepository.getAllPrescriptions();
+      final prescriptionId =
+          'RX${(allPrescriptions.length + 1).toString().padLeft(3, '0')}';
 
       // Get instructions
-      final instructions = InputValidator.readString('Enter prescription instructions');
+      final instructions =
+          InputValidator.readString('Enter prescription instructions');
 
       // Add medications
       final medications = <Medication>[];
@@ -87,7 +90,8 @@ class PrescriptionMenu extends BaseMenu {
 
         final medId = InputValidator.readId('Enter medication ID', 'M');
         final medName = InputValidator.readString('Enter medication name');
-        final dosage = InputValidator.readString('Enter dosage (e.g., 500mg twice daily)');
+        final dosage =
+            InputValidator.readString('Enter dosage (e.g., 500mg twice daily)');
         final manufacturer = InputValidator.readString('Enter manufacturer');
 
         // Get side effects
@@ -97,7 +101,8 @@ class PrescriptionMenu extends BaseMenu {
         while (addSideEffect) {
           final sideEffect = InputValidator.readString('Enter side effect');
           sideEffects.add(sideEffect);
-          addSideEffect = InputValidator.readBoolean('Add another side effect?');
+          addSideEffect =
+              InputValidator.readBoolean('Add another side effect?');
         }
 
         final medication = Medication(
@@ -202,8 +207,10 @@ class PrescriptionMenu extends BaseMenu {
       }
 
       // Generate new prescription ID
-      final allPrescriptions = await prescriptionRepository.getAllPrescriptions();
-      final newPrescriptionId = 'RX${(allPrescriptions.length + 1).toString().padLeft(3, '0')}';
+      final allPrescriptions =
+          await prescriptionRepository.getAllPrescriptions();
+      final newPrescriptionId =
+          'RX${(allPrescriptions.length + 1).toString().padLeft(3, '0')}';
 
       // Create refill prescription with same details
       final refill = Prescription(
@@ -331,14 +338,16 @@ class PrescriptionMenu extends BaseMenu {
           .toList();
 
       if (commonSideEffects.isEmpty) {
-        UIHelper.printSuccess('No common side effects found across medications');
+        UIHelper.printSuccess(
+            'No common side effects found across medications');
       } else {
         UIHelper.printWarning('Common side effects detected:');
         for (final entry in commonSideEffects) {
           print('\n⚠ ${entry.key}');
           print('   Medications: ${entry.value.join(', ')}');
         }
-        UIHelper.printInfo('\nPlease consult with a pharmacist for detailed interaction analysis.');
+        UIHelper.printInfo(
+            '\nPlease consult with a pharmacist for detailed interaction analysis.');
       }
     } catch (e) {
       UIHelper.printError('Failed to check drug interactions: $e');
@@ -349,8 +358,10 @@ class PrescriptionMenu extends BaseMenu {
     UIHelper.printSubHeader('Prescription Information');
     print('ID: ${prescription.id}');
     print('Date: ${prescription.formattedDate}');
-    print('Patient: ${prescription.prescribedTo.name} (${prescription.prescribedTo.patientID})');
-    print('Doctor: ${prescription.prescribedBy.name} (${prescription.prescribedBy.specialization})');
+    print(
+        'Patient: ${prescription.prescribedTo.name} (${prescription.prescribedTo.patientID})');
+    print(
+        'Doctor: ${prescription.prescribedBy.name} (${prescription.prescribedBy.specialization})');
     print('Instructions: ${prescription.instructions}');
     print('Status: ${prescription.isRecent ? "Recent" : "Old"}');
     print('\nMedications (${prescription.medicationCount}):');

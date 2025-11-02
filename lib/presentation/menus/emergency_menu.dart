@@ -61,19 +61,23 @@ class EmergencyMenu extends BaseMenu {
     try {
       // Generate patient ID
       final allPatients = await patientRepository.getAllPatients();
-      final patientID = 'P${(allPatients.length + 1).toString().padLeft(3, '0')}';
+      final patientID =
+          'P${(allPatients.length + 1).toString().padLeft(3, '0')}';
 
       // Get patient information
       final name = InputValidator.readString('Enter patient name');
       final dob = InputValidator.readString('Enter date of birth (YYYY-MM-DD)');
       final address = InputValidator.readString('Enter address');
       final tel = InputValidator.readString('Enter telephone');
-      final bloodType = InputValidator.readString('Enter blood type (e.g., A+, O-)');
-      final emergencyContact = InputValidator.readString('Enter emergency contact');
+      final bloodType =
+          InputValidator.readString('Enter blood type (e.g., A+, O-)');
+      final emergencyContact =
+          InputValidator.readString('Enter emergency contact');
 
       // Emergency specific information
       UIHelper.printWarning('EMERGENCY REGISTRATION');
-      final emergencyReason = InputValidator.readString('Enter emergency reason/condition');
+      final emergencyReason =
+          InputValidator.readString('Enter emergency reason/condition');
 
       final patient = Patient(
         name: name,
@@ -107,7 +111,8 @@ class EmergencyMenu extends BaseMenu {
 
     try {
       // Get emergency rooms
-      final emergencyRooms = await roomRepository.getRoomsByType(RoomType.EMERGENCY);
+      final emergencyRooms =
+          await roomRepository.getRoomsByType(RoomType.EMERGENCY);
 
       if (emergencyRooms.isEmpty) {
         UIHelper.printError('No emergency rooms in the system');
@@ -116,9 +121,8 @@ class EmergencyMenu extends BaseMenu {
 
       // Filter for available emergency rooms
       final availableRooms = emergencyRooms
-          .where((room) => 
-              room.status == RoomStatus.AVAILABLE && 
-              room.hasAvailableBeds)
+          .where((room) =>
+              room.status == RoomStatus.AVAILABLE && room.hasAvailableBeds)
           .toList();
 
       if (availableRooms.isEmpty) {
@@ -157,7 +161,8 @@ class EmergencyMenu extends BaseMenu {
         headers: ['ID', 'Number', 'Status', 'Total Beds', 'Available'],
       );
 
-      UIHelper.printSuccess('Found ${availableRooms.length} available emergency rooms');
+      UIHelper.printSuccess(
+          'Found ${availableRooms.length} available emergency rooms');
     } catch (e) {
       UIHelper.printError('Failed to find emergency rooms: $e');
     }
@@ -175,7 +180,7 @@ class EmergencyMenu extends BaseMenu {
 
       // Get available doctors (preferably emergency/general specialists)
       final allDoctors = await doctorRepository.getAllDoctors();
-      
+
       if (allDoctors.isEmpty) {
         UIHelper.printError('No doctors available');
         return;
@@ -223,10 +228,10 @@ class EmergencyMenu extends BaseMenu {
       UIHelper.printInfo('Patient: ${patient.name}');
 
       // Get available emergency rooms
-      final emergencyRooms = await roomRepository.getRoomsByType(RoomType.EMERGENCY);
-      final availableRooms = emergencyRooms
-          .where((room) => room.hasAvailableBeds)
-          .toList();
+      final emergencyRooms =
+          await roomRepository.getRoomsByType(RoomType.EMERGENCY);
+      final availableRooms =
+          emergencyRooms.where((room) => room.hasAvailableBeds).toList();
 
       if (availableRooms.isEmpty) {
         UIHelper.printError('No available emergency beds');
@@ -237,7 +242,8 @@ class EmergencyMenu extends BaseMenu {
       UIHelper.printSubHeader('Available Emergency Rooms');
       for (var i = 0; i < availableRooms.length; i++) {
         final room = availableRooms[i];
-        print('${i + 1}. Room ${room.number} - ${room.availableBedCount} beds available');
+        print(
+            '${i + 1}. Room ${room.number} - ${room.availableBedCount} beds available');
       }
 
       final roomChoice = InputValidator.readChoice(availableRooms.length);
@@ -249,7 +255,8 @@ class EmergencyMenu extends BaseMenu {
       UIHelper.printSubHeader('Available Beds');
       final availableBeds = selectedRoom.getAvailableBeds();
       for (var i = 0; i < availableBeds.length; i++) {
-        print('${i + 1}. ${availableBeds[i].bedNumber} (${availableBeds[i].bedType.toString().split('.').last})');
+        print(
+            '${i + 1}. ${availableBeds[i].bedNumber} (${availableBeds[i].bedType.toString().split('.').last})');
       }
 
       final bedChoice = InputValidator.readChoice(availableBeds.length);
@@ -276,7 +283,8 @@ class EmergencyMenu extends BaseMenu {
 
     try {
       // Get emergency rooms
-      final emergencyRooms = await roomRepository.getRoomsByType(RoomType.EMERGENCY);
+      final emergencyRooms =
+          await roomRepository.getRoomsByType(RoomType.EMERGENCY);
 
       if (emergencyRooms.isEmpty) {
         UIHelper.printWarning('No emergency rooms in the system');
@@ -284,7 +292,7 @@ class EmergencyMenu extends BaseMenu {
       }
 
       UIHelper.printSubHeader('Emergency Rooms Status');
-      
+
       for (final room in emergencyRooms) {
         print('\nRoom ${room.number} (${room.roomId})');
         print('Status: ${room.status.toString().split('.').last}');
@@ -305,9 +313,12 @@ class EmergencyMenu extends BaseMenu {
       }
 
       // Summary
-      final totalBeds = emergencyRooms.fold<int>(0, (sum, room) => sum + room.beds.length);
-      final availableBeds = emergencyRooms.fold<int>(0, (sum, room) => sum + room.availableBedCount);
-      final totalPatients = emergencyRooms.fold<int>(0, (sum, room) => sum + room.currentPatients.length);
+      final totalBeds =
+          emergencyRooms.fold<int>(0, (sum, room) => sum + room.beds.length);
+      final availableBeds = emergencyRooms.fold<int>(
+          0, (sum, room) => sum + room.availableBedCount);
+      final totalPatients = emergencyRooms.fold<int>(
+          0, (sum, room) => sum + room.currentPatients.length);
 
       UIHelper.printSubHeader('Summary');
       print('Total Emergency Rooms: ${emergencyRooms.length}');
@@ -315,8 +326,9 @@ class EmergencyMenu extends BaseMenu {
       print('Available Beds: $availableBeds');
       print('Occupied Beds: ${totalBeds - availableBeds}');
       print('Total Emergency Patients: $totalPatients');
-      
-      final occupancyRate = totalBeds > 0 ? ((totalBeds - availableBeds) / totalBeds * 100) : 0;
+
+      final occupancyRate =
+          totalBeds > 0 ? ((totalBeds - availableBeds) / totalBeds * 100) : 0;
       print('Occupancy Rate: ${occupancyRate.toStringAsFixed(1)}%');
 
       if (availableBeds == 0) {

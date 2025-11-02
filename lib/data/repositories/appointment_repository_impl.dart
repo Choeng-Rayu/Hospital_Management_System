@@ -5,6 +5,7 @@ import '../../domain/entities/room.dart';
 import '../datasources/appointment_local_data_source.dart';
 import '../datasources/patient_local_data_source.dart';
 import '../datasources/doctor_local_data_source.dart';
+import '../datasources/id_generator.dart';
 import '../models/appointment_model.dart';
 
 /// Implementation of AppointmentRepository using local JSON data sources
@@ -46,19 +47,44 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
 
   @override
   Future<void> saveAppointment(Appointment appointment) async {
+    String appointmentId = appointment.id;
+
+    // Auto-generate ID if it's a placeholder or empty
+    if (appointmentId.isEmpty ||
+        appointmentId == 'AUTO' ||
+        appointmentId == 'A000' ||
+        appointmentId == 'A001') {
+      // Read all existing appointments to generate next ID
+      final allAppointments = await _appointmentDataSource.readAll();
+      final allAppointmentsJson =
+          allAppointments.map((a) => a.toJson()).toList();
+
+      // Generate next available ID
+      appointmentId = IdGenerator.generateAppointmentId(allAppointmentsJson);
+
+      // Create new appointment instance with generated ID
+      appointment = Appointment(
+        id: appointmentId,
+        dateTime: appointment.dateTime,
+        duration: appointment.duration,
+        patient: appointment.patient,
+        doctor: appointment.doctor,
+        room: appointment.room,
+        status: appointment.status,
+        reason: appointment.reason,
+        notes: appointment.notes,
+      );
+    }
+
     final model = AppointmentModel.fromEntity(appointment);
 
     // Check if appointment exists
     final exists =
-        await _appointmentDataSource.appointmentExists(appointment.id);
+        await _appointmentDataSource.appointmentExists(appointmentId);
 
     if (exists) {
-      await _appointmentDataSource.update(
-        appointment.id,
-        model,
-        (a) => a.id,
-        (a) => a.toJson(),
-      );
+      throw Exception(
+          'Appointment with ID $appointmentId already exists. Use updateAppointment() to modify existing appointments.');
     } else {
       await _appointmentDataSource.add(
         model,

@@ -7,6 +7,20 @@ import 'package:hospital_management/domain/usecases/patient/schedule_patient_mee
 import 'package:hospital_management/domain/usecases/patient/cancel_patient_meeting.dart';
 import 'package:hospital_management/domain/usecases/patient/reschedule_patient_meeting.dart';
 
+// Helper function to create a DateTime during working hours (10 AM) on a weekday
+DateTime getWorkingHoursDate(int daysFromNow) {
+  final now = DateTime.now();
+  var targetDate = DateTime(now.year, now.month, now.day + daysFromNow, 10, 0);
+
+  // Adjust to next Monday if it falls on a weekend
+  while (targetDate.weekday == DateTime.saturday ||
+      targetDate.weekday == DateTime.sunday) {
+    targetDate = targetDate.add(Duration(days: 1));
+  }
+
+  return targetDate;
+}
+
 // Mock repositories for testing
 class MockPatientRepository implements PatientRepository {
   final Map<String, Patient> _patients = {};
@@ -324,7 +338,7 @@ void main() {
     });
 
     test('Can schedule a meeting successfully', () async {
-      final meetingDate = DateTime.now().add(Duration(days: 3, hours: 10));
+      final meetingDate = getWorkingHoursDate(3);
 
       await scheduleUseCase.execute(
         patientId: 'P001',
@@ -351,7 +365,7 @@ void main() {
     });
 
     test('Can get available time slots', () async {
-      final tomorrow = DateTime.now().add(Duration(days: 1));
+      final tomorrow = getWorkingHoursDate(1);
 
       final slots = await scheduleUseCase.getAvailableSlots(
         patientId: 'P001',
@@ -367,7 +381,7 @@ void main() {
 
     test('Can cancel a scheduled meeting', () async {
       // First schedule a meeting
-      final meetingDate = DateTime.now().add(Duration(days: 3, hours: 10));
+      final meetingDate = getWorkingHoursDate(3);
       await scheduleUseCase.execute(
         patientId: 'P001',
         doctorId: 'DOC001',
@@ -390,7 +404,7 @@ void main() {
 
     test('Can reschedule a meeting', () async {
       // Schedule initial meeting
-      final initialDate = DateTime.now().add(Duration(days: 3, hours: 10));
+      final initialDate = getWorkingHoursDate(3);
       await scheduleUseCase.execute(
         patientId: 'P001',
         doctorId: 'DOC001',
@@ -398,7 +412,7 @@ void main() {
       );
 
       // Reschedule to new date
-      final newDate = DateTime.now().add(Duration(days: 5, hours: 14));
+      final newDate = getWorkingHoursDate(5);
       await rescheduleUseCase.execute(
         patientId: 'P001',
         newMeetingDate: newDate,
@@ -410,7 +424,7 @@ void main() {
     });
 
     test('Cannot reschedule non-existent meeting', () async {
-      final newDate = DateTime.now().add(Duration(days: 5));
+      final newDate = getWorkingHoursDate(5);
 
       expect(
         () => rescheduleUseCase.execute(
@@ -423,7 +437,7 @@ void main() {
 
     test('Repository queries work correctly', () async {
       // Schedule a meeting soon
-      final soonDate = DateTime.now().add(Duration(days: 3));
+      final soonDate = getWorkingHoursDate(3);
       await scheduleUseCase.execute(
         patientId: 'P001',
         doctorId: 'DOC001',

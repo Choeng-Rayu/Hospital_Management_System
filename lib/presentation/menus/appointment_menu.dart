@@ -104,8 +104,8 @@ class AppointmentMenu extends BaseMenu {
       );
 
       // Get duration
-      final duration =
-          InputValidator.readInt('Enter duration in minutes', min: 15, max: 240);
+      final duration = InputValidator.readInt('Enter duration in minutes',
+          min: 15, max: 240);
 
       // Get reason
       final reason = InputValidator.readString('Enter reason for appointment');
@@ -126,14 +126,16 @@ class AppointmentMenu extends BaseMenu {
       }
 
       // Generate appointment ID
-      final appointmentId = 'A${DateTime.now().millisecondsSinceEpoch % 100000}'.padLeft(6, '0');
+      final appointmentId =
+          'A${DateTime.now().millisecondsSinceEpoch % 100000}'.padLeft(6, '0');
 
       // Schedule appointment using use case
       final useCase = ScheduleAppointment(
         appointmentRepository: _appointmentRepository,
         patientRepository: _patientRepository,
         doctorRepository: _doctorRepository,
-        roomRepository: _appointmentRepository as dynamic, // Need RoomRepository - will handle error
+        roomRepository: _appointmentRepository
+            as dynamic, // Need RoomRepository - will handle error
       );
 
       final appointment = await useCase.execute(
@@ -190,7 +192,8 @@ class AppointmentMenu extends BaseMenu {
     UIHelper.printHeader('Upcoming Appointments');
 
     try {
-      final appointments = await _appointmentRepository.getUpcomingAppointments();
+      final appointments =
+          await _appointmentRepository.getUpcomingAppointments();
 
       if (appointments.isEmpty) {
         UIHelper.printWarning('No upcoming appointments found');
@@ -198,7 +201,7 @@ class AppointmentMenu extends BaseMenu {
       }
 
       UIHelper.printInfo('Found ${appointments.length} upcoming appointments');
-      
+
       final tableData = appointments
           .map((apt) => [
                 apt.id,
@@ -257,10 +260,11 @@ class AppointmentMenu extends BaseMenu {
       );
 
       // Get new duration if needed
-      final changeDuration =
-          InputValidator.readBoolean('Change duration? (current: ${appointment.duration} min)');
+      final changeDuration = InputValidator.readBoolean(
+          'Change duration? (current: ${appointment.duration} min)');
       if (changeDuration) {
-        InputValidator.readInt('Enter new duration in minutes', min: 15, max: 240);
+        InputValidator.readInt('Enter new duration in minutes',
+            min: 15, max: 240);
       }
 
       // Reschedule using use case
@@ -279,7 +283,8 @@ class AppointmentMenu extends BaseMenu {
 
       UIHelper.printSuccess('Appointment rescheduled successfully!');
       UIHelper.printInfo('Confirmation: ${result.confirmationNumber}');
-      UIHelper.printInfo('New Date/Time: ${UIHelper.formatDateTime(newDateTime)}');
+      UIHelper.printInfo(
+          'New Date/Time: ${UIHelper.formatDateTime(newDateTime)}');
     } catch (e) {
       UIHelper.printError('Failed to reschedule appointment: $e');
     }
@@ -390,7 +395,8 @@ class AppointmentMenu extends BaseMenu {
           await _appointmentRepository.getAppointmentsByDate(date);
 
       if (appointments.isEmpty) {
-        UIHelper.printWarning('No appointments found for ${UIHelper.formatDate(date)}');
+        UIHelper.printWarning(
+            'No appointments found for ${UIHelper.formatDate(date)}');
         return;
       }
 
@@ -445,7 +451,8 @@ class AppointmentMenu extends BaseMenu {
       appointment.updateStatus(newStatus);
       await _appointmentRepository.updateAppointment(appointment);
 
-      UIHelper.printSuccess('Appointment status updated to: ${newStatus.toString().split('.').last}');
+      UIHelper.printSuccess(
+          'Appointment status updated to: ${newStatus.toString().split('.').last}');
     } catch (e) {
       UIHelper.printError('Failed to update appointment status: $e');
     }
@@ -454,8 +461,10 @@ class AppointmentMenu extends BaseMenu {
   void _displayAppointmentDetails(Appointment appointment) {
     UIHelper.printSubHeader('Appointment Information');
     print('ID: ${appointment.id}');
-    print('Patient: ${appointment.patient.name} (${appointment.patient.patientID})');
-    print('Doctor: ${appointment.doctor.name} (${appointment.doctor.specialization})');
+    print(
+        'Patient: ${appointment.patient.name} (${appointment.patient.patientID})');
+    print(
+        'Doctor: ${appointment.doctor.name} (${appointment.doctor.specialization})');
     print('Date/Time: ${UIHelper.formatDateTime(appointment.dateTime)}');
     print('Duration: ${appointment.duration} minutes');
     print('Status: ${appointment.status.toString().split('.').last}');

@@ -212,7 +212,6 @@ class NurseMenu extends BaseMenu {
       // 1. Make fields mutable with setters
       // 2. Create a new nurse instance with updated values
       // 3. Use a separate UpdateNurse use case
-
     } catch (e) {
       UIHelper.printError('Failed to update nurse: $e');
     }
@@ -319,7 +318,8 @@ class NurseMenu extends BaseMenu {
     print('Phone: ${nurse.tel}');
     print('Hire Date: ${UIHelper.formatDate(nurse.hireDate)}');
     print('Salary: \$${nurse.salary.toStringAsFixed(2)}');
-    final yearsOfService = DateTime.now().difference(nurse.hireDate).inDays ~/ 365;
+    final yearsOfService =
+        DateTime.now().difference(nurse.hireDate).inDays ~/ 365;
     print('Years of Service: $yearsOfService');
     print('Assigned Patients: ${nurse.patientCount}');
     print('Assigned Rooms: ${nurse.roomCount}');
@@ -334,7 +334,8 @@ class NurseMenu extends BaseMenu {
     if (nurse.assignedRooms.isNotEmpty) {
       print('\nRooms:');
       for (final room in nurse.assignedRooms) {
-        print('  - ${room.number} (${room.roomType.toString().split('.').last})');
+        print(
+            '  - ${room.number} (${room.roomType.toString().split('.').last})');
       }
     }
   }

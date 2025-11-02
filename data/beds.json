@@ -4,41 +4,585 @@
     "bedType": "BedType.STANDARD",
     "isOccupied": true,
     "currentPatientId": "P001",
-    "features": ["Adjustable height", "Side rails", "Call button"]
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B101A"
   },
   {
     "bedNumber": "B101B",
-    "bedType": "BedType.STANDARD", 
+    "bedType": "BedType.STANDARD",
+    "isOccupied": true,
+    "currentPatientId": "P002",
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B101B"
+  },
+  {
+    "bedNumber": "B101C",
+    "bedType": "BedType.STANDARD",
     "isOccupied": false,
     "currentPatientId": null,
-    "features": ["Adjustable height", "Side rails", "Call button"]
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B101C"
+  },
+  {
+    "bedNumber": "B101D",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": true,
+    "currentPatientId": "P003",
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B101D"
   },
   {
     "bedNumber": "B102A",
-    "bedType": "BedType.ELECTRIC",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B102A"
+  },
+  {
+    "bedNumber": "B102B",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B102B"
+  },
+  {
+    "bedNumber": "B102C",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B102C"
+  },
+  {
+    "bedNumber": "B102D",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button"
+    ],
+    "bedId": "B102D"
+  },
+  {
+    "bedNumber": "B103A",
+    "bedType": "BedType.STANDARD",
     "isOccupied": true,
-    "currentPatientId": "P002",
-    "features": ["Electric adjustment", "Memory foam mattress", "Built-in massage", "USB ports"]
+    "currentPatientId": "P004",
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button",
+      "Reading light"
+    ],
+    "bedId": "B103A"
+  },
+  {
+    "bedNumber": "B103B",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Adjustable height",
+      "Side rails",
+      "Call button",
+      "Reading light"
+    ],
+    "bedId": "B103B"
   },
   {
     "bedNumber": "B201A",
-    "bedType": "BedType.MATERNITY",
+    "bedType": "BedType.PREMIUM",
     "isOccupied": true,
-    "currentPatientId": "P003",
-    "features": ["Labor position adjustments", "Delivery mode", "Baby warmer", "Emergency call"]
+    "currentPatientId": "P005",
+    "features": [
+      "Electric adjustment",
+      "Memory foam mattress",
+      "Built-in massage",
+      "USB ports",
+      "TV control"
+    ],
+    "bedId": "B201A"
   },
   {
-    "bedNumber": "B201B",
-    "bedType": "BedType.MATERNITY",
+    "bedNumber": "B202A",
+    "bedType": "BedType.PREMIUM",
     "isOccupied": false,
     "currentPatientId": null,
-    "features": ["Labor position adjustments", "Delivery mode", "Baby warmer", "Emergency call"]
+    "features": [
+      "Electric adjustment",
+      "Memory foam mattress",
+      "Built-in massage",
+      "USB ports",
+      "TV control"
+    ],
+    "bedId": "B202A"
+  },
+  {
+    "bedNumber": "B203A",
+    "bedType": "BedType.PREMIUM",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Electric adjustment",
+      "Memory foam mattress",
+      "Built-in massage",
+      "USB ports",
+      "TV control",
+      "Mini fridge"
+    ],
+    "bedId": "B203A"
   },
   {
     "bedNumber": "B301A",
-    "bedType": "BedType.ICU",
+    "bedType": "BedType.ICU_BED",
+    "isOccupied": true,
+    "currentPatientId": "P006",
+    "features": [
+      "Full electric",
+      "Trendelenburg position",
+      "Cardiac positioning",
+      "Scale integration",
+      "Advanced monitoring mounts"
+    ],
+    "bedId": "B301A"
+  },
+  {
+    "bedNumber": "B301B",
+    "bedType": "BedType.ICU_BED",
     "isOccupied": false,
     "currentPatientId": null,
-    "features": ["Full electric", "Trendelenburg position", "Cardiac positioning", "Scale integration", "Advanced monitoring mounts"]
+    "features": [
+      "Full electric",
+      "Trendelenburg position",
+      "Cardiac positioning",
+      "Scale integration",
+      "Advanced monitoring mounts"
+    ],
+    "bedId": "B301B"
+  },
+  {
+    "bedNumber": "B302A",
+    "bedType": "BedType.ICU_BED",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Full electric",
+      "Trendelenburg position",
+      "Cardiac positioning",
+      "Scale integration",
+      "Advanced monitoring mounts",
+      "X-ray cassette holder"
+    ],
+    "bedId": "B302A"
+  },
+  {
+    "bedNumber": "B302B",
+    "bedType": "BedType.ICU_BED",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Full electric",
+      "Trendelenburg position",
+      "Cardiac positioning",
+      "Scale integration",
+      "Advanced monitoring mounts",
+      "X-ray cassette holder"
+    ],
+    "bedId": "B302B"
+  },
+  {
+    "bedNumber": "B303A",
+    "bedType": "BedType.ICU_BED",
+    "isOccupied": true,
+    "currentPatientId": "P007",
+    "features": [
+      "Full electric",
+      "Trendelenburg position",
+      "Cardiac positioning",
+      "Scale integration",
+      "Advanced monitoring mounts"
+    ],
+    "bedId": "B303A"
+  },
+  {
+    "bedNumber": "B401A",
+    "bedType": "BedType.PEDIATRIC_BED",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Colorful design",
+      "Safety rails",
+      "Height adjustment",
+      "Parent chair",
+      "Toy holder"
+    ],
+    "bedId": "B401A"
+  },
+  {
+    "bedNumber": "B401B",
+    "bedType": "BedType.PEDIATRIC_BED",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Colorful design",
+      "Safety rails",
+      "Height adjustment",
+      "Parent chair",
+      "Toy holder"
+    ],
+    "bedId": "B401B"
+  },
+  {
+    "bedNumber": "B401C",
+    "bedType": "BedType.PEDIATRIC_BED",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Colorful design",
+      "Safety rails",
+      "Height adjustment",
+      "Parent chair",
+      "Toy holder"
+    ],
+    "bedId": "B401C"
+  },
+  {
+    "bedNumber": "B402A",
+    "bedType": "BedType.PEDIATRIC_BED",
+    "isOccupied": true,
+    "currentPatientId": "P008",
+    "features": [
+      "Colorful design",
+      "Safety rails",
+      "Height adjustment",
+      "Parent chair",
+      "Toy holder",
+      "Entertainment system"
+    ],
+    "bedId": "B402A"
+  },
+  {
+    "bedNumber": "B402B",
+    "bedType": "BedType.PEDIATRIC_BED",
+    "isOccupied": true,
+    "currentPatientId": "P009",
+    "features": [
+      "Colorful design",
+      "Safety rails",
+      "Height adjustment",
+      "Parent chair",
+      "Toy holder",
+      "Entertainment system"
+    ],
+    "bedId": "B402B"
+  },
+  {
+    "bedNumber": "B501A",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": true,
+    "currentPatientId": "P010",
+    "features": [
+      "Labor position adjustments",
+      "Delivery mode",
+      "Baby warmer",
+      "Emergency call",
+      "Partner seating"
+    ],
+    "bedId": "B501A"
+  },
+  {
+    "bedNumber": "B501B",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": true,
+    "currentPatientId": "P011",
+    "features": [
+      "Labor position adjustments",
+      "Delivery mode",
+      "Baby warmer",
+      "Emergency call",
+      "Partner seating"
+    ],
+    "bedId": "B501B"
+  },
+  {
+    "bedNumber": "B502A",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Labor position adjustments",
+      "Delivery mode",
+      "Baby warmer",
+      "Emergency call",
+      "Partner seating"
+    ],
+    "bedId": "B502A"
+  },
+  {
+    "bedNumber": "B502B",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Labor position adjustments",
+      "Delivery mode",
+      "Baby warmer",
+      "Emergency call",
+      "Partner seating"
+    ],
+    "bedId": "B502B"
+  },
+  {
+    "bedNumber": "B601A",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": true,
+    "currentPatientId": "P012",
+    "features": [
+      "Sealed environment",
+      "HEPA filter",
+      "Negative pressure compatible",
+      "Remote monitoring"
+    ],
+    "bedId": "B601A"
+  },
+  {
+    "bedNumber": "B602A",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Sealed environment",
+      "HEPA filter",
+      "Negative pressure compatible",
+      "Remote monitoring"
+    ],
+    "bedId": "B602A"
+  },
+  {
+    "bedNumber": "BER1A",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": true,
+    "currentPatientId": "P013",
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting"
+    ],
+    "bedId": "BER1A"
+  },
+  {
+    "bedNumber": "BER1B",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": true,
+    "currentPatientId": "P014",
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting"
+    ],
+    "bedId": "BER1B"
+  },
+  {
+    "bedNumber": "BER1C",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting"
+    ],
+    "bedId": "BER1C"
+  },
+  {
+    "bedNumber": "BER2A",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting",
+      "X-ray compatible"
+    ],
+    "bedId": "BER2A"
+  },
+  {
+    "bedNumber": "BER2B",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting",
+      "X-ray compatible"
+    ],
+    "bedId": "BER2B"
+  },
+  {
+    "bedNumber": "BER2C",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting",
+      "X-ray compatible"
+    ],
+    "bedId": "BER2C"
+  },
+  {
+    "bedNumber": "BER3A",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": true,
+    "currentPatientId": "P015",
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting"
+    ],
+    "bedId": "BER3A"
+  },
+  {
+    "bedNumber": "BER3B",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting"
+    ],
+    "bedId": "BER3B"
+  },
+  {
+    "bedNumber": "BER4A",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting",
+      "Ventilator ready"
+    ],
+    "bedId": "BER4A"
+  },
+  {
+    "bedNumber": "BER4B",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting",
+      "Ventilator ready"
+    ],
+    "bedId": "BER4B"
+  },
+  {
+    "bedNumber": "BER4C",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting",
+      "Ventilator ready"
+    ],
+    "bedId": "BER4C"
+  },
+  {
+    "bedNumber": "BER4D",
+    "bedType": "BedType.STRETCHER",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Quick adjustment",
+      "Trauma board",
+      "IV poles",
+      "Defibrillator mount",
+      "Emergency lighting",
+      "Ventilator ready"
+    ],
+    "bedId": "BER4D"
+  },
+  {
+    "bedNumber": "B104A",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Under maintenance"
+    ],
+    "bedId": "B104A"
+  },
+  {
+    "bedNumber": "B104B",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": [
+      "Under maintenance"
+    ],
+    "bedId": "B104B"
   }
 ]

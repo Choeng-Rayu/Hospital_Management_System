@@ -3,6 +3,7 @@ import '../../domain/entities/patient.dart';
 import '../../domain/entities/doctor.dart';
 import '../datasources/patient_local_data_source.dart';
 import '../datasources/doctor_local_data_source.dart';
+import '../datasources/id_generator.dart';
 import '../models/patient_model.dart';
 
 /// Implementation of PatientRepository using local JSON data sources
@@ -48,18 +49,44 @@ class PatientRepositoryImpl implements PatientRepository {
 
   @override
   Future<void> savePatient(Patient patient) async {
+    String patientId = patient.patientID;
+
+    // Auto-generate ID if it's a placeholder or empty
+    if (patientId.isEmpty || patientId == 'AUTO' || patientId == 'P000') {
+      // Read all existing patients to generate next ID
+      final allPatients = await _patientDataSource.readAll();
+      final allPatientsJson = allPatients.map((p) => p.toJson()).toList();
+
+      // Generate next available ID
+      patientId = IdGenerator.generatePatientId(allPatientsJson);
+
+      // Create new patient instance with generated ID
+      patient = Patient(
+        patientID: patientId,
+        name: patient.name,
+        dateOfBirth: patient.dateOfBirth,
+        address: patient.address,
+        tel: patient.tel,
+        bloodType: patient.bloodType,
+        medicalRecords: patient.medicalRecords.toList(),
+        allergies: patient.allergies.toList(),
+        emergencyContact: patient.emergencyContact,
+        assignedDoctors: patient.assignedDoctors.toList(),
+        assignedNurses: patient.assignedNurses.toList(),
+        prescriptions: patient.prescriptions.toList(),
+        currentRoom: patient.currentRoom,
+        currentBed: patient.currentBed,
+      );
+    }
+
     final model = PatientModel.fromEntity(patient);
 
     // Check if patient exists
-    final exists = await _patientDataSource.patientExists(patient.patientID);
+    final exists = await _patientDataSource.patientExists(patientId);
 
     if (exists) {
-      await _patientDataSource.update(
-        patient.patientID,
-        model,
-        (p) => p.patientID,
-        (p) => p.toJson(),
-      );
+      throw Exception(
+          'Patient with ID $patientId already exists. Use updatePatient() to modify existing patients.');
     } else {
       await _patientDataSource.add(
         model,

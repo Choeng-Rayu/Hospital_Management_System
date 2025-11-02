@@ -139,7 +139,8 @@ class DoctorMenu extends BaseMenu {
     final doctorId = InputValidator.readId('Enter doctor ID', 'D');
     final date = InputValidator.readDate('Enter date');
 
-    final schedule = await _doctorRepository.getDoctorScheduleForDate(doctorId, date);
+    final schedule =
+        await _doctorRepository.getDoctorScheduleForDate(doctorId, date);
 
     if (schedule.isEmpty) {
       UIHelper.printWarning('No schedule found for this date');
@@ -182,10 +183,12 @@ class DoctorMenu extends BaseMenu {
     UIHelper.printHeader('View Doctors by Specialization');
 
     final specialization = InputValidator.readString('Enter specialization');
-    final doctors = await _doctorRepository.getDoctorsBySpecialization(specialization);
+    final doctors =
+        await _doctorRepository.getDoctorsBySpecialization(specialization);
 
     if (doctors.isEmpty) {
-      UIHelper.printWarning('No doctors found with specialization: $specialization');
+      UIHelper.printWarning(
+          'No doctors found with specialization: $specialization');
       return;
     }
 
@@ -234,8 +237,9 @@ class DoctorMenu extends BaseMenu {
 
     final doctorId = InputValidator.readId('Enter doctor ID', 'D');
     final date = InputValidator.readDate('Enter date');
-    
-    final duration = InputValidator.readInt('Enter duration in minutes', min: 15, max: 240);
+
+    final duration =
+        InputValidator.readInt('Enter duration in minutes', min: 15, max: 240);
 
     final slots = await _doctorRepository.getAvailableTimeSlots(
       doctorId,
@@ -261,7 +265,8 @@ class DoctorMenu extends BaseMenu {
     print('Specialization: ${doctor.specialization}');
     print('Phone: ${doctor.tel}');
     print('Address: ${doctor.address}');
-    print('Date of Birth: ${UIHelper.formatDate(DateTime.parse(doctor.dateOfBirth))}');
+    print(
+        'Date of Birth: ${UIHelper.formatDate(DateTime.parse(doctor.dateOfBirth))}');
     print('Hire Date: ${UIHelper.formatDate(doctor.hireDate)}');
     print('Salary: \$${doctor.salary.toStringAsFixed(2)}');
     print('Current Patients: ${doctor.patientCount}');

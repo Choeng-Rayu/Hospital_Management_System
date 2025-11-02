@@ -4,6 +4,7 @@ import '../datasources/prescription_local_data_source.dart';
 import '../datasources/patient_local_data_source.dart';
 import '../datasources/doctor_local_data_source.dart';
 import '../datasources/medication_local_data_source.dart';
+import '../datasources/id_generator.dart';
 import '../models/prescription_model.dart';
 
 /// Implementation of PrescriptionRepository using local JSON data sources
@@ -53,19 +54,41 @@ class PrescriptionRepositoryImpl implements PrescriptionRepository {
 
   @override
   Future<void> savePrescription(Prescription prescription) async {
+    String prescriptionId = prescription.id;
+
+    // Auto-generate ID if it's a placeholder or empty
+    if (prescriptionId.isEmpty ||
+        prescriptionId == 'AUTO' ||
+        prescriptionId == 'PR000' ||
+        prescriptionId == 'PR001') {
+      // Read all existing prescriptions to generate next ID
+      final allPrescriptions = await _prescriptionDataSource.readAll();
+      final allPrescriptionsJson =
+          allPrescriptions.map((p) => p.toJson()).toList();
+
+      // Generate next available ID
+      prescriptionId = IdGenerator.generatePrescriptionId(allPrescriptionsJson);
+
+      // Create new prescription instance with generated ID
+      prescription = Prescription(
+        id: prescriptionId,
+        time: prescription.time,
+        medications: prescription.medications.toList(),
+        instructions: prescription.instructions,
+        prescribedBy: prescription.prescribedBy,
+        prescribedTo: prescription.prescribedTo,
+      );
+    }
+
     final model = PrescriptionModel.fromEntity(prescription);
 
     // Check if prescription exists
     final exists =
-        await _prescriptionDataSource.prescriptionExists(prescription.id);
+        await _prescriptionDataSource.prescriptionExists(prescriptionId);
 
     if (exists) {
-      await _prescriptionDataSource.update(
-        prescription.id,
-        model,
-        (p) => p.id,
-        (p) => p.toJson(),
-      );
+      throw Exception(
+          'Prescription with ID $prescriptionId already exists. Use updatePrescription() to modify existing prescriptions.');
     } else {
       await _prescriptionDataSource.add(
         model,

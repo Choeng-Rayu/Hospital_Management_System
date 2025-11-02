@@ -2,6 +2,20 @@ import 'package:test/test.dart';
 import 'package:hospital_management/domain/entities/patient.dart';
 import 'package:hospital_management/domain/entities/doctor.dart';
 
+// Helper function to create a DateTime during working hours (10 AM) on a weekday
+DateTime getWorkingHoursDate(int daysFromNow) {
+  final now = DateTime.now();
+  var targetDate = DateTime(now.year, now.month, now.day + daysFromNow, 10, 0);
+
+  // Adjust to next Monday if it falls on a weekend
+  while (targetDate.weekday == DateTime.saturday ||
+      targetDate.weekday == DateTime.sunday) {
+    targetDate = targetDate.add(Duration(days: 1));
+  }
+
+  return targetDate;
+}
+
 void main() {
   group('Patient Next Meeting Tests', () {
     late Doctor testDoctor;
@@ -69,8 +83,9 @@ void main() {
       // First assign the doctor
       testPatient.assignDoctor(testDoctor);
 
-      // Schedule a meeting
-      final meetingDate = DateTime.now().add(Duration(days: 7));
+      // Schedule a meeting during working hours (10 AM)
+      final now = DateTime.now();
+      final meetingDate = DateTime(now.year, now.month, now.day + 7, 10, 0);
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
         meetingDate: meetingDate,
@@ -82,7 +97,8 @@ void main() {
     });
 
     test('Cannot schedule meeting with unassigned doctor', () {
-      final meetingDate = DateTime.now().add(Duration(days: 7));
+      final now = DateTime.now();
+      final meetingDate = DateTime(now.year, now.month, now.day + 7, 10, 0);
 
       expect(
         () => testPatient.scheduleNextMeeting(
@@ -108,7 +124,7 @@ void main() {
 
     test('Can cancel next meeting', () {
       testPatient.assignDoctor(testDoctor);
-      final meetingDate = DateTime.now().add(Duration(days: 7));
+      final meetingDate = getWorkingHoursDate(7);
 
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
@@ -126,8 +142,8 @@ void main() {
 
     test('Can reschedule next meeting', () {
       testPatient.assignDoctor(testDoctor);
-      final originalDate = DateTime.now().add(Duration(days: 7));
-      final newDate = DateTime.now().add(Duration(days: 14));
+      final originalDate = getWorkingHoursDate(7);
+      final newDate = getWorkingHoursDate(14);
 
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
@@ -143,7 +159,7 @@ void main() {
 
     test('isNextMeetingSoon returns true for meeting within 7 days', () {
       testPatient.assignDoctor(testDoctor);
-      final soonDate = DateTime.now().add(Duration(days: 3));
+      final soonDate = getWorkingHoursDate(3);
 
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
@@ -155,7 +171,7 @@ void main() {
 
     test('isNextMeetingSoon returns false for meeting beyond 7 days', () {
       testPatient.assignDoctor(testDoctor);
-      final farDate = DateTime.now().add(Duration(days: 10));
+      final farDate = getWorkingHoursDate(10);
 
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
@@ -167,7 +183,7 @@ void main() {
 
     test('nextMeetingInfo returns formatted string', () {
       testPatient.assignDoctor(testDoctor);
-      final meetingDate = DateTime.now().add(Duration(days: 7));
+      final meetingDate = getWorkingHoursDate(7);
 
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
@@ -202,7 +218,7 @@ void main() {
     });
 
     test('Patient can be created with next meeting data', () {
-      final meetingDate = DateTime.now().add(Duration(days: 5));
+      final meetingDate = getWorkingHoursDate(5);
 
       final patient = Patient(
         name: 'Jane Doe',
@@ -270,7 +286,7 @@ void main() {
       );
 
       // Create a busy doctor with existing schedule
-      final tomorrow = DateTime.now().add(Duration(days: 1));
+      final tomorrow = getWorkingHoursDate(1);
       final tomorrowKey =
           '${tomorrow.year}-${tomorrow.month.toString().padLeft(2, '0')}-${tomorrow.day.toString().padLeft(2, '0')}';
 
@@ -330,7 +346,7 @@ void main() {
 
     test('Can check if doctor is available at specific time', () {
       testPatient.assignDoctor(testDoctor);
-      final futureDate = DateTime.now().add(Duration(days: 3, hours: 10));
+      final futureDate = getWorkingHoursDate(3);
 
       final isAvailable = testPatient.isDoctorAvailableAt(
         doctor: testDoctor,
@@ -342,7 +358,7 @@ void main() {
 
     test('Doctor is not available during existing appointment', () {
       testPatient.assignDoctor(busyDoctor);
-      final tomorrow = DateTime.now().add(Duration(days: 1));
+      final tomorrow = getWorkingHoursDate(1);
       final conflictTime = DateTime(
         tomorrow.year,
         tomorrow.month,
@@ -361,7 +377,7 @@ void main() {
 
     test('Cannot schedule meeting when doctor is busy', () {
       testPatient.assignDoctor(busyDoctor);
-      final tomorrow = DateTime.now().add(Duration(days: 1));
+      final tomorrow = getWorkingHoursDate(1);
       final conflictTime = DateTime(
         tomorrow.year,
         tomorrow.month,
@@ -381,7 +397,7 @@ void main() {
 
     test('Meeting is added to doctor schedule when scheduled', () {
       testPatient.assignDoctor(testDoctor);
-      final meetingDate = DateTime.now().add(Duration(days: 7));
+      final meetingDate = getWorkingHoursDate(7);
       final scheduleKey =
           '${meetingDate.year}-${meetingDate.month.toString().padLeft(2, '0')}-${meetingDate.day.toString().padLeft(2, '0')}';
 
@@ -400,7 +416,7 @@ void main() {
 
     test('Meeting is removed from doctor schedule when cancelled', () {
       testPatient.assignDoctor(testDoctor);
-      final meetingDate = DateTime.now().add(Duration(days: 7));
+      final meetingDate = getWorkingHoursDate(7);
       final scheduleKey =
           '${meetingDate.year}-${meetingDate.month.toString().padLeft(2, '0')}-${meetingDate.day.toString().padLeft(2, '0')}';
 
@@ -420,8 +436,8 @@ void main() {
 
     test('Old meeting is removed and new one added when rescheduling', () {
       testPatient.assignDoctor(testDoctor);
-      final originalDate = DateTime.now().add(Duration(days: 7));
-      final newDate = DateTime.now().add(Duration(days: 10));
+      final originalDate = getWorkingHoursDate(7);
+      final newDate = getWorkingHoursDate(10);
 
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
@@ -443,7 +459,7 @@ void main() {
 
     test('Can get doctor schedule for specific date', () {
       testPatient.assignDoctor(busyDoctor);
-      final tomorrow = DateTime.now().add(Duration(days: 1));
+      final tomorrow = getWorkingHoursDate(1);
 
       final schedule = testPatient.getDoctorScheduleForDate(
         doctor: busyDoctor,
@@ -456,7 +472,7 @@ void main() {
 
     test('Can get suggested available time slots', () {
       testPatient.assignDoctor(testDoctor);
-      final futureDate = DateTime.now().add(Duration(days: 3));
+      final futureDate = getWorkingHoursDate(3);
 
       final availableSlots = testPatient.getSuggestedAvailableSlots(
         doctor: testDoctor,
@@ -473,7 +489,7 @@ void main() {
 
     test('Available slots exclude busy times', () {
       testPatient.assignDoctor(busyDoctor);
-      final tomorrow = DateTime.now().add(Duration(days: 1));
+      final tomorrow = getWorkingHoursDate(1);
 
       final availableSlots = testPatient.getSuggestedAvailableSlots(
         doctor: busyDoctor,
@@ -494,7 +510,7 @@ void main() {
 
     test('Cannot reschedule to busy time', () {
       testPatient.assignDoctor(busyDoctor);
-      final tomorrow = DateTime.now().add(Duration(days: 1));
+      final tomorrow = getWorkingHoursDate(1);
 
       // Schedule initial meeting at an available time
       final initialTime = DateTime(
@@ -527,7 +543,7 @@ void main() {
 
     test('Scheduling meeting updates both patient and doctor', () {
       testPatient.assignDoctor(testDoctor);
-      final meetingDate = DateTime.now().add(Duration(days: 5));
+      final meetingDate = getWorkingHoursDate(5);
 
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,

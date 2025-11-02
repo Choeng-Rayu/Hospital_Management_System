@@ -72,7 +72,8 @@ class RoomMenu extends BaseMenu {
       final roomId = 'R${(allRooms.length + 1).toString().padLeft(3, '0')}';
 
       // Get room number
-      final roomNumber = InputValidator.readString('Enter room number (e.g., 101, 202)');
+      final roomNumber =
+          InputValidator.readString('Enter room number (e.g., 101, 202)');
 
       // Get room type
       UIHelper.printSubHeader('Select Room Type');
@@ -119,12 +120,14 @@ class RoomMenu extends BaseMenu {
       final roomStatus = roomStatuses[statusChoice]!;
 
       // Add beds
-      final bedCount = InputValidator.readInt('Enter number of beds', min: 1, max: 10);
+      final bedCount =
+          InputValidator.readInt('Enter number of beds', min: 1, max: 10);
       final beds = <Bed>[];
 
       for (var i = 1; i <= bedCount; i++) {
         UIHelper.printSubHeader('Bed $i');
-        final bedNumber = InputValidator.readString('Enter bed number (e.g., ${roomNumber}-$i)');
+        final bedNumber = InputValidator.readString(
+            'Enter bed number (e.g., ${roomNumber}-$i)');
 
         // Get bed type
         print('Select Bed Type:');
@@ -150,7 +153,8 @@ class RoomMenu extends BaseMenu {
         final features = <String>[];
         var addFeature = InputValidator.readBoolean('Add bed features?');
         while (addFeature) {
-          final feature = InputValidator.readString('Enter feature (e.g., Oxygen, Monitor)');
+          final feature = InputValidator.readString(
+              'Enter feature (e.g., Oxygen, Monitor)');
           features.add(feature);
           addFeature = InputValidator.readBoolean('Add another feature?');
         }
@@ -356,7 +360,8 @@ class RoomMenu extends BaseMenu {
       UIHelper.printSubHeader('Available Beds');
       final availableBeds = room.getAvailableBeds();
       for (var i = 0; i < availableBeds.length; i++) {
-        print('${i + 1}. ${availableBeds[i].bedNumber} (${availableBeds[i].bedType.toString().split('.').last})');
+        print(
+            '${i + 1}. ${availableBeds[i].bedNumber} (${availableBeds[i].bedType.toString().split('.').last})');
       }
 
       final bedChoice = InputValidator.readChoice(availableBeds.length);

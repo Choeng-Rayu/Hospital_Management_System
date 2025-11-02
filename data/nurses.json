@@ -2,11 +2,11 @@
   {
     "staffID": "N001",
     "name": "Sokha Vann",
-    "dateOfBirth": "1988-06-14",
-    "address": "234 Street 136, Phnom Penh",
-    "tel": "012-800-900",
-    "hireDate": "2018-04-12T00:00:00.000Z",
-    "salary": 45000.0,
+    "dateOfBirth": "1985-06-23",
+    "address": "200 Street 100, Phnom Penh",
+    "tel": "012-100-200",
+    "hireDate": "2025-09-13T21:17:32.563643",
+    "salary": 38000,
     "schedule": {
       "Monday": {
         "start": "2025-11-04T07:00:00.000Z",
@@ -21,46 +21,79 @@
         "end": "2025-11-06T19:00:00.000Z"
       }
     },
-    "assignedRoomIds": ["R101", "R102"],
-    "assignedPatientIds": ["P001", "P002", "P004"]
+    "assignedRoomIds": [
+      "R101",
+      "R102"
+    ],
+    "assignedPatientIds": []
   },
   {
     "staffID": "N002",
     "name": "Bopha Kheng",
-    "dateOfBirth": "1990-09-28",
-    "address": "567 Hun Sen Boulevard, Siem Reap",
-    "tel": "017-111-222",
-    "hireDate": "2020-01-15T00:00:00.000Z",
-    "salary": 42000.0,
+    "dateOfBirth": "1985-11-20",
+    "address": "205 Street 101, Phnom Penh",
+    "tel": "017-107-209",
+    "hireDate": "2025-09-13T21:17:32.563643",
+    "salary": 39500,
     "schedule": {
       "Thursday": {
-        "start": "2025-11-07T07:00:00.000Z",
-        "end": "2025-11-07T19:00:00.000Z"
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-08T02:00:00.000Z"
       },
       "Friday": {
-        "start": "2025-11-08T07:00:00.000Z",
-        "end": "2025-11-08T19:00:00.000Z"
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-09T02:00:00.000Z"
       },
       "Saturday": {
-        "start": "2025-11-09T07:00:00.000Z",
-        "end": "2025-11-09T19:00:00.000Z"
-      },
-      "Sunday": {
-        "start": "2025-11-10T07:00:00.000Z",
-        "end": "2025-11-10T19:00:00.000Z"
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
       }
     },
-    "assignedRoomIds": ["R201", "R202"],
-    "assignedPatientIds": ["P002"]
+    "assignedRoomIds": [
+      "R103",
+      "R104",
+      "R201"
+    ],
+    "assignedPatientIds": []
   },
   {
     "staffID": "N003",
     "name": "Rachana Kong",
-    "dateOfBirth": "1985-12-02",
-    "address": "890 National Road 5, Battambang",
-    "tel": "015-333-444",
-    "hireDate": "2016-08-20T00:00:00.000Z",
-    "salary": 48000.0,
+    "dateOfBirth": "1986-04-19",
+    "address": "210 Street 102, Phnom Penh",
+    "tel": "070-114-218",
+    "hireDate": "2025-09-13T21:17:32.563643",
+    "salary": 41000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T20:00:00.000Z",
+        "end": "2025-11-09T08:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R201",
+      "R202",
+      "R203",
+      "R301"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N004",
+    "name": "Malica Ouk",
+    "dateOfBirth": "1986-09-16",
+    "address": "215 Street 103, Phnom Penh",
+    "tel": "098-121-227",
+    "hireDate": "2025-09-13T21:17:32.563643",
+    "salary": 42500,
     "schedule": {
       "Monday": {
         "start": "2025-11-04T06:00:00.000Z",
@@ -83,30 +116,76 @@
         "end": "2025-11-08T18:00:00.000Z"
       }
     },
-    "assignedRoomIds": ["R201"],
-    "assignedPatientIds": ["P003"]
+    "assignedRoomIds": [
+      "R203",
+      "R301"
+    ],
+    "assignedPatientIds": []
   },
   {
-    "staffID": "N004",
-    "name": "Malica Ouk",
-    "dateOfBirth": "1992-04-16",
-    "address": "456 Confederation de la Russie, Phnom Penh",
-    "tel": "098-444-555",
-    "hireDate": "2021-07-20T00:00:00.000Z",
-    "salary": 40000.0,
+    "staffID": "N005",
+    "name": "Sreynich Yun",
+    "dateOfBirth": "1987-02-13",
+    "address": "220 Street 104, Phnom Penh",
+    "tel": "012-128-236",
+    "hireDate": "2025-09-13T21:17:32.563643",
+    "salary": 44000,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R302",
+      "R303",
+      "R401"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N006",
+    "name": "Kimheng Ros",
+    "dateOfBirth": "1987-07-13",
+    "address": "225 Street 105, Phnom Penh",
+    "tel": "017-135-245",
+    "hireDate": "2024-09-13T21:17:32.563643",
+    "salary": 45500,
     "schedule": {
       "Monday": {
-        "start": "2025-11-04T14:00:00.000Z",
-        "end": "2025-11-05T02:00:00.000Z"
+        "start": "2025-11-04T07:00:00.000Z",
+        "end": "2025-11-04T19:00:00.000Z"
       },
       "Tuesday": {
-        "start": "2025-11-05T14:00:00.000Z",
-        "end": "2025-11-06T02:00:00.000Z"
+        "start": "2025-11-05T07:00:00.000Z",
+        "end": "2025-11-05T19:00:00.000Z"
       },
       "Wednesday": {
-        "start": "2025-11-06T14:00:00.000Z",
-        "end": "2025-11-07T02:00:00.000Z"
-      },
+        "start": "2025-11-06T07:00:00.000Z",
+        "end": "2025-11-06T19:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R401",
+      "R402",
+      "R501",
+      "R502"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N007",
+    "name": "Pheakdey Sam",
+    "dateOfBirth": "1987-12-10",
+    "address": "230 Street 106, Phnom Penh",
+    "tel": "070-142-254",
+    "hireDate": "2024-09-13T21:17:32.563643",
+    "salary": 47000,
+    "schedule": {
       "Thursday": {
         "start": "2025-11-07T14:00:00.000Z",
         "end": "2025-11-08T02:00:00.000Z"
@@ -114,116 +193,1001 @@
       "Friday": {
         "start": "2025-11-08T14:00:00.000Z",
         "end": "2025-11-09T02:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
       }
     },
-    "assignedRoomIds": ["R103", "R104"],
-    "assignedPatientIds": ["P005"]
+    "assignedRoomIds": [
+      "R501",
+      "R502"
+    ],
+    "assignedPatientIds": []
   },
   {
-    "staffID": "N005",
-    "name": "Sreynich Yun",
-    "dateOfBirth": "1987-11-08",
-    "address": "789 Charles de Gaulle Boulevard, Phnom Penh",
-    "tel": "070-666-777",
-    "hireDate": "2019-03-10T00:00:00.000Z",
-    "salary": 46000.0,
+    "staffID": "N008",
+    "name": "Channary Khem",
+    "dateOfBirth": "1988-05-08",
+    "address": "235 Street 107, Phnom Penh",
+    "tel": "098-149-263",
+    "hireDate": "2024-09-13T21:17:32.563643",
+    "salary": 48500,
     "schedule": {
       "Monday": {
         "start": "2025-11-04T20:00:00.000Z",
         "end": "2025-11-05T08:00:00.000Z"
       },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T20:00:00.000Z",
+        "end": "2025-11-09T08:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R601",
+      "R602",
+      "R016"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N009",
+    "name": "Dara Sorn",
+    "dateOfBirth": "1988-10-05",
+    "address": "240 Street 108, Phnom Penh",
+    "tel": "012-156-272",
+    "hireDate": "2024-09-13T21:17:32.563643",
+    "salary": 38000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T06:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
+      },
       "Tuesday": {
-        "start": "2025-11-05T20:00:00.000Z",
-        "end": "2025-11-06T08:00:00.000Z"
+        "start": "2025-11-05T06:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T06:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T06:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T06:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R016",
+      "R017",
+      "R018",
+      "R019"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N010",
+    "name": "Sreypov Lim",
+    "dateOfBirth": "1989-03-04",
+    "address": "245 Street 109, Phnom Penh",
+    "tel": "017-163-281",
+    "hireDate": "2024-09-13T21:17:32.563643",
+    "salary": 39500,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R018",
+      "R019"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N011",
+    "name": "Sophea Heng",
+    "dateOfBirth": "1989-08-01",
+    "address": "250 Street 110, Phnom Penh",
+    "tel": "070-170-290",
+    "hireDate": "2023-09-14T21:17:32.563643",
+    "salary": 41000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T07:00:00.000Z",
+        "end": "2025-11-04T19:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T07:00:00.000Z",
+        "end": "2025-11-05T19:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T07:00:00.000Z",
+        "end": "2025-11-06T19:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R101",
+      "R102",
+      "R103"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N012",
+    "name": "Vicheka Kol",
+    "dateOfBirth": "1989-12-29",
+    "address": "255 Street 111, Phnom Penh",
+    "tel": "098-177-299",
+    "hireDate": "2023-09-14T21:17:32.563643",
+    "salary": 42500,
+    "schedule": {
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-08T02:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-09T02:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R103",
+      "R104",
+      "R201",
+      "R202"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N013",
+    "name": "Kanha Tan",
+    "dateOfBirth": "1990-05-28",
+    "address": "260 Street 112, Phnom Penh",
+    "tel": "012-184-308",
+    "hireDate": "2023-09-14T21:17:32.563643",
+    "salary": 44000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
       },
       "Wednesday": {
         "start": "2025-11-06T20:00:00.000Z",
         "end": "2025-11-07T08:00:00.000Z"
       },
+      "Friday": {
+        "start": "2025-11-08T20:00:00.000Z",
+        "end": "2025-11-09T08:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R201",
+      "R202"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N014",
+    "name": "Rithy Chea",
+    "dateOfBirth": "1990-10-25",
+    "address": "265 Street 113, Phnom Penh",
+    "tel": "017-191-317",
+    "hireDate": "2023-09-14T21:17:32.563643",
+    "salary": 45500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T06:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T06:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T06:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
       "Thursday": {
-        "start": "2025-11-07T20:00:00.000Z",
-        "end": "2025-11-08T08:00:00.000Z"
+        "start": "2025-11-07T06:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T06:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R203",
+      "R301",
+      "R302"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N015",
+    "name": "Sokunthea Sor",
+    "dateOfBirth": "1991-03-24",
+    "address": "270 Street 114, Phnom Penh",
+    "tel": "070-198-326",
+    "hireDate": "2023-09-14T21:17:32.563643",
+    "salary": 47000,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R302",
+      "R303",
+      "R401",
+      "R402"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N016",
+    "name": "Pisach Vin",
+    "dateOfBirth": "1991-08-21",
+    "address": "275 Street 115, Phnom Penh",
+    "tel": "098-205-335",
+    "hireDate": "2022-09-14T21:17:32.563643",
+    "salary": 48500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T07:00:00.000Z",
+        "end": "2025-11-04T19:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T07:00:00.000Z",
+        "end": "2025-11-05T19:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T07:00:00.000Z",
+        "end": "2025-11-06T19:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R401",
+      "R402"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N017",
+    "name": "Ratana Prum",
+    "dateOfBirth": "1992-01-18",
+    "address": "280 Street 116, Phnom Penh",
+    "tel": "012-212-344",
+    "hireDate": "2022-09-14T21:17:32.563643",
+    "salary": 38000,
+    "schedule": {
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-08T02:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-09T02:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R501",
+      "R502",
+      "R601"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N018",
+    "name": "Bunroeun Meng",
+    "dateOfBirth": "1992-06-16",
+    "address": "285 Street 117, Phnom Penh",
+    "tel": "017-219-353",
+    "hireDate": "2022-09-14T21:17:32.563643",
+    "salary": 39500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
       },
       "Friday": {
         "start": "2025-11-08T20:00:00.000Z",
         "end": "2025-11-09T08:00:00.000Z"
-      },
-      "Saturday": {
-        "start": "2025-11-09T20:00:00.000Z",
-        "end": "2025-11-10T08:00:00.000Z"
-      },
-      "Sunday": {
-        "start": "2025-11-10T20:00:00.000Z",
-        "end": "2025-11-11T08:00:00.000Z"
       }
     },
-    "assignedRoomIds": ["R301", "R302"],
-    "assignedPatientIds": ["P006"]
-  },
-  {
-    "staffID": "N006",
-    "name": "Kimheng Ros",
-    "dateOfBirth": "1989-03-22",
-    "address": "123 Sisowath Quay, Phnom Penh",
-    "tel": "092-888-999",
-    "hireDate": "2020-09-15T00:00:00.000Z",
-    "salary": 43000.0,
-    "schedule": {
-      "Monday": {
-        "start": "2025-11-04T10:00:00.000Z",
-        "end": "2025-11-04T22:00:00.000Z"
-      },
-      "Tuesday": {
-        "start": "2025-11-05T10:00:00.000Z",
-        "end": "2025-11-05T22:00:00.000Z"
-      },
-      "Wednesday": {
-        "start": "2025-11-06T10:00:00.000Z",
-        "end": "2025-11-06T22:00:00.000Z"
-      },
-      "Thursday": {
-        "start": "2025-11-07T10:00:00.000Z",
-        "end": "2025-11-07T22:00:00.000Z"
-      },
-      "Friday": {
-        "start": "2025-11-08T10:00:00.000Z",
-        "end": "2025-11-08T22:00:00.000Z"
-      }
-    },
-    "assignedRoomIds": ["R101", "R102", "R103"],
+    "assignedRoomIds": [
+      "R601",
+      "R602",
+      "R016",
+      "R017"
+    ],
     "assignedPatientIds": []
   },
   {
-    "staffID": "N007",
-    "name": "Pheakdey Sam",
-    "dateOfBirth": "1991-08-30",
-    "address": "567 Kampuchea Krom Boulevard, Phnom Penh",
-    "tel": "085-111-222",
-    "hireDate": "2022-01-12T00:00:00.000Z",
-    "salary": 38000.0,
+    "staffID": "N019",
+    "name": "Sreypich Noun",
+    "dateOfBirth": "1992-11-13",
+    "address": "290 Street 118, Phnom Penh",
+    "tel": "070-226-362",
+    "hireDate": "2022-09-14T21:17:32.563643",
+    "salary": 41000,
     "schedule": {
-      "Saturday": {
-        "start": "2025-11-09T22:00:00.000Z",
-        "end": "2025-11-10T08:00:00.000Z"
-      },
-      "Sunday": {
-        "start": "2025-11-10T22:00:00.000Z",
-        "end": "2025-11-11T08:00:00.000Z"
-      },
       "Monday": {
-        "start": "2025-11-04T22:00:00.000Z",
-        "end": "2025-11-05T08:00:00.000Z"
+        "start": "2025-11-04T06:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
       },
       "Tuesday": {
-        "start": "2025-11-05T22:00:00.000Z",
-        "end": "2025-11-06T08:00:00.000Z"
+        "start": "2025-11-05T06:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
       },
       "Wednesday": {
-        "start": "2025-11-06T22:00:00.000Z",
-        "end": "2025-11-07T08:00:00.000Z"
+        "start": "2025-11-06T06:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T06:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T06:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
       }
     },
-    "assignedRoomIds": ["R201", "R301"],
+    "assignedRoomIds": [
+      "R016",
+      "R017"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N020",
+    "name": "Kosal Kim",
+    "dateOfBirth": "1993-04-12",
+    "address": "295 Street 119, Phnom Penh",
+    "tel": "098-233-371",
+    "hireDate": "2022-09-14T21:17:32.563643",
+    "salary": 42500,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R018",
+      "R019",
+      "R101"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N021",
+    "name": "Narith Peng",
+    "dateOfBirth": "1993-09-09",
+    "address": "300 Street 120, Phnom Penh",
+    "tel": "012-240-380",
+    "hireDate": "2021-09-14T21:17:32.563643",
+    "salary": 44000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T07:00:00.000Z",
+        "end": "2025-11-04T19:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T07:00:00.000Z",
+        "end": "2025-11-05T19:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T07:00:00.000Z",
+        "end": "2025-11-06T19:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R101",
+      "R102",
+      "R103",
+      "R104"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N022",
+    "name": "Sarath Hor",
+    "dateOfBirth": "1994-02-06",
+    "address": "305 Street 121, Phnom Penh",
+    "tel": "017-247-389",
+    "hireDate": "2021-09-14T21:17:32.563643",
+    "salary": 45500,
+    "schedule": {
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-08T02:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-09T02:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R103",
+      "R104"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N023",
+    "name": "Vibol Chan",
+    "dateOfBirth": "1994-07-06",
+    "address": "310 Street 122, Phnom Penh",
+    "tel": "070-254-398",
+    "hireDate": "2021-09-14T21:17:32.563643",
+    "salary": 47000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T20:00:00.000Z",
+        "end": "2025-11-09T08:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R201",
+      "R202",
+      "R203"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N024",
+    "name": "Phanith Sok",
+    "dateOfBirth": "1994-12-03",
+    "address": "315 Street 123, Phnom Penh",
+    "tel": "098-261-407",
+    "hireDate": "2021-09-14T21:17:32.563643",
+    "salary": 48500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T06:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T06:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T06:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T06:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T06:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R203",
+      "R301",
+      "R302",
+      "R303"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N025",
+    "name": "Ponlok Seang",
+    "dateOfBirth": "1995-05-02",
+    "address": "320 Street 124, Phnom Penh",
+    "tel": "012-268-416",
+    "hireDate": "2021-09-14T21:17:32.563643",
+    "salary": 38000,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R302",
+      "R303"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N026",
+    "name": "Sothea Long",
+    "dateOfBirth": "1995-09-29",
+    "address": "325 Street 125, Phnom Penh",
+    "tel": "017-275-425",
+    "hireDate": "2020-09-14T21:17:32.563643",
+    "salary": 39500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T07:00:00.000Z",
+        "end": "2025-11-04T19:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T07:00:00.000Z",
+        "end": "2025-11-05T19:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T07:00:00.000Z",
+        "end": "2025-11-06T19:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R401",
+      "R402",
+      "R501"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N027",
+    "name": "Chenda Tep",
+    "dateOfBirth": "1996-02-26",
+    "address": "330 Street 126, Phnom Penh",
+    "tel": "070-282-434",
+    "hireDate": "2020-09-14T21:17:32.563643",
+    "salary": 41000,
+    "schedule": {
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-08T02:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-09T02:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R501",
+      "R502",
+      "R601",
+      "R602"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N028",
+    "name": "Rotana Mao",
+    "dateOfBirth": "1996-07-25",
+    "address": "335 Street 127, Phnom Penh",
+    "tel": "098-289-443",
+    "hireDate": "2020-09-14T21:17:32.563643",
+    "salary": 42500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T20:00:00.000Z",
+        "end": "2025-11-09T08:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R601",
+      "R602"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N029",
+    "name": "Srey Leak Sun",
+    "dateOfBirth": "1996-12-22",
+    "address": "340 Street 128, Phnom Penh",
+    "tel": "012-296-452",
+    "hireDate": "2020-09-14T21:17:32.563643",
+    "salary": 44000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T06:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T06:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T06:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T06:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T06:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R016",
+      "R017",
+      "R018"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N030",
+    "name": "Boramey Chhay",
+    "dateOfBirth": "1997-05-21",
+    "address": "345 Street 129, Phnom Penh",
+    "tel": "017-303-461",
+    "hireDate": "2020-09-14T21:17:32.563643",
+    "salary": 45500,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R018",
+      "R019",
+      "R101",
+      "R102"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N031",
+    "name": "Kunthea Var",
+    "dateOfBirth": "1997-10-18",
+    "address": "350 Street 130, Phnom Penh",
+    "tel": "070-310-470",
+    "hireDate": "2019-09-15T21:17:32.563643",
+    "salary": 47000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T07:00:00.000Z",
+        "end": "2025-11-04T19:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T07:00:00.000Z",
+        "end": "2025-11-05T19:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T07:00:00.000Z",
+        "end": "2025-11-06T19:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R101",
+      "R102"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N032",
+    "name": "Vutha Neang",
+    "dateOfBirth": "1998-03-17",
+    "address": "355 Street 131, Phnom Penh",
+    "tel": "098-317-479",
+    "hireDate": "2019-09-15T21:17:32.563643",
+    "salary": 48500,
+    "schedule": {
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-08T02:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-09T02:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R103",
+      "R104",
+      "R201"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N033",
+    "name": "Sopheap Touch",
+    "dateOfBirth": "1998-08-14",
+    "address": "360 Street 132, Phnom Penh",
+    "tel": "012-324-488",
+    "hireDate": "2019-09-15T21:17:32.563643",
+    "salary": 38000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T20:00:00.000Z",
+        "end": "2025-11-09T08:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R201",
+      "R202",
+      "R203",
+      "R301"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N034",
+    "name": "Sovann Hong",
+    "dateOfBirth": "1999-01-11",
+    "address": "365 Street 133, Phnom Penh",
+    "tel": "017-331-497",
+    "hireDate": "2019-09-15T21:17:32.563643",
+    "salary": 39500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T06:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T06:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T06:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T06:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T06:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R203",
+      "R301"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N035",
+    "name": "Thida Vuthy",
+    "dateOfBirth": "1999-06-10",
+    "address": "370 Street 134, Phnom Penh",
+    "tel": "070-338-506",
+    "hireDate": "2019-09-15T21:17:32.563643",
+    "salary": 41000,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R302",
+      "R303",
+      "R401"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N036",
+    "name": "Chamnan Srey",
+    "dateOfBirth": "1999-11-07",
+    "address": "375 Street 135, Phnom Penh",
+    "tel": "098-345-515",
+    "hireDate": "2018-09-15T21:17:32.563643",
+    "salary": 42500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T07:00:00.000Z",
+        "end": "2025-11-04T19:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T07:00:00.000Z",
+        "end": "2025-11-05T19:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T07:00:00.000Z",
+        "end": "2025-11-06T19:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R401",
+      "R402",
+      "R501",
+      "R502"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N037",
+    "name": "Makara Bunna",
+    "dateOfBirth": "2000-04-05",
+    "address": "380 Street 136, Phnom Penh",
+    "tel": "012-352-524",
+    "hireDate": "2018-09-15T21:17:32.563643",
+    "salary": 44000,
+    "schedule": {
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-08T02:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-09T02:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T14:00:00.000Z",
+        "end": "2025-11-10T02:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R501",
+      "R502"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N038",
+    "name": "Nimol Rith",
+    "dateOfBirth": "2000-09-02",
+    "address": "385 Street 137, Phnom Penh",
+    "tel": "017-359-533",
+    "hireDate": "2018-09-15T21:17:32.563643",
+    "salary": 45500,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T20:00:00.000Z",
+        "end": "2025-11-09T08:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R601",
+      "R602",
+      "R016"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N039",
+    "name": "Pisey Vanna",
+    "dateOfBirth": "2001-01-30",
+    "address": "390 Street 138, Phnom Penh",
+    "tel": "070-366-542",
+    "hireDate": "2018-09-15T21:17:32.563643",
+    "salary": 47000,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T06:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T06:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T06:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T06:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T06:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R016",
+      "R017",
+      "R018",
+      "R019"
+    ],
+    "assignedPatientIds": []
+  },
+  {
+    "staffID": "N040",
+    "name": "Veasna Samnang",
+    "dateOfBirth": "2001-06-29",
+    "address": "395 Street 139, Phnom Penh",
+    "tel": "098-373-551",
+    "hireDate": "2018-09-15T21:17:32.563643",
+    "salary": 48500,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T20:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T08:00:00.000Z",
+        "end": "2025-11-10T20:00:00.000Z"
+      }
+    },
+    "assignedRoomIds": [
+      "R018",
+      "R019"
+    ],
     "assignedPatientIds": []
   }
 ]

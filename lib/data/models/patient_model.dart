@@ -123,21 +123,64 @@ class PatientModel {
 
   /// Convert from JSON
   factory PatientModel.fromJson(Map<String, dynamic> json) {
+    // Handle both old format (assignedDoctorId) and new format (assignedDoctorIds)
+    List<String> doctorIds = [];
+    if (json['assignedDoctorIds'] != null) {
+      doctorIds = List<String>.from(json['assignedDoctorIds']);
+    } else if (json['assignedDoctorId'] != null &&
+        json['assignedDoctorId'] is String) {
+      doctorIds = [json['assignedDoctorId'] as String];
+    }
+
+    // Handle both old format (assignedNurseId) and new format (assignedNurseIds)
+    List<String> nurseIds = [];
+    if (json['assignedNurseIds'] != null) {
+      nurseIds = List<String>.from(json['assignedNurseIds']);
+    } else if (json['assignedNurseId'] != null &&
+        json['assignedNurseId'] is String) {
+      nurseIds = [json['assignedNurseId'] as String];
+    }
+
+    // Handle medical records from both 'medicalRecords' and 'medicalHistory'
+    List<String> records = [];
+    if (json['medicalRecords'] != null) {
+      records = List<String>.from(json['medicalRecords']);
+    } else if (json['medicalHistory'] != null) {
+      records = List<String>.from(json['medicalHistory']);
+    }
+
+    // Handle room ID from both 'currentRoomId' and 'assignedRoomId'
+    String? roomId = json['currentRoomId'] as String?;
+    if (roomId == null &&
+        json['assignedRoomId'] != null &&
+        json['assignedRoomId'] is String) {
+      roomId = json['assignedRoomId'] as String;
+    }
+
+    // Handle bed ID from both 'currentBedId' and 'assignedBedId'
+    String? bedId = json['currentBedId'] as String?;
+    if (bedId == null &&
+        json['assignedBedId'] != null &&
+        json['assignedBedId'] is String) {
+      bedId = json['assignedBedId'] as String;
+    }
+
     return PatientModel(
       patientID: json['patientID'] as String,
       name: json['name'] as String,
       dateOfBirth: json['dateOfBirth'] as String,
       address: json['address'] as String,
       tel: json['tel'] as String,
-      bloodType: json['bloodType'] as String,
-      medicalRecords: List<String>.from(json['medicalRecords'] ?? []),
+      bloodType:
+          json['bloodType'] as String? ?? 'Unknown', // Default if missing
+      medicalRecords: records,
       allergies: List<String>.from(json['allergies'] ?? []),
       emergencyContact: json['emergencyContact'] as String,
-      assignedDoctorIds: List<String>.from(json['assignedDoctorIds'] ?? []),
-      assignedNurseIds: List<String>.from(json['assignedNurseIds'] ?? []),
+      assignedDoctorIds: doctorIds,
+      assignedNurseIds: nurseIds,
       prescriptionIds: List<String>.from(json['prescriptionIds'] ?? []),
-      currentRoomId: json['currentRoomId'] as String?,
-      currentBedId: json['currentBedId'] as String?,
+      currentRoomId: roomId,
+      currentBedId: bedId,
       hasNextMeeting: json['hasNextMeeting'] as bool? ?? false,
       nextMeetingDate: json['nextMeetingDate'] as String?,
       nextMeetingDoctorId: json['nextMeetingDoctorId'] as String?,

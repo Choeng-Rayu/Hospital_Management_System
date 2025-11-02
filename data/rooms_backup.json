@@ -1,0 +1,34 @@
+[
+  {
+    "roomId": "R101",
+    "number": "101",
+    "roomType": "RoomType.GENERAL_WARD",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E001", "E002"],
+    "bedIds": ["B101A", "B101B"]
+  },
+  {
+    "roomId": "R102", 
+    "number": "102",
+    "roomType": "RoomType.PRIVATE_ROOM",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E003"],
+    "bedIds": ["B102A"]
+  },
+  {
+    "roomId": "R201",
+    "number": "201",
+    "roomType": "RoomType.MATERNITY",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E004", "E005"],
+    "bedIds": ["B201A", "B201B"]
+  },
+  {
+    "roomId": "R301",
+    "number": "301",
+    "roomType": "RoomType.ICU",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E006", "E007", "E008"],
+    "bedIds": ["B301A"]
+  }
+]

@@ -79,7 +79,9 @@ class SearchMenu extends BaseMenu {
                 patient.patientID,
                 patient.name,
                 patient.tel,
-                patient.medicalRecords.isNotEmpty ? patient.medicalRecords.last : 'N/A',
+                patient.medicalRecords.isNotEmpty
+                    ? patient.medicalRecords.last
+                    : 'N/A',
                 patient.currentRoom != null ? 'Admitted' : 'Not Admitted',
               ])
           .toList();
@@ -145,15 +147,18 @@ class SearchMenu extends BaseMenu {
       switch (searchChoice) {
         case 1:
           final patientId = InputValidator.readId('Enter patient ID', 'P');
-          appointments = await appointmentRepository.getAppointmentsByPatient(patientId);
+          appointments =
+              await appointmentRepository.getAppointmentsByPatient(patientId);
           break;
         case 2:
           final doctorId = InputValidator.readId('Enter doctor ID', 'D');
-          appointments = await appointmentRepository.getAppointmentsByDoctor(doctorId);
+          appointments =
+              await appointmentRepository.getAppointmentsByDoctor(doctorId);
           break;
         case 3:
           final date = InputValidator.readDate('Enter date');
-          appointments = await appointmentRepository.getAppointmentsByDate(date);
+          appointments =
+              await appointmentRepository.getAppointmentsByDate(date);
           break;
       }
 
@@ -199,11 +204,13 @@ class SearchMenu extends BaseMenu {
       switch (searchChoice) {
         case 1:
           final patientId = InputValidator.readId('Enter patient ID', 'P');
-          prescriptions = await prescriptionRepository.getPrescriptionsByPatient(patientId);
+          prescriptions =
+              await prescriptionRepository.getPrescriptionsByPatient(patientId);
           break;
         case 2:
           final doctorId = InputValidator.readId('Enter doctor ID', 'D');
-          prescriptions = await prescriptionRepository.getPrescriptionsByDoctor(doctorId);
+          prescriptions =
+              await prescriptionRepository.getPrescriptionsByDoctor(doctorId);
           break;
       }
 
@@ -237,11 +244,12 @@ class SearchMenu extends BaseMenu {
     UIHelper.printHeader('Search Rooms');
 
     try {
-      final roomNumber = InputValidator.readString('Enter room number to search');
-      
+      final roomNumber =
+          InputValidator.readString('Enter room number to search');
+
       try {
         final room = await roomRepository.getRoomByNumber(roomNumber);
-        
+
         UIHelper.printSubHeader('Room Information');
         print('ID: ${room.roomId}');
         print('Number: ${room.number}');
@@ -249,7 +257,7 @@ class SearchMenu extends BaseMenu {
         print('Status: ${room.status.toString().split('.').last}');
         print('Total Beds: ${room.beds.length}');
         print('Available Beds: ${room.availableBedCount}');
-        
+
         if (room.currentPatients.isNotEmpty) {
           print('\nCurrent Patients:');
           for (final patient in room.currentPatients) {
