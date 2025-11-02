@@ -172,6 +172,7 @@ class MainMenuController {
           case 5:
             await RoomMenu(
               roomRepository: _roomRepository,
+              patientRepository: _patientRepository,
             ).show();
             break;
           case 6:
