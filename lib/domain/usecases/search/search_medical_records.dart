@@ -92,8 +92,14 @@ class SearchMedicalRecords
     List<Patient> patients;
 
     if (input.patientId != null) {
-      final patient = await patientRepository.getPatientById(input.patientId!);
-      patients = patient != null ? [patient] : <Patient>[];
+      try {
+        final patient =
+            await patientRepository.getPatientById(input.patientId!);
+        patients = [patient];
+      } on Exception {
+        // If patient not found, return empty list
+        patients = <Patient>[];
+      }
     } else {
       patients = await patientRepository.getAllPatients();
     }
