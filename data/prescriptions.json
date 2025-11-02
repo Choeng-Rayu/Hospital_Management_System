@@ -1,0 +1,58 @@
+[
+  {
+    "id": "PR001",
+    "time": "2024-10-28T09:30:00.000Z",
+    "patientId": "P001",
+    "doctorId": "D001",
+    "medicationIds": ["M002", "M005"],
+    "instructions": "Take Lisinopril once daily in the morning. Take Aspirin once daily with food. Continue for 30 days and return for follow-up."
+  },
+  {
+    "id": "PR002",
+    "time": "2024-10-29T14:15:00.000Z", 
+    "patientId": "P001",
+    "doctorId": "D001",
+    "medicationIds": ["M004"],
+    "instructions": "Take Metformin twice daily with meals. Monitor blood sugar levels and report any unusual symptoms."
+  },
+  {
+    "id": "PR003",
+    "time": "2024-10-25T11:45:00.000Z",
+    "patientId": "P002",
+    "doctorId": "D002",
+    "medicationIds": ["M001", "M003"],
+    "instructions": "Take Amoxicillin three times daily for infection. Take Ibuprofen as needed for pain, not exceeding 6 tablets per day."
+  },
+  {
+    "id": "PR004",
+    "time": "2024-10-30T16:20:00.000Z",
+    "patientId": "P004",
+    "doctorId": "D001",
+    "medicationIds": ["M002"],
+    "instructions": "Continue Lisinopril once daily. Monitor blood pressure weekly and maintain log."
+  },
+  {
+    "id": "PR005",
+    "time": "2024-10-30T16:25:00.000Z",
+    "patientId": "P004",
+    "doctorId": "D001",
+    "medicationIds": ["M005"],
+    "instructions": "Take Aspirin daily for cardiac protection. Take with food to minimize stomach irritation."
+  },
+  {
+    "id": "PR006",
+    "time": "2024-11-01T02:15:00.000Z",
+    "patientId": "P006",
+    "doctorId": "D005",
+    "medicationIds": ["M003"],
+    "instructions": "Take Ibuprofen as needed for pain relief. Emergency night shift prescription. Continue for 3 days maximum."
+  },
+  {
+    "id": "PR007",
+    "time": "2024-10-31T15:45:00.000Z",
+    "patientId": "P005",
+    "doctorId": "D004",
+    "medicationIds": ["M001"],
+    "instructions": "Take Amoxicillin three times daily for 7 days. Complete the full course even if symptoms improve."
+  }
+]

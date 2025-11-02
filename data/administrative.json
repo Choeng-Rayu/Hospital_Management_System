@@ -1,0 +1,170 @@
+[
+  {
+    "staffID": "A001",
+    "name": "Sokhom Pich",
+    "dateOfBirth": "1979-07-18",
+    "address": "123 Preah Monivong Boulevard, Phnom Penh",
+    "tel": "012-555-001",
+    "hireDate": "2015-05-20T00:00:00.000Z",
+    "salary": 35000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T08:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "responsibility": "Hospital Administration and Patient Records Management"
+  },
+  {
+    "staffID": "A002",
+    "name": "Chenda Nou",
+    "dateOfBirth": "1985-11-25",
+    "address": "456 Russian Boulevard, Phnom Penh", 
+    "tel": "012-555-002",
+    "hireDate": "2018-03-12T00:00:00.000Z",
+    "salary": 40000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T08:30:00.000Z",
+        "end": "2025-11-04T17:30:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T08:30:00.000Z",
+        "end": "2025-11-05T17:30:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:30:00.000Z",
+        "end": "2025-11-06T17:30:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:30:00.000Z",
+        "end": "2025-11-07T17:30:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:30:00.000Z",
+        "end": "2025-11-08T17:30:00.000Z"
+      }
+    },
+    "responsibility": "Financial Management and Billing Operations"
+  },
+  {
+    "staffID": "A003",
+    "name": "Virak Sao",
+    "dateOfBirth": "1987-02-14",
+    "address": "789 Norodom Boulevard, Phnom Penh",
+    "tel": "012-555-003",
+    "hireDate": "2019-08-05T00:00:00.000Z",
+    "salary": 32000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T18:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T18:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T18:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T18:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T18:00:00.000Z"
+      }
+    },
+    "responsibility": "IT Support and System Maintenance"
+  },
+  {
+    "staffID": "A004",
+    "name": "Leakhena Phy",
+    "dateOfBirth": "1990-05-12",
+    "address": "234 Hun Sen Boulevard, Phnom Penh",
+    "tel": "070-555-004",
+    "hireDate": "2021-02-18T00:00:00.000Z",
+    "salary": 38000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T18:00:00.000Z",
+        "end": "2025-11-05T06:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T18:00:00.000Z",
+        "end": "2025-11-06T06:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T18:00:00.000Z",
+        "end": "2025-11-07T06:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T18:00:00.000Z",
+        "end": "2025-11-08T06:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T18:00:00.000Z",
+        "end": "2025-11-09T06:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T18:00:00.000Z",
+        "end": "2025-11-10T06:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T18:00:00.000Z",
+        "end": "2025-11-11T06:00:00.000Z"
+      }
+    },
+    "responsibility": "Night Shift Administrative Coordination and Emergency Documentation"
+  },
+  {
+    "staffID": "A005",
+    "name": "Bunthoeun Keo",
+    "dateOfBirth": "1988-03-08",
+    "address": "567 Kampuchea Krom Boulevard, Phnom Penh",
+    "tel": "096-555-005",
+    "hireDate": "2020-06-30T00:00:00.000Z",
+    "salary": 36000.0,
+    "schedule": {
+      "Saturday": {
+        "start": "2025-11-09T20:00:00.000Z",
+        "end": "2025-11-10T08:00:00.000Z"
+      },
+      "Sunday": {
+        "start": "2025-11-10T20:00:00.000Z",
+        "end": "2025-11-11T08:00:00.000Z"
+      },
+      "Monday": {
+        "start": "2025-11-04T20:00:00.000Z",
+        "end": "2025-11-05T08:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T20:00:00.000Z",
+        "end": "2025-11-06T08:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T20:00:00.000Z",
+        "end": "2025-11-07T08:00:00.000Z"
+      }
+    },
+    "responsibility": "Weekend and Night Shift Security Coordination"
+  }
+]

@@ -20,6 +20,11 @@ class Patient extends Person {
   Room? _currentRoom;
   Bed? _currentBed;
 
+  // Next doctor meeting scheduling
+  bool _hasNextMeeting;
+  DateTime? _nextMeetingDate;
+  Doctor? _nextMeetingDoctor;
+
   // Getters
   String get patientID => _patientID;
   String get bloodType => _bloodType;
@@ -39,6 +44,11 @@ class Patient extends Person {
   Room? get currentRoom => _currentRoom;
   Bed? get currentBed => _currentBed;
 
+  // Next meeting getters
+  bool get hasNextMeeting => _hasNextMeeting;
+  DateTime? get nextMeetingDate => _nextMeetingDate;
+  Doctor? get nextMeetingDoctor => _nextMeetingDoctor;
+
   Patient({
     required String name,
     required String dateOfBirth,
@@ -54,6 +64,9 @@ class Patient extends Person {
     List<Prescription>? prescriptions,
     Room? currentRoom,
     Bed? currentBed,
+    bool hasNextMeeting = false,
+    DateTime? nextMeetingDate,
+    Doctor? nextMeetingDoctor,
   })  : _patientID = patientID,
         _bloodType = bloodType,
         _medicalRecords = List.from(medicalRecords),
@@ -64,6 +77,9 @@ class Patient extends Person {
         _prescriptions = List.from(prescriptions ?? []),
         _currentRoom = currentRoom,
         _currentBed = currentBed,
+        _hasNextMeeting = hasNextMeeting,
+        _nextMeetingDate = nextMeetingDate,
+        _nextMeetingDoctor = nextMeetingDoctor,
         super(
           name: name,
           dateOfBirth: dateOfBirth,
@@ -135,6 +151,252 @@ class Patient extends Person {
   UnmodifiableListView<Prescription> get activePrescriptions =>
       UnmodifiableListView(_prescriptions.where((p) => p.isRecent));
 
+  // Next meeting management methods
+  /// Schedule the next meeting with a doctor
+  void scheduleNextMeeting({
+    required Doctor doctor,
+    required DateTime meetingDate,
+    int durationMinutes = 30, // Default meeting duration
+  }) {
+    // Validate meeting date is in the future
+    if (meetingDate.isBefore(DateTime.now())) {
+      throw ArgumentError('Meeting date must be in the future');
+    }
+
+    // Validate doctor is assigned to patient
+    if (!_assignedDoctors.contains(doctor)) {
+      throw ArgumentError(
+        'Cannot schedule meeting with unassigned doctor. '
+        'Doctor ${doctor.name} is not assigned to patient $_patientID',
+      );
+    }
+
+    // Check if doctor is available at the requested time
+    if (!_isDoctorAvailable(doctor, meetingDate, durationMinutes)) {
+      throw ArgumentError(
+        'Doctor ${doctor.name} is not available at ${_formatDateTime(meetingDate)}. '
+        'Please choose a different time.',
+      );
+    }
+
+    // If rescheduling, remove old meeting from doctor's schedule
+    if (_hasNextMeeting &&
+        _nextMeetingDoctor != null &&
+        _nextMeetingDate != null) {
+      _removeMeetingFromDoctorSchedule(_nextMeetingDoctor!, _nextMeetingDate!);
+    }
+
+    _hasNextMeeting = true;
+    _nextMeetingDate = meetingDate;
+    _nextMeetingDoctor = doctor;
+
+    // Add the meeting to doctor's schedule
+    _addMeetingToDoctorSchedule(doctor, meetingDate);
+  }
+
+  /// Cancel the next scheduled meeting
+  void cancelNextMeeting() {
+    // Remove meeting from doctor's schedule
+    if (_hasNextMeeting &&
+        _nextMeetingDoctor != null &&
+        _nextMeetingDate != null) {
+      _removeMeetingFromDoctorSchedule(_nextMeetingDoctor!, _nextMeetingDate!);
+    }
+
+    _hasNextMeeting = false;
+    _nextMeetingDate = null;
+    _nextMeetingDoctor = null;
+  }
+
+  /// Reschedule the next meeting to a new date
+  void rescheduleNextMeeting(
+    DateTime newMeetingDate, {
+    int durationMinutes = 30,
+  }) {
+    if (!_hasNextMeeting) {
+      throw StateError('No meeting scheduled to reschedule');
+    }
+
+    if (newMeetingDate.isBefore(DateTime.now())) {
+      throw ArgumentError('Meeting date must be in the future');
+    }
+
+    if (_nextMeetingDoctor == null) {
+      throw StateError('Meeting doctor information is missing');
+    }
+
+    // Check if doctor is available at the new time
+    if (!_isDoctorAvailable(
+        _nextMeetingDoctor!, newMeetingDate, durationMinutes)) {
+      throw ArgumentError(
+        'Doctor ${_nextMeetingDoctor!.name} is not available at ${_formatDateTime(newMeetingDate)}. '
+        'Please choose a different time.',
+      );
+    }
+
+    // Remove old meeting from doctor's schedule
+    if (_nextMeetingDate != null) {
+      _removeMeetingFromDoctorSchedule(_nextMeetingDoctor!, _nextMeetingDate!);
+    }
+
+    _nextMeetingDate = newMeetingDate;
+
+    // Add new meeting to doctor's schedule
+    _addMeetingToDoctorSchedule(_nextMeetingDoctor!, newMeetingDate);
+  }
+
+  /// Public method to check if a doctor is available at a specific time
+  /// Useful for UI to validate before attempting to schedule
+  bool isDoctorAvailableAt({
+    required Doctor doctor,
+    required DateTime dateTime,
+    int durationMinutes = 30,
+  }) {
+    return _isDoctorAvailable(doctor, dateTime, durationMinutes);
+  }
+
+  /// Get all scheduled times for a doctor on a specific date
+  /// Returns empty list if doctor has no schedule that day
+  List<DateTime> getDoctorScheduleForDate({
+    required Doctor doctor,
+    required DateTime date,
+  }) {
+    final String scheduleKey = _getScheduleKey(date);
+    return doctor.getScheduleFor(scheduleKey);
+  }
+
+  /// Get suggested available time slots for a doctor on a specific date
+  /// Returns list of available DateTime slots during working hours (8 AM - 5 PM)
+  List<DateTime> getSuggestedAvailableSlots({
+    required Doctor doctor,
+    required DateTime date,
+    int durationMinutes = 30,
+    int startHour = 8,
+    int endHour = 17,
+  }) {
+    final List<DateTime> availableSlots = [];
+    final DateTime startOfDay =
+        DateTime(date.year, date.month, date.day, startHour);
+
+    // Generate time slots from startHour to endHour
+    DateTime currentSlot = startOfDay;
+    final DateTime endOfDay =
+        DateTime(date.year, date.month, date.day, endHour);
+
+    while (currentSlot.isBefore(endOfDay)) {
+      if (_isDoctorAvailable(doctor, currentSlot, durationMinutes) &&
+          currentSlot.isAfter(DateTime.now())) {
+        availableSlots.add(currentSlot);
+      }
+      // Move to next slot (every 30 minutes)
+      currentSlot = currentSlot.add(const Duration(minutes: 30));
+    }
+
+    return availableSlots;
+  }
+
+  // Helper methods for meeting schedule management
+
+  /// Check if doctor is available at the specified time
+  bool _isDoctorAvailable(
+    Doctor doctor,
+    DateTime requestedTime,
+    int durationMinutes,
+  ) {
+    // Step 1: Check if the doctor is working during this time
+    if (!doctor.isWorkingDuring(requestedTime, durationMinutes)) {
+      return false; // Outside working hours
+    }
+
+    // Step 2: Check for conflicts with existing meetings
+    final String scheduleKey = _getScheduleKey(requestedTime);
+    final List<DateTime> doctorSchedule = doctor.getScheduleFor(scheduleKey);
+
+    final DateTime requestedEnd =
+        requestedTime.add(Duration(minutes: durationMinutes));
+
+    for (final scheduledTime in doctorSchedule) {
+      // Assume each scheduled item takes 30 minutes by default
+      final DateTime scheduledEnd =
+          scheduledTime.add(const Duration(minutes: 30));
+
+      // Check if there's any overlap
+      bool hasConflict = (requestedTime.isBefore(scheduledEnd) &&
+          requestedEnd.isAfter(scheduledTime));
+
+      if (hasConflict) {
+        return false; // Meeting conflict
+      }
+    }
+
+    // Note: This method only checks working hours and nextMeeting conflicts
+    // For full availability checking including Appointment entities,
+    // use DoctorRepository.isDoctorFullyAvailable() instead
+    return true; // Available for meetings
+  }
+
+  /// Add meeting to doctor's schedule
+  void _addMeetingToDoctorSchedule(Doctor doctor, DateTime meetingDate) {
+    final String scheduleKey = _getScheduleKey(meetingDate);
+    doctor.addScheduleEntry(scheduleKey, meetingDate);
+  }
+
+  /// Remove meeting from doctor's schedule
+  void _removeMeetingFromDoctorSchedule(Doctor doctor, DateTime meetingDate) {
+    final String scheduleKey = _getScheduleKey(meetingDate);
+    doctor.removeScheduleEntry(scheduleKey, meetingDate);
+  }
+
+  /// Generate schedule key from date (format: YYYY-MM-DD)
+  String _getScheduleKey(DateTime date) {
+    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+  }
+
+  /// Format DateTime for display
+  String _formatDateTime(DateTime date) {
+    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')} '
+        '${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
+  }
+
+  /// Check if the next meeting is upcoming (within next 7 days)
+  bool get isNextMeetingSoon {
+    if (!_hasNextMeeting || _nextMeetingDate == null) {
+      return false;
+    }
+
+    final now = DateTime.now();
+    final daysUntilMeeting = _nextMeetingDate!.difference(now).inDays;
+    return daysUntilMeeting >= 0 && daysUntilMeeting <= 7;
+  }
+
+  /// Check if the next meeting is overdue
+  bool get isNextMeetingOverdue {
+    if (!_hasNextMeeting || _nextMeetingDate == null) {
+      return false;
+    }
+
+    return _nextMeetingDate!.isBefore(DateTime.now());
+  }
+
+  /// Get formatted next meeting information
+  String? get nextMeetingInfo {
+    if (!_hasNextMeeting) {
+      return null;
+    }
+
+    if (_nextMeetingDate == null || _nextMeetingDoctor == null) {
+      return 'Meeting scheduled but details incomplete';
+    }
+
+    final dateStr = '${_nextMeetingDate!.year}-'
+        '${_nextMeetingDate!.month.toString().padLeft(2, '0')}-'
+        '${_nextMeetingDate!.day.toString().padLeft(2, '0')} '
+        '${_nextMeetingDate!.hour.toString().padLeft(2, '0')}:'
+        '${_nextMeetingDate!.minute.toString().padLeft(2, '0')}';
+
+    return 'Next meeting with Dr. ${_nextMeetingDoctor!.name} on $dateStr';
+  }
+
   void _validatePatient() {
     if (_patientID.trim().isEmpty) {
       throw ArgumentError('Patient ID cannot be empty');
@@ -144,6 +406,20 @@ class Patient extends Person {
     }
     if (_emergencyContact.trim().isEmpty) {
       throw ArgumentError('Emergency contact cannot be empty');
+    }
+
+    // Validate next meeting data consistency
+    if (_hasNextMeeting) {
+      if (_nextMeetingDate == null) {
+        throw ArgumentError(
+          'Next meeting date must be provided when hasNextMeeting is true',
+        );
+      }
+      if (_nextMeetingDoctor == null) {
+        throw ArgumentError(
+          'Next meeting doctor must be provided when hasNextMeeting is true',
+        );
+      }
     }
   }
 
@@ -178,6 +454,10 @@ class Patient extends Person {
   int get hashCode => super.hashCode ^ _patientID.hashCode;
 
   @override
-  String toString() =>
-      'Patient(patientID: $_patientID, name: $name, bloodType: $_bloodType)';
+  String toString() {
+    final meetingStatus = _hasNextMeeting
+        ? ', nextMeeting: ${_nextMeetingDate?.toString() ?? "TBD"}'
+        : ', no scheduled meeting';
+    return 'Patient(patientID: $_patientID, name: $name, bloodType: $_bloodType$meetingStatus)';
+  }
 }

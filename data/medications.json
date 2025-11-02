@@ -1,0 +1,37 @@
+[
+  {
+    "id": "M001",
+    "name": "Amoxicillin",
+    "dosage": "500mg",
+    "manufacturer": "PharmaCorp",
+    "sideEffects": ["Nausea", "Diarrhea", "Allergic reaction", "Headache"]
+  },
+  {
+    "id": "M002",
+    "name": "Lisinopril",
+    "dosage": "10mg",
+    "manufacturer": "CardioMeds Inc",
+    "sideEffects": ["Dry cough", "Dizziness", "Hyperkalemia", "Fatigue"]
+  },
+  {
+    "id": "M003",
+    "name": "Ibuprofen",
+    "dosage": "400mg",
+    "manufacturer": "PainRelief Ltd",
+    "sideEffects": ["Stomach upset", "Heartburn", "Dizziness", "Drowsiness"]
+  },
+  {
+    "id": "M004",
+    "name": "Metformin",
+    "dosage": "850mg",
+    "manufacturer": "DiabeteCare",
+    "sideEffects": ["Nausea", "Diarrhea", "Metallic taste", "Lactic acidosis"]
+  },
+  {
+    "id": "M005",
+    "name": "Aspirin",
+    "dosage": "81mg",
+    "manufacturer": "HeartHealth Co",
+    "sideEffects": ["Stomach irritation", "Bleeding", "Tinnitus", "Allergic reaction"]
+  }
+]

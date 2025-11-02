@@ -1,0 +1,44 @@
+[
+  {
+    "bedNumber": "B101A",
+    "bedType": "BedType.STANDARD",
+    "isOccupied": true,
+    "currentPatientId": "P001",
+    "features": ["Adjustable height", "Side rails", "Call button"]
+  },
+  {
+    "bedNumber": "B101B",
+    "bedType": "BedType.STANDARD", 
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": ["Adjustable height", "Side rails", "Call button"]
+  },
+  {
+    "bedNumber": "B102A",
+    "bedType": "BedType.ELECTRIC",
+    "isOccupied": true,
+    "currentPatientId": "P002",
+    "features": ["Electric adjustment", "Memory foam mattress", "Built-in massage", "USB ports"]
+  },
+  {
+    "bedNumber": "B201A",
+    "bedType": "BedType.MATERNITY",
+    "isOccupied": true,
+    "currentPatientId": "P003",
+    "features": ["Labor position adjustments", "Delivery mode", "Baby warmer", "Emergency call"]
+  },
+  {
+    "bedNumber": "B201B",
+    "bedType": "BedType.MATERNITY",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": ["Labor position adjustments", "Delivery mode", "Baby warmer", "Emergency call"]
+  },
+  {
+    "bedNumber": "B301A",
+    "bedType": "BedType.ICU",
+    "isOccupied": false,
+    "currentPatientId": null,
+    "features": ["Full electric", "Trendelenburg position", "Cardiac positioning", "Scale integration", "Advanced monitoring mounts"]
+  }
+]
