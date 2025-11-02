@@ -1,1 +1,11 @@
-[{"equipmentId":"EQ002","name":"Second Equipment","type":"Test Type","serialNumber":"SN002","status":"EquipmentStatus.OPERATIONAL","lastServiceDate":"2023-01-01T00:00:00.000","nextServiceDate":"2023-12-31T00:00:00.000"}]
+[
+    {
+        "equipmentId": "EQ002",
+        "name": "Second Equipment",
+        "type": "Test Type",
+        "serialNumber": "SN002",
+        "status": "EquipmentStatus.OPERATIONAL",
+        "lastServiceDate": "2023-01-01T00:00:00.000",
+        "nextServiceDate": "2023-12-31T00:00:00.000"
+    }
+]

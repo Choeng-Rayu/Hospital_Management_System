@@ -150,7 +150,7 @@ void main() {
         print('   📋 Duration: ${created.duration} minutes');
         print('   📋 Notes: ${created.notes}');
 
-        expect(created.duration, equals(60));
+        expect(created.duration, equals(60)); // Duration set to 60 in appointment creation
         expect(created.notes, isNotNull);
 
         print('   ✅ Appointment with details created');
@@ -162,18 +162,35 @@ void main() {
         final patient = await patientRepository.getPatientById('P001');
         final doctor = await doctorRepository.getDoctorById('D001');
 
-        final appointment = Appointment(
-          id: 'A001', // Try to use existing ID
+        // First create an appointment
+        final appointment1 = Appointment(
+          id: 'AUTO',
           dateTime: DateTime.now().add(const Duration(days: 1)),
           duration: 30,
           patient: patient,
           doctor: doctor,
           status: AppointmentStatus.SCHEDULE,
-          reason: 'Test duplicate',
+          reason: 'Duplicate test original',
+        );
+
+        await appointmentRepository.saveAppointment(appointment1);
+        final all1 = await appointmentRepository.getAllAppointments();
+        final saved = all1.firstWhere((a) => a.reason == 'Duplicate test original');
+        testAppointmentIds.add(saved.id);
+
+        // Try to create another with same ID
+        final appointment2 = Appointment(
+          id: saved.id, // Use same ID
+          dateTime: DateTime.now().add(const Duration(days: 1)),
+          duration: 30,
+          patient: patient,
+          doctor: doctor,
+          status: AppointmentStatus.SCHEDULE,
+          reason: 'Duplicate test copy',
         );
 
         try {
-          await appointmentRepository.saveAppointment(appointment);
+          await appointmentRepository.saveAppointment(appointment2);
           fail('Should not allow duplicate appointment ID');
         } catch (e) {
           print('   ✅ Correctly prevented duplicate: $e');
@@ -215,6 +232,16 @@ void main() {
 
         final patient = await patientRepository.getPatientById('P003');
         final doctor = await doctorRepository.getDoctorById('D003');
+
+        // First, clean up any existing duration test appointments
+        final existingAppts = await appointmentRepository.getAllAppointments();
+        final existingDurationTests = existingAppts
+            .where((a) => a.reason.contains('Duration test'))
+            .toList();
+        
+        for (final apt in existingDurationTests) {
+          await appointmentRepository.deleteAppointment(apt.id);
+        }
 
         final durations = [15, 30, 45, 60, 90];
         int created = 0;
@@ -306,16 +333,17 @@ void main() {
       test('Should view appointment by ID', () async {
         print('\n🧪 TEST: View specific appointment');
 
+        // Use an actual existing appointment ID from the data
         final appointment =
-            await appointmentRepository.getAppointmentById('A001');
+            await appointmentRepository.getAppointmentById('A026');
 
-        print('   ✅ Loaded: ${appointment.id}');
+        print('   📋 ID: ${appointment.id}');
         print('   📋 Patient: ${appointment.patient.name}');
         print('   📋 Doctor: ${appointment.doctor.name}');
         print('   📋 Date: ${appointment.dateTime}');
-        print('   📋 Reason: ${appointment.reason}');
+        print('   📋 Status: ${appointment.status}');
 
-        expect(appointment.id, equals('A001'));
+        expect(appointment.id, equals('A026'));
         expect(appointment.patient, isNotNull);
         expect(appointment.doctor, isNotNull);
       });
@@ -446,20 +474,34 @@ void main() {
       test('Should handle appointment reschedule', () async {
         print('\n🧪 TEST: Reschedule appointment');
 
-        // This would typically use RescheduleAppointment use case
-        // For now, test basic date update capability
+        // Create a test appointment first
+        final patient = await patientRepository.getPatientById('P001');
+        final doctor = await doctorRepository.getDoctorById('D001');
 
-        final appointment =
-            await appointmentRepository.getAppointmentById('A001');
-        final originalDate = appointment.dateTime;
+        final appointment = Appointment(
+          id: 'AUTO',
+          dateTime: DateTime.now().add(const Duration(days: 5)),
+          duration: 30,
+          patient: patient,
+          doctor: doctor,
+          status: AppointmentStatus.SCHEDULE,
+          reason: 'Reschedule test',
+        );
+
+        await appointmentRepository.saveAppointment(appointment);
+        final all = await appointmentRepository.getAllAppointments();
+        final saved = all.firstWhere((a) => a.reason == 'Reschedule test');
+        testAppointmentIds.add(saved.id);
+
+        final originalDate = saved.dateTime;
 
         print('   📋 Original date: $originalDate');
-        print('   📋 Status: ${appointment.status}');
+        print('   📋 Status: ${saved.status}');
 
         // Note: Appointment entity is immutable, so rescheduling
         // would create a new instance in real use case
 
-        expect(appointment.dateTime, equals(originalDate));
+        expect(saved.dateTime, equals(originalDate));
         print('   ✅ Reschedule logic can be implemented via use case');
       });
 
@@ -709,8 +751,9 @@ void main() {
       test('Should check appointment exists', () async {
         print('\n🧪 TEST: Check appointment existence');
 
-        final exists = await appointmentRepository.appointmentExists('A001');
-        print('   ✅ A001 exists: $exists');
+        // Use an actual existing appointment ID
+        final exists = await appointmentRepository.appointmentExists('A026');
+        print('   ✅ A026 exists: $exists');
         expect(exists, isTrue);
 
         final notExists =
@@ -722,10 +765,11 @@ void main() {
       test('Should validate appointment data integrity', () async {
         print('\n🧪 TEST: Appointment data integrity');
 
+        // Use an actual existing appointment ID
         final appointment =
-            await appointmentRepository.getAppointmentById('A001');
+            await appointmentRepository.getAppointmentById('A026');
 
-        print('   📋 Validating appointment A001...');
+        print('   📋 Validating appointment A026...');
 
         // Check required fields
         expect(appointment.id, isNotEmpty);
