@@ -1,1068 +1,554 @@
-<div align="center"># Hospital Management System
+<div align="center">
 
+# 🏥 Hospital Management System
 
+### A Comprehensive Healthcare Management Platform
 
-# 🏥 Hospital Management SystemA comprehensive hospital management system built with Dart, following Clean Architecture principles.
+[![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Tests](https://img.shields.io/badge/Tests-137%2F137-success?style=for-the-badge&logo=github-actions&logoColor=white)](test/)
+[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen?style=for-the-badge&logo=codecov&logoColor=white)](#test-coverage)
+[![Clean Architecture](https://img.shields.io/badge/Architecture-Clean-blue?style=for-the-badge)](#architecture)
 
+A production-ready hospital management system built with **Clean Architecture** principles, featuring comprehensive patient care, appointment scheduling, prescription management, and emergency response capabilities.
 
+[Features](#features) • [Architecture](#architecture) • [Getting Started](#getting-started) • [Documentation](#documentation) • [Testing](#testing)
 
-### A Comprehensive Healthcare Management Platform## 🎯 Project Status
+</div>
 
+---
 
+## 📋 Table of Contents
 
-[![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)### ✅ Domain Layer - COMPLETE
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Project Structure](#-project-structure)
+- [Technology Stack](#-technology-stack)
+- [Data Model](#-data-model)
+- [Use Cases](#-use-cases)
+- [Getting Started](#-getting-started)
+- [Testing](#-testing)
+- [Menu System](#-menu-system)
+- [Data Management](#-data-management)
+- [Development Guide](#-development-guide)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)- **12 Domain Entities** - All implemented with private encapsulation and validation
+---
 
-[![Tests](https://img.shields.io/badge/Tests-137%2F137-success?style=for-the-badge&logo=github-actions&logoColor=white)](test/)- **7 Repository Interfaces** - Extended with comprehensive data operation methods
+## 🎯 Overview
 
-[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen?style=for-the-badge&logo=codecov&logoColor=white)](#test-coverage)- **28 Use Cases** - Complete business logic implementation across:
+The **Hospital Management System** is a comprehensive healthcare management platform designed to streamline hospital operations. Built with Clean Architecture principles, it provides a robust, scalable, and maintainable solution for managing patients, doctors, nurses, appointments, prescriptions, rooms, equipment, and emergency protocols.
 
-[![Clean Architecture](https://img.shields.io/badge/Architecture-Clean-blue?style=for-the-badge)](#architecture)  - **Appointment Management** (8 use cases):
+### 📊 Project Statistics
 
-    - `ScheduleAppointment` - Create new appointments
-
-A production-ready hospital management system built with **Clean Architecture** principles, featuring comprehensive patient care, appointment scheduling, prescription management, and emergency response capabilities.    - `GetAppointmentHistory` - Retrieve appointment history with status analysis
-
-    - `GetAppointmentsByDoctor` - Doctor's daily schedule and availability
-
-[Features](#features) • [Architecture](#architecture) • [Getting Started](#getting-started) • [Documentation](#documentation) • [Testing](#testing)    - `GetAppointmentsByPatient` - Patient's all appointments with statistics
-
-    - `GetUpcomingAppointments` - List upcoming appointments with countdown
-
-</div>    - `RescheduleAppointment` - Reschedule with conflict validation
-
-    - `UpdateAppointmentStatus` - Update appointment status through lifecycle
-
----    - `CancelAppointment` - Cancel appointments
-
-  
-
-## 📋 Table of Contents  - **Prescription Management** (7 use cases):
-
-    - `CheckDrugInteractions` - Verify medication compatibility
-
-- [Overview](#overview)    - `GetPrescriptionHistory` - Retrieve prescription history
-
-- [Key Features](#key-features)    - `GetMedicationSchedule` - Generate medication adherence schedule
-
-- [Architecture](#architecture)    - `PrescribeMedication` - Create new prescriptions
-
-- [Project Structure](#project-structure)    - `RefillPrescription` - Refill existing prescriptions
-
-- [Technology Stack](#technology-stack)    - `GetActivePrescriptions` - List active prescriptions
-
-- [Data Model](#data-model)    - `DiscontinuePrescription` - Discontinue medications
-
-- [Use Cases](#use-cases)  
-
-- [Getting Started](#getting-started)  - **Equipment Management** (6 use cases):
-
-- [Testing](#testing)    - `GetEquipmentStatus` - Comprehensive equipment status
-
-- [Menu System](#menu-system)    - `TransferEquipmentBetweenRooms` - Move equipment with logging
-
-- [Data Management](#data-management)    - `GetMaintenanceDueEquipment` - List maintenance-due equipment
-
-- [Development Guide](#development-guide)    - `ScheduleEquipmentMaintenance` - Schedule maintenance
-
-- [API Reference](#api-reference)    - `AssignEquipmentToRoom` - Assign equipment to rooms
-
-- [Contributing](#contributing)    - `ReportEquipmentIssue` - Report equipment issues
-
-- [License](#license)  
-
-  - **Search Operations** (6 use cases):
-
----    - `SearchAppointments` - Advanced appointment search
-
-    - `SearchPrescriptions` - Prescription search with filters
-
-## 🎯 Overview    - `SearchRooms` - Room availability search
-
-    - `SearchDoctors` - Doctor search with specialization filters
-
-The **Hospital Management System** is a comprehensive healthcare management platform designed to streamline hospital operations. Built with Clean Architecture principles, it provides a robust, scalable, and maintainable solution for managing patients, doctors, nurses, appointments, prescriptions, rooms, equipment, and emergency protocols.    - `SearchPatients` - Patient search with multiple criteria
-
-    - `SearchMedicalRecords` - Medical records search
-
-### 📊 Project Statistics  
-
-  - **Additional Use Cases** (1 base class):
-
-| Category | Count | Status |    - `UseCase<Input, Output>` - Base class for all use cases with lifecycle hooks
-
-|----------|-------|--------|    - Smart validation, execution, and success/error handling
-
+| Category | Count | Status |
+|----------|-------|--------|
 | **Source Files** | 131 | ✅ Complete |
-
-| **Test Files** | 20 | ✅ 137 Tests |- **Comprehensive Entity Relationships** - All entities properly linked:
-
-| **Test Coverage** | 100% | ✅ All Passing |  - Bidirectional patient-doctor relationships
-
-| **Domain Entities** | 12 | ✅ Fully Implemented |  - Room and bed management with occupancy tracking
-
-| **Use Cases** | 50+ | ✅ Production Ready |  - Equipment inventory management
-
-| **Data Records** | 450+ | ✅ Realistic Data |  - Prescription and medication associations
-
-| **Menus** | 8 | ✅ Interactive CLI |  - Appointment scheduling with status tracking
-
-  - Meeting scheduling with conflict prevention
+| **Test Files** | 20 | ✅ 137 Tests |
+| **Test Coverage** | 100% | ✅ All Passing |
+| **Domain Entities** | 12 | ✅ Fully Implemented |
+| **Use Cases** | 50+ | ✅ Production Ready |
+| **Data Records** | 450+ | ✅ Realistic Data |
+| **Menus** | 8 | ✅ Interactive CLI |
 
 ### 🎓 Educational Purpose
 
-- **Smart Meeting Scheduling** - Intelligent availability checking and conflict prevention
-
-This project demonstrates:- **Zero Compilation Errors** - All use cases fully verified and tested ✅
-
+This project demonstrates:
 - ✅ **Clean Architecture** implementation in Dart
-
-- ✅ **Domain-Driven Design** (DDD) principles### 🔄 In Progress
-
-- ✅ **Repository Pattern** with dependency injection- Data Layer - Repository implementations and data sources
-
-- ✅ **Test-Driven Development** (TDD) approach- Presentation Layer - Flutter UI and controllers
-
+- ✅ **Domain-Driven Design** (DDD) principles
+- ✅ **Repository Pattern** with dependency injection
+- ✅ **Test-Driven Development** (TDD) approach
 - ✅ **SOLID Principles** throughout the codebase
-
-- ✅ **Separation of Concerns** across layers## 📁 Project Structure
-
+- ✅ **Separation of Concerns** across layers
 - ✅ **Real-world healthcare domain** modeling
-
-```
-
----hospital_management/
-
-├── lib/
-
-## ✨ Key Features│   ├── domain/              # Business logic layer
-
-│   │   ├── entities/        # Core business entities
-
-### 👥 Patient Management│   │   │   ├── enums/       # Enumeration types
-
-- **Patient Registration** - Comprehensive patient information capture│   │   │   ├── person.dart
-
-- **Medical Records** - Complete medical history tracking│   │   │   ├── staff.dart
-
-- **Admission & Discharge** - Room and bed assignment│   │   │   ├── patient.dart
-
-- **Doctor Assignment** - Multiple doctor allocation per patient│   │   │   ├── doctor.dart
-
-- **Emergency Contact** - Critical contact information management│   │   │   ├── nurse.dart
-
-- **Allergy Tracking** - Medication allergy documentation│   │   │   ├── administrative.dart
-
-│   │   │   ├── room.dart
-
-### 👨‍⚕️ Doctor Management│   │   │   ├── bed.dart
-
-- **Specialization Tracking** - 15+ medical specializations│   │   │   ├── equipment.dart
-
-- **Schedule Management** - Working hours and availability│   │   │   ├── medication.dart
-
-- **Patient Assignment** - Doctor-patient relationship management│   │   │   ├── prescription.dart
-
-- **Workload Analysis** - Patient load distribution│   │   │   └── appointment.dart
-
-- **Availability Checking** - Real-time schedule validation│   │   ├── repositories/    # Repository interfaces
-
-- **Department Association** - Multi-department support│   │   │   ├── patient_repository.dart
-
-│   │   │   ├── doctor_repository.dart
-
-### 👩‍⚕️ Nurse Management│   │   │   ├── nurse_repository.dart
-
-- **Shift Scheduling** - MORNING, AFTERNOON, NIGHT shifts│   │   │   ├── room_repository.dart
-
-- **Patient Assignment** - Nurse-to-patient allocation│   │   │   ├── prescription_repository.dart
-
-- **Room Assignment** - Multi-room coverage│   │   │   ├── equipment_repository.dart
-
-- **Workload Balancing** - Fair workload distribution│   │   │   └── appointment_repository.dart
-
-- **Schedule Analysis** - Coverage and availability tracking│   │   └── usecases/        # Business use cases (28 total)
-
-- **24/7 Coverage** - Round-the-clock staffing validation│   │       ├── base/
-
-│   │       │   └── use_case.dart         # Base UseCase class with lifecycle
-
-### 📅 Appointment System│   │       ├── appointment/              # 8 appointment use cases
-
-- **Smart Scheduling** - Conflict-free appointment booking│   │       │   ├── schedule_appointment.dart
-
-- **Doctor Availability** - Real-time availability checking│   │       │   ├── get_appointment_history.dart
-
-- **Status Tracking** - SCHEDULE → IN_PROGRESS → COMPLETED│   │       │   ├── get_appointments_by_doctor.dart
-
-- **Rescheduling** - Flexible appointment modification│   │       │   ├── get_appointments_by_patient.dart
-
-- **Cancellation** - Appointment cancellation with reasons│   │       │   ├── get_upcoming_appointments.dart
-
-- **History Tracking** - Complete appointment history│   │       │   ├── reschedule_appointment.dart
-
-- **Reminder System** - Upcoming appointment notifications│   │       │   ├── update_appointment_status.dart
-
-│   │       │   └── cancel_appointment.dart
-
-### 💊 Prescription Management│   │       ├── prescription/             # 7 prescription use cases
-
-- **Medication Prescribing** - Doctor-authorized prescriptions│   │       │   ├── prescribe_medication.dart
-
-- **Drug Interaction Checking** - Safety validation│   │       │   ├── check_drug_interactions.dart
-
-- **Refill Management** - Prescription renewal tracking│   │       │   ├── get_prescription_history.dart
-
-- **Active Prescriptions** - Current medication tracking│   │       │   ├── get_medication_schedule.dart
-
-- **Discontinuation** - Medication termination logging│   │       │   ├── get_active_prescriptions.dart
-
-- **Schedule Generation** - Medication adherence schedules│   │       │   ├── refill_prescription.dart
-
-- **History Tracking** - Complete prescription history│   │       │   └── discontinue_prescription.dart
-
-│   │       ├── equipment/                # 6 equipment use cases
-
-### 🏥 Room & Bed Management│   │       │   ├── assign_equipment_to_room.dart
-
-- **Room Types** - ICU, GENERAL, OPERATION_THEATRE, EMERGENCY, etc.│   │       │   ├── get_equipment_status.dart
-
-- **Bed Tracking** - Individual bed status and assignment│   │       │   ├── transfer_equipment_between_rooms.dart
-
-- **Occupancy Monitoring** - Real-time availability│   │       │   ├── get_maintenance_due_equipment.dart
-
-- **Transfer Management** - Patient room transfers│   │       │   ├── schedule_equipment_maintenance.dart
-
-- **Equipment Association** - Room equipment inventory│   │       │   └── report_equipment_issue.dart
-
-- **Status Management** - AVAILABLE, OCCUPIED, UNDER_MAINTENANCE│   │       ├── search/                   # 6 search use cases
-
-│   │       │   ├── search_appointments.dart
-
-### 🚨 Emergency Operations│   │       │   ├── search_prescriptions.dart
-
-- **Emergency Protocol** - Rapid response activation│   │       │   ├── search_rooms.dart
-
-- **ICU Bed Finding** - Immediate bed allocation│   │       │   ├── search_doctors.dart
-
-- **Staff Notification** - Emergency team alerts│   │       │   ├── search_patients.dart
-
-- **Priority Handling** - Critical patient prioritization│   │       │   └── search_medical_records.dart
-
-- **Capacity Monitoring** - Real-time ICU capacity│   │       ├── patient/                  # Patient use cases
-
-- **Fast-Track Admission** - Streamlined emergency admission│   │       ├── doctor/                   # Doctor use cases
-
-│   │       ├── nurse/                    # Nurse use cases
-
-### 🔍 Advanced Search│   │       └── room/                     # Room use cases
-
-- **Patient Search** - Multi-criteria patient lookup│   │
-
-- **Doctor Search** - Specialization and availability filters│   ├── data/                # Data handling layer
-
-- **Appointment Search** - Date, status, and doctor filters│   │   ├── datasources/     # Data sources (local/remote)
-
-- **Room Search** - Type and availability filters│   │   │   ├── local/       # Local storage (JSON, SQLite, etc.)
-
-- **Prescription Search** - Medication and date filters│   │   │   └── remote/      # API calls (if needed)
-
-- **Medical Records** - Comprehensive record search│   │   ├── models/          # Data models (DTOs)
-
-│   │   │   ├── patient_model.dart
-
-### 🛠️ Equipment Management│   │   │   ├── doctor_model.dart
-
-- **Equipment Tracking** - Hospital equipment inventory│   │   │   ├── nurse_model.dart
-
-- **Maintenance Scheduling** - Preventive maintenance│   │   │   ├── room_model.dart
-
-- **Status Monitoring** - OPERATIONAL, IN_MAINTENANCE, etc.│   │   │   └── ...
-
-- **Room Assignment** - Equipment location tracking│   │   └── repositories/    # Repository implementations
-
-- **Transfer Management** - Equipment relocation│   │       ├── patient_repository_impl.dart
-
-- **Issue Reporting** - Problem documentation│   │       ├── doctor_repository_impl.dart
-
-│   │       └── ...
-
----│   │
-
-│   └── presentation/        # User interface layer
-
-## 🏗️ Architecture│       ├── console/         # Console-based UI
-
-│       │   ├── menus/       # Menu screens
-
-This project implements **Clean Architecture** with clear separation of concerns across three layers:│       │   │   ├── main_menu.dart
-
-│       │   │   ├── patient_menu.dart
-
-```│       │   │   ├── doctor_menu.dart
-
-┌─────────────────────────────────────────────────────────────┐│       │   │   ├── nurse_menu.dart
-
-│                    Presentation Layer                        ││       │   │   ├── room_menu.dart
-
-│  ┌─────────────┐  ┌──────────────┐  ┌──────────────┐       ││       │   │   └── appointment_menu.dart
-
-│  │   Menus     │  │ Controllers  │  │   Providers  │       ││       │   └── utils/       # UI utilities
-
-│  │   (CLI)     │  │   (Logic)    │  │  (Riverpod)  │       ││       │       ├── input_validator.dart
-
-│  └─────────────┘  └──────────────┘  └──────────────┘       ││       │       └── display_formatter.dart
-
-└────────────────────────┬────────────────────────────────────┘│       └── controllers/     # Business logic controllers
-
-                         │ Depends on ↓│           ├── patient_controller.dart
-
-┌────────────────────────┴────────────────────────────────────┐│           ├── doctor_controller.dart
-
-│                      Domain Layer                            ││           └── ...
-
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      ││
-
-│  │   Entities   │  │  Use Cases   │  │ Repositories │      │├── test/                    # Unit and integration tests
-
-│  │  (Business)  │  │   (Logic)    │  │ (Interfaces) │      ││   ├── domain/
-
-│  └──────────────┘  └──────────────┘  └──────────────┘      ││   ├── data/
-
-└────────────────────────┬────────────────────────────────────┘│   └── presentation/
-
-                         │ Implemented by ↓│
-
-┌────────────────────────┴────────────────────────────────────┐└── bin/
-
-│                       Data Layer                             │    └── main.dart           # Application entry point
-
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │```
-
-│  │    Models    │  │ Repositories │  │ Data Sources │      │
-
-│  │    (DTOs)    │  │     (Impl)   │  │    (JSON)    │      │## 📚 Layer Descriptions
-
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
-
-└─────────────────────────────────────────────────────────────┘### 🎯 Domain Layer (`lib/domain/`)
-
-```**Purpose**: Contains the core business logic and rules. This layer is independent of any external frameworks or libraries.
-
-
-
-### Layer Responsibilities#### `entities/`
-
-- **What**: Pure business objects representing real-world concepts
-
-#### 🎨 Presentation Layer (`lib/presentation/`)- **Why**: These are the heart of your application, defining what your system is about
-
-- **Menus**: Interactive console-based user interface- **Examples**: Patient, Doctor, Room, Prescription
-
-- **Controllers**: Coordinate between UI and business logic- **Rules**: 
-
-- **Providers**: State management using Riverpod  - No dependencies on other layers
-
-- **Utils**: Input validation and UI helpers  - Contains only business logic
-
-  - Immutable where possible with private fields
-
-#### 🎯 Domain Layer (`lib/domain/`)
-
-- **Entities**: Core business objects (Patient, Doctor, etc.)#### `repositories/`
-
-- **Use Cases**: Business logic operations- **What**: Abstract interfaces defining data operations
-
-- **Repositories**: Abstract data operation contracts- **Why**: Allows the domain layer to define what data operations it needs without knowing how they're implemented
-
-- **No external dependencies** - Pure business logic- **Examples**: `PatientRepository`, `DoctorRepository`
-
-- **Rules**:
-
-#### 💾 Data Layer (`lib/data/`)  - Only interfaces/abstract classes
-
-- **Models**: Data transfer objects with JSON serialization  - No implementation details
-
-- **Repository Implementations**: Concrete data operations  - Uses domain entities, not data models
-
-- **Data Sources**: JSON file management and persistence
-
-- **Entity ↔ Model conversion**#### `usecases/`
-
-- **What**: Specific business use cases or actions
-
-### Dependency Rule- **Why**: Encapsulates single pieces of business logic that orchestrate entities
-
-- **Examples**: `AdmitPatient`, `ScheduleAppointment`, `PrescribeMedication`
-
-> **Inner layers don't depend on outer layers**- **Rules**:
-
-  - One class per use case
-
-- ✅ Presentation → Domain → Data  - Uses repositories to get/save data
-
-- ✅ Domain defines interfaces, Data implements them  - Contains business validation logic
-
-- ✅ Domain has zero knowledge of UI or database
-
-- ✅ Easy to swap implementations (JSON → SQL → API)### 💾 Data Layer (`lib/data/`)
-
-**Purpose**: Handles all data operations - storage, retrieval, and API calls. Implements the repository interfaces defined in the domain layer.
 
 ---
 
-#### `datasources/`
-
-## 📁 Project Structure- **What**: Raw data access implementations
-
-- **Why**: Separates the actual data access mechanism from business logic
-
-```- **local/**: File storage, JSON, SQLite, shared preferences
-
-hospital_management/- **remote/**: HTTP API calls, web services
-
-├── 📱 lib/- **Examples**: `PatientLocalDataSource`, `DoctorRemoteDataSource`
-
-│   ├── 🎯 domain/                     # Business Logic (Core)- **Rules**:
-
-│   │   ├── entities/                  # 12 Domain Entities  - Direct access to storage/API
-
-│   │   │   ├── enums/                 # Type-safe enumerations  - Returns data models, not entities
-
-│   │   │   ├── person.dart            # Base person entity  - Handles serialization/deserialization
-
-│   │   │   ├── staff.dart             # Base staff entity
-
-│   │   │   ├── patient.dart           # Patient with medical records#### `models/`
-
-│   │   │   ├── doctor.dart            # Doctor with specialization- **What**: Data Transfer Objects (DTOs) that match your storage/API structure
-
-│   │   │   ├── nurse.dart             # Nurse with shifts- **Why**: Separates data representation from business entities
-
-│   │   │   ├── administrative.dart    # Admin staff- **Examples**: `PatientModel` extends or converts to `Patient` entity
-
-│   │   │   ├── room.dart              # Hospital rooms- **Rules**:
-
-│   │   │   ├── bed.dart               # Hospital beds  - Contains `fromJson()` and `toJson()` methods
-
-│   │   │   ├── equipment.dart         # Medical equipment  - Can convert to/from domain entities
-
-│   │   │   ├── medication.dart        # Medications  - Matches external data structure
-
-│   │   │   ├── prescription.dart      # Prescriptions
-
-│   │   │   └── appointment.dart       # Appointments#### `repositories/`
-
-│   │   ├── repositories/              # 8 Repository Interfaces- **What**: Concrete implementations of repository interfaces
-
-│   │   │   ├── patient_repository.dart- **Why**: Bridges the gap between data sources and domain layer
-
-│   │   │   ├── doctor_repository.dart- **Examples**: `PatientRepositoryImpl implements PatientRepository`
-
-│   │   │   ├── nurse_repository.dart- **Rules**:
-
-│   │   │   ├── room_repository.dart  - Implements domain repository interfaces
-
-│   │   │   ├── appointment_repository.dart  - Uses data sources to get data
-
-│   │   │   ├── prescription_repository.dart  - Converts between models and entities
-
-│   │   │   ├── equipment_repository.dart  - Handles error cases
-
-│   │   │   └── administrative_repository.dart
-
-│   │   └── usecases/                  # 50+ Business Use Cases### 🖥️ Presentation Layer (`lib/presentation/`)
-
-│   │       ├── base/**Purpose**: Handles all user interaction - displaying information and capturing input.
-
-│   │       │   └── use_case.dart      # Base class with lifecycle
-
-│   │       ├── patient/               # Patient operations#### `console/menus/`
-
-│   │       ├── doctor/                # Doctor operations- **What**: Console-based menu screens for user interaction
-
-│   │       ├── nurse/                 # Nurse operations- **Why**: Provides the user interface for the console application
-
-│   │       ├── appointment/           # Appointment operations- **Examples**: Main menu, Patient management menu, Room booking menu
-
-│   │       ├── prescription/          # Prescription operations- **Rules**:
-
-│   │       ├── room/                  # Room operations  - Handles user input/output
-
-│   │       ├── equipment/             # Equipment operations  - Calls controllers for business operations
-
-│   │       ├── emergency/             # Emergency protocols  - No business logic here
-
-│   │       └── search/                # Search operations
-
-│   │#### `console/utils/`
-
-│   ├── 💾 data/                       # Data Management- **What**: Helper utilities for the console UI
-
-│   │   ├── datasources/               # JSON Data Sources- **Why**: Reusable formatting and validation logic
-
-│   │   │   ├── patient_datasource.dart- **Examples**: Input validators, table formatters, color utilities
-
-│   │   │   ├── doctor_datasource.dart- **Rules**:
-
-│   │   │   ├── nurse_datasource.dart  - Pure utility functions
-
-│   │   │   ├── room_datasource.dart  - No business logic
-
-│   │   │   ├── bed_datasource.dart  - Reusable across menus
-
-│   │   │   ├── equipment_datasource.dart
-
-│   │   │   ├── appointment_datasource.dart#### `controllers/`
-
-│   │   │   ├── prescription_datasource.dart- **What**: Coordinates between UI and use cases
-
-│   │   │   └── medication_datasource.dart- **Why**: Keeps UI code clean and testable
-
-│   │   ├── models/                    # Data Models (DTOs)- **Examples**: `PatientController`, `AppointmentController`
-
-│   │   │   └── (matches entity structure)- **Rules**:
-
-│   │   └── repositories/              # Repository Implementations  - Receives requests from UI
-
-│   │       ├── patient_repository_impl.dart  - Calls appropriate use cases
-
-│   │       ├── doctor_repository_impl.dart  - Formats responses for UI
-
-│   │       ├── nurse_repository_impl.dart
-
-│   │       ├── room_repository_impl.dart## 🔄 How Layers Interact
-
-│   │       ├── appointment_repository_impl.dart
-
-│   │       ├── prescription_repository_impl.dart```
-
-│   │       ├── equipment_repository_impl.dart[Presentation Layer]
-
-│   │       └── administrative_repository_impl.dart        ↓
-
-│   │    Controllers
-
-│   ├── 🎨 presentation/               # User Interface        ↓
-
-│   │   ├── menus/                     # 8 Interactive Menus[Domain Layer]
-
-│   │   │   ├── base_menu.dart         # Base menu functionality    Use Cases → Repository Interfaces
-
-│   │   │   ├── patient_menu.dart      # Patient management        ↓
-
-│   │   │   ├── doctor_menu.dart       # Doctor management[Data Layer]
-
-│   │   │   ├── nurse_menu.dart        # Nurse management    Repository Implementations → Data Sources → Storage/API
-
-│   │   │   ├── appointment_menu.dart  # Appointment scheduling```
-
-│   │   │   ├── prescription_menu.dart # Prescription management
-
-│   │   │   ├── room_menu.dart         # Room & bed management### Data Flow Example: Admitting a Patient
-
-│   │   │   ├── emergency_menu.dart    # Emergency operations1. **Presentation**: User inputs patient details in `PatientMenu`
-
-│   │   │   └── search_menu.dart       # Advanced search2. **Presentation**: `PatientController` receives the input
-
-│   │   ├── controllers/               # Business Logic Controllers3. **Domain**: Controller calls `AdmitPatient` use case
-
-│   │   │   └── main_menu_controller.dart4. **Domain**: Use case validates business rules and calls `PatientRepository.save()`
-
-│   │   ├── providers/                 # Riverpod State Management5. **Data**: `PatientRepositoryImpl` converts entity to model
-
-│   │   │   └── appointment_provider.dart6. **Data**: `PatientLocalDataSource` saves to JSON/database
-
-│   │   └── utils/                     # UI Utilities7. **Response flows back up** through the layers
-
-│   │       ├── ui_helper.dart         # Display formatting
-
-│   │       └── input_validator.dart   # Input validation## 🎯 Key Principles
-
+## ✨ Key Features
+
+### 👥 Patient Management
+- **Patient Registration** - Comprehensive patient information capture
+- **Medical Records** - Complete medical history tracking
+- **Admission & Discharge** - Room and bed assignment
+- **Doctor Assignment** - Multiple doctor allocation per patient
+- **Emergency Contact** - Critical contact information management
+- **Allergy Tracking** - Medication allergy documentation
+
+### 👨‍⚕️ Doctor Management
+- **Specialization Tracking** - 15+ medical specializations
+- **Schedule Management** - Working hours and availability
+- **Patient Assignment** - Doctor-patient relationship management
+- **Workload Analysis** - Patient load distribution
+- **Availability Checking** - Real-time schedule validation
+- **Department Association** - Multi-department support
+
+### 👩‍⚕️ Nurse Management
+- **Shift Scheduling** - MORNING, AFTERNOON, NIGHT shifts
+- **Patient Assignment** - Nurse-to-patient allocation
+- **Room Assignment** - Multi-room coverage
+- **Workload Balancing** - Fair workload distribution
+- **Schedule Analysis** - Coverage and availability tracking
+- **24/7 Coverage** - Round-the-clock staffing validation
+
+### 📅 Appointment System
+- **Smart Scheduling** - Conflict-free appointment booking
+- **Doctor Availability** - Real-time availability checking
+- **Status Tracking** - SCHEDULE → IN_PROGRESS → COMPLETED
+- **Rescheduling** - Flexible appointment modification
+- **Cancellation** - Appointment cancellation with reasons
+- **History Tracking** - Complete appointment history
+- **Reminder System** - Upcoming appointment notifications
+
+### 💊 Prescription Management
+- **Medication Prescribing** - Doctor-authorized prescriptions
+- **Drug Interaction Checking** - Safety validation
+- **Refill Management** - Prescription renewal tracking
+- **Active Prescriptions** - Current medication tracking
+- **Discontinuation** - Medication termination logging
+- **Schedule Generation** - Medication adherence schedules
+- **History Tracking** - Complete prescription history
+
+### 🏥 Room & Bed Management
+- **Room Types** - ICU, GENERAL, OPERATION_THEATRE, EMERGENCY, etc.
+- **Bed Tracking** - Individual bed status and assignment
+- **Occupancy Monitoring** - Real-time availability
+- **Transfer Management** - Patient room transfers
+- **Equipment Association** - Room equipment inventory
+- **Status Management** - AVAILABLE, OCCUPIED, UNDER_MAINTENANCE
+
+### 🚨 Emergency Operations
+- **Emergency Protocol** - Rapid response activation
+- **ICU Bed Finding** - Immediate bed allocation
+- **Staff Notification** - Emergency team alerts
+- **Priority Handling** - Critical patient prioritization
+- **Capacity Monitoring** - Real-time ICU capacity
+- **Fast-Track Admission** - Streamlined emergency admission
+
+### 🔍 Advanced Search
+- **Patient Search** - Multi-criteria patient lookup
+- **Doctor Search** - Specialization and availability filters
+- **Appointment Search** - Date, status, and doctor filters
+- **Room Search** - Type and availability filters
+- **Prescription Search** - Medication and date filters
+- **Medical Records** - Comprehensive record search
+
+### 🛠️ Equipment Management
+- **Equipment Tracking** - Hospital equipment inventory
+- **Maintenance Scheduling** - Preventive maintenance
+- **Status Monitoring** - OPERATIONAL, IN_MAINTENANCE, etc.
+- **Room Assignment** - Equipment location tracking
+- **Transfer Management** - Equipment relocation
+- **Issue Reporting** - Problem documentation
+
+---
+
+## 🏗️ Architecture
+
+This project implements **Clean Architecture** with clear separation of concerns across three layers:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Presentation Layer                        │
+│  ┌─────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │   Menus     │  │ Controllers  │  │   Providers  │       │
+│  │   (CLI)     │  │   (Logic)    │  │  (Riverpod)  │       │
+│  └─────────────┘  └──────────────┘  └──────────────┘       │
+└────────────────────────┬────────────────────────────────────┘
+                         │ Depends on ↓
+┌────────────────────────┴────────────────────────────────────┐
+│                      Domain Layer                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │   Entities   │  │  Use Cases   │  │ Repositories │      │
+│  │  (Business)  │  │   (Logic)    │  │ (Interfaces) │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+└────────────────────────┬────────────────────────────────────┘
+                         │ Implemented by ↓
+┌────────────────────────┴────────────────────────────────────┐
+│                       Data Layer                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │    Models    │  │ Repositories │  │ Data Sources │      │
+│  │    (DTOs)    │  │     (Impl)   │  │    (JSON)    │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Layer Responsibilities
+
+#### 🎨 Presentation Layer (`lib/presentation/`)
+- **Menus**: Interactive console-based user interface
+- **Controllers**: Coordinate between UI and business logic
+- **Providers**: State management using Riverpod
+- **Utils**: Input validation and UI helpers
+
+#### 🎯 Domain Layer (`lib/domain/`)
+- **Entities**: Core business objects (Patient, Doctor, etc.)
+- **Use Cases**: Business logic operations
+- **Repositories**: Abstract data operation contracts
+- **No external dependencies** - Pure business logic
+
+#### 💾 Data Layer (`lib/data/`)
+- **Models**: Data transfer objects with JSON serialization
+- **Repository Implementations**: Concrete data operations
+- **Data Sources**: JSON file management and persistence
+- **Entity ↔ Model conversion**
+
+### Dependency Rule
+
+> **Inner layers don't depend on outer layers**
+
+- ✅ Presentation → Domain → Data
+- ✅ Domain defines interfaces, Data implements them
+- ✅ Domain has zero knowledge of UI or database
+- ✅ Easy to swap implementations (JSON → SQL → API)
+
+---
+
+## 📁 Project Structure
+
+<details>
+<summary><b>Click to expand full project structure</b></summary>
+
+```
+hospital_management/
+│
+├── lib/
 │   │
-
-│   └── main.dart                      # Application Entry Point### Dependency Rule
-
-│- **Inner layers don't know about outer layers**
-
-├── 📊 data/                           # JSON Data Storage- Domain doesn't know about Data or Presentation
-
-│   ├── patients.json                  # 50 patients- Data knows about Domain but not Presentation
-
-│   ├── doctors.json                   # 25 doctors- Presentation knows about Domain and Data
-
-│   ├── nurses.json                    # 40 nurses
-
-│   ├── appointments.json              # 83 appointments### Separation of Concerns
-
-│   ├── prescriptions.json             # 120 prescriptions- Each layer has a single responsibility
-
-│   ├── medications.json               # 50 medications- Business logic stays in Domain
-
-│   ├── rooms.json                     # 20 rooms- Data access stays in Data
-
-│   ├── beds.json                      # 43 beds- UI logic stays in Presentation
-
+│   ├── domain/                        # 🎯 Business Logic Layer
+│   │   │
+│   │   ├── entities/                  # Core Domain Entities (12 total)
+│   │   │   ├── enums/                 # Type-safe enumerations
+│   │   │   ├── person.dart            # Base person entity
+│   │   │   ├── staff.dart             # Base staff entity
+│   │   │   ├── patient.dart           # Patient with medical records
+│   │   │   ├── doctor.dart            # Doctor with specialization
+│   │   │   ├── nurse.dart             # Nurse with shifts
+│   │   │   ├── administrative.dart    # Admin staff
+│   │   │   ├── room.dart              # Hospital rooms
+│   │   │   ├── bed.dart               # Hospital beds
+│   │   │   ├── equipment.dart         # Medical equipment
+│   │   │   ├── medication.dart        # Medications
+│   │   │   ├── prescription.dart      # Prescriptions
+│   │   │   └── appointment.dart       # Appointments
+│   │   │
+│   │   ├── repositories/              # Repository Interfaces (8 total)
+│   │   │   ├── patient_repository.dart
+│   │   │   ├── doctor_repository.dart
+│   │   │   ├── nurse_repository.dart
+│   │   │   ├── room_repository.dart
+│   │   │   ├── appointment_repository.dart
+│   │   │   ├── prescription_repository.dart
+│   │   │   ├── equipment_repository.dart
+│   │   │   └── administrative_repository.dart
+│   │   │
+│   │   └── usecases/                  # Business Use Cases (50+ total)
+│   │       ├── base/
+│   │       │   └── use_case.dart      # Base UseCase class
+│   │       ├── patient/               # Patient operations
+│   │       ├── doctor/                # Doctor operations
+│   │       ├── nurse/                 # Nurse operations
+│   │       ├── appointment/           # Appointment operations
+│   │       ├── prescription/          # Prescription operations
+│   │       ├── room/                  # Room operations
+│   │       ├── equipment/             # Equipment operations
+│   │       ├── emergency/             # Emergency protocols
+│   │       └── search/                # Search operations
+│   │
+│   ├── data/                          # 💾 Data Layer
+│   │   │
+│   │   ├── datasources/               # Data Sources (JSON)
+│   │   │   ├── patient_datasource.dart
+│   │   │   ├── doctor_datasource.dart
+│   │   │   ├── nurse_datasource.dart
+│   │   │   ├── room_datasource.dart
+│   │   │   ├── bed_datasource.dart
+│   │   │   ├── equipment_datasource.dart
+│   │   │   ├── appointment_datasource.dart
+│   │   │   ├── prescription_datasource.dart
+│   │   │   └── medication_datasource.dart
+│   │   │
+│   │   ├── models/                    # Data Models (DTOs)
+│   │   │   └── [matches entity structure]
+│   │   │
+│   │   └── repositories/              # Repository Implementations
+│   │       ├── patient_repository_impl.dart
+│   │       ├── doctor_repository_impl.dart
+│   │       ├── nurse_repository_impl.dart
+│   │       ├── room_repository_impl.dart
+│   │       ├── appointment_repository_impl.dart
+│   │       ├── prescription_repository_impl.dart
+│   │       ├── equipment_repository_impl.dart
+│   │       └── administrative_repository_impl.dart
+│   │
+│   ├── presentation/                  # 🎨 Presentation Layer
+│   │   │
+│   │   ├── menus/                     # Interactive Menus (8 total)
+│   │   │   ├── base_menu.dart         # Base menu functionality
+│   │   │   ├── patient_menu.dart      # Patient management
+│   │   │   ├── doctor_menu.dart       # Doctor management
+│   │   │   ├── nurse_menu.dart        # Nurse management
+│   │   │   ├── appointment_menu.dart  # Appointment scheduling
+│   │   │   ├── prescription_menu.dart # Prescription management
+│   │   │   ├── room_menu.dart         # Room & bed management
+│   │   │   ├── emergency_menu.dart    # Emergency operations
+│   │   │   └── search_menu.dart       # Advanced search
+│   │   │
+│   │   ├── controllers/               # Business Logic Controllers
+│   │   │   └── main_menu_controller.dart
+│   │   │
+│   │   ├── providers/                 # Riverpod State Management
+│   │   │   └── appointment_provider.dart
+│   │   │
+│   │   └── utils/                     # UI Utilities
+│   │       ├── ui_helper.dart         # Display formatting
+│   │       └── input_validator.dart   # Input validation
+│   │
+│   └── main.dart                      # 🚀 Application Entry Point
+│
+├── data/                              # 📊 JSON Data Storage
+│   ├── patients.json                  # 50 patient records
+│   ├── doctors.json                   # 25 doctor profiles
+│   ├── nurses.json                    # 40 nurse records
+│   ├── appointments.json              # 83 appointments
+│   ├── prescriptions.json             # 120 prescriptions
+│   ├── medications.json               # 50 medications
+│   ├── rooms.json                     # 20 hospital rooms
+│   ├── beds.json                      # 43 hospital beds
 │   ├── equipment.json                 # Equipment inventory
-
-│   ├── administrative.json            # 5 admin staff### Testability
-
-│   └── departments.json               # 15 departments- Each layer can be tested independently
-
-│- Mock repositories for testing use cases
-
-├── 🧪 test/                           # Comprehensive Testing- Mock data sources for testing repositories
-
-│   ├── features/                      # Feature Tests (137 tests)- Test business logic without UI or database
-
-│   │   ├── patient_operations_test.dart       # 11 tests
-
-│   │   ├── doctor_management_test.dart        # 21 tests## 🚀 Getting Started
-
-│   │   ├── appointment_management_test.dart   # 26 tests
-
-│   │   ├── emergency_operations_test.dart     # 13 tests### Prerequisites
-
-│   │   ├── prescription_management_test.dart  # 19 tests- Dart SDK 3.0.0 or higher
-
-│   │   ├── room_management_test.dart          # 14 tests
-
-│   │   ├── nurse_management_test.dart         # 19 tests### Installation
-
-│   │   └── search_operations_test.dart        # 14 tests```bash
-
-│   ├── domain/                        # Domain Tests# Install dependencies
-
-│   │   └── usecases/dart pub get
-
+│   ├── administrative.json            # 5 admin staff
+│   └── departments.json               # 15 departments
+│
+├── test/                              # 🧪 Comprehensive Testing
+│   ├── features/                      # Feature Tests (137 tests)
+│   │   ├── patient_operations_test.dart       # 11 tests ✅
+│   │   ├── doctor_management_test.dart        # 21 tests ✅
+│   │   ├── appointment_management_test.dart   # 26 tests ✅
+│   │   ├── emergency_operations_test.dart     # 13 tests ✅
+│   │   ├── prescription_management_test.dart  # 19 tests ✅
+│   │   ├── room_management_test.dart          # 14 tests ✅
+│   │   ├── nurse_management_test.dart         # 19 tests ✅
+│   │   └── search_operations_test.dart        # 14 tests ✅
+│   │
+│   ├── domain/                        # Domain Layer Tests
+│   │   └── usecases/
+│   │
 │   └── integration/                   # Integration Tests
+│
+├── docs/                              # 📚 Additional Documentation
+├── UML/                               # 🎨 UML Diagrams
+├── pubspec.yaml                       # 📦 Project Dependencies
+└── README.md                          # 📖 This File
+```
 
-│# Run the application
+</details>
 
-├── 📚 docs/                           # Documentationdart run bin/main.dart
+---
 
-├── 🎨 UML/                            # UML Diagrams
+## 🛠️ Technology Stack
 
-├── pubspec.yaml                       # Dependencies# Run tests
+### Core Technologies
 
-└── README.md                          # This filedart test
-
-``````
-
-
-
----## 📝 Development Workflow
-
-
-
-## 🛠️ Technology Stack1. **Start with Domain**: Define entities and their relationships
-
-2. **Define Repositories**: Create interfaces for data operations needed
-
-### Core Technologies3. **Create Use Cases**: Implement business logic using entities and repositories
-
-4. **Implement Data Layer**: Create models and repository implementations
-
-```yaml5. **Build Presentation**: Create menus and controllers
-
-Language: Dart 3.0+6. **Test**: Write tests for each layer
-
+```yaml
+Language: Dart 3.0+
 Framework: Flutter 3.0+ (Console UI)
-
-Architecture: Clean Architecture + DDD## ✨ Key Features
-
+Architecture: Clean Architecture + DDD
 State Management: Riverpod 2.4+
+Testing: dart:test package
+Data Storage: JSON files
+```
 
-Testing: dart:test package### ✅ Zero Compilation Errors
-
-Data Storage: JSON files- All 28 use case files verified and error-free
-
-```- Proper entity property references throughout
-
-- Correct enum usage with direct comparisons
-
-### Dependencies- UseCase base class with proper lifecycle hooks (validate, execute, onSuccess, onError)
-
-- Comprehensive imports and dependency management
+### Dependencies
 
 | Package | Version | Purpose |
-
-|---------|---------|---------|### 🗓️ Smart Meeting Scheduling
-
-| `flutter` | SDK | Framework |The system includes an intelligent meeting scheduling feature with doctor availability checking:
-
+|---------|---------|---------|
+| `flutter` | SDK | Framework |
 | `flutter_riverpod` | 2.4.10 | State management |
-
-| `riverpod_annotation` | 2.3.4 | Code generation |- **Automatic Availability Checking**: Prevents double-booking by validating doctor's schedule
-
-| `uuid` | 4.5.1 | Unique ID generation |- **Conflict Detection**: Identifies time conflicts with existing appointments
-
-| `test` | 1.25.0 | Unit testing |- **Schedule Management**: Automatically updates both patient and doctor schedules
-
-| `build_runner` | 2.4.8 | Code generation |- **Availability Queries**: Check if a doctor is free at a specific time
-
-| `riverpod_generator` | 2.3.11 | Provider generation |- **Smart Suggestions**: Get list of available time slots for any date
-
-- **Flexible Rescheduling**: Move meetings with automatic schedule updates
+| `riverpod_annotation` | 2.3.4 | Code generation |
+| `uuid` | 4.5.1 | Unique ID generation |
+| `test` | 1.25.0 | Unit testing |
+| `build_runner` | 2.4.8 | Code generation |
+| `riverpod_generator` | 2.3.11 | Provider generation |
 
 ### Design Patterns Used
 
-#### Example Usage:
-
-- ✅ **Repository Pattern** - Data abstraction```dart
-
-- ✅ **Use Case Pattern** - Business logic encapsulation// Check if doctor is available
-
-- ✅ **Factory Pattern** - Object creationbool isAvailable = patient.isDoctorAvailableAt(
-
-- ✅ **Observer Pattern** - State management (Riverpod)  doctor: doctor,
-
-- ✅ **Singleton Pattern** - Data sources  dateTime: DateTime(2025, 11, 2, 10, 0),
-
-- ✅ **Strategy Pattern** - Search algorithms  durationMinutes: 30,
-
-- ✅ **Template Method** - Base menu structure);
-
+- ✅ **Repository Pattern** - Data abstraction
+- ✅ **Use Case Pattern** - Business logic encapsulation
+- ✅ **Factory Pattern** - Object creation
+- ✅ **Observer Pattern** - State management (Riverpod)
+- ✅ **Singleton Pattern** - Data sources
+- ✅ **Strategy Pattern** - Search algorithms
+- ✅ **Template Method** - Base menu structure
 - ✅ **Dependency Injection** - Loose coupling
-
-// Get available time slots
-
----List<DateTime> slots = patient.getSuggestedAvailableSlots(
-
-  doctor: doctor,
-
-## 📦 Data Model  date: DateTime.now().add(Duration(days: 1)),
-
-  startHour: 9,
-
-### Core Entities  endHour: 17,
-
-);
-
-#### 👤 Patient
-
-```dart// Schedule meeting (with automatic availability check)
-
-Patient {patient.scheduleNextMeeting(
-
-  String patientID            // Unique identifier (P001-P050)  doctor: doctor,
-
-  String name                 // Full name (Khmer names)  meetingDate: DateTime(2025, 11, 2, 10, 0),
-
-  String dateOfBirth          // Birth date (YYYY-MM-DD)  durationMinutes: 45,
-
-  String address              // Physical address);
-
-  String tel                  // Contact: 012-XXX-XXXX
-
-  String bloodType            // A+, A-, B+, B-, AB+, AB-, O+, O-// Reschedule (automatically updates both schedules)
-
-  List<String> medicalRecords // Medical historypatient.rescheduleNextMeeting(
-
-  List<String> allergies      // Allergy information  DateTime(2025, 11, 2, 14, 0),
-
-  String emergencyContact     // Emergency contact number  durationMinutes: 30,
-
-  List<Doctor> assignedDoctors // Assigned doctors);
-
-  List<Nurse> assignedNurses  // Assigned nurses```
-
-  List<Prescription> prescriptions // Current prescriptions
-
-  Room? currentRoom           // Current room (if admitted)**Key Benefits:**
-
-  Bed? currentBed             // Current bed (if admitted)- ✅ Prevents scheduling conflicts
-
-  bool hasNextMeeting         // Meeting scheduled flag- ✅ Real-time availability checking
-
-  DateTime? nextMeetingDate   // Next appointment date- ✅ Automatic bidirectional schedule updates
-
-  Doctor? nextMeetingDoctor   // Next appointment doctor- ✅ User-friendly time slot suggestions
-
-}- ✅ Validates doctor assignment before scheduling
-
-```
-
-## 🏗️ Domain Use Case Architecture
-
-#### 👨‍⚕️ Doctor
-
-```dart### UseCase Base Class
-
-Doctor {All use cases inherit from the `UseCase<Input, Output>` base class, which provides:
-
-  String staffID              // Unique identifier (D001-D025)
-
-  String name                 // Full name```dart
-
-  String specialization       // Medical specialtyabstract class UseCase<Input, Output> {
-
-  String department           // Hospital department  /// Execute the use case with the given input
-
-  Map<String, Map> workingHours // Schedule by day  Future<Output> execute(Input input);
-
-  List<Patient> patientIds    // Assigned patients
-
-  double consultationFee      // Consultation fee  /// Validate input before execution (optional override)
-
-  String licenseNumber        // Medical license  Future<bool> validate(Input input) async => true;
-
-  int yearsOfExperience       // Experience years
-
-}  /// Hook called when execution fails (optional override)
-
-```  Future<void> onError(Exception error, Input input) async {}
-
-
-
-#### 👩‍⚕️ Nurse  /// Hook called when execution succeeds (optional override)
-
-```dart  Future<void> onSuccess(Output result, Input input) async {}
-
-Nurse {
-
-  String staffID              // Unique identifier (N001-N040)  /// Execute with full lifecycle (validation, execution, hooks)
-
-  String name                 // Full name  Future<Output> call(Input input) async { ... }
-
-  String department           // Hospital department}
-
-  NurseShift shift            // MORNING, AFTERNOON, NIGHT```
-
-  List<Patient> assignedPatients // Assigned patients
-
-  List<Room> assignedRooms    // Assigned rooms### Use Case Lifecycle
-
-  Map<String, List<DateTime>> schedule // Work schedule1. **Validation** - `validate()` checks input criteria
-
-  String licenseNumber        // Nursing license2. **Execution** - `execute()` performs business logic
-
-  List<String> specializations // Nursing specializations3. **Success Hook** - `onSuccess()` handles successful completion
-
-}4. **Error Hook** - `onError()` handles exceptions
-
-```
-
-### Entity Properties Reference
-
-#### 📅 Appointment
-
-```dart#### Appointment
-
-Appointment {```dart
-
-  String id                   // Unique identifier (A001-A999)- id: String (appointment identifier)
-
-  DateTime dateTime           // Appointment date and time- dateTime: DateTime (appointment scheduled time)
-
-  int duration                // Duration in minutes- duration: int (appointment duration in minutes)
-
-  Patient patient             // Patient object- patient: Patient (not patientId - full object)
-
-  Doctor doctor               // Doctor object- doctor: Doctor (not doctorId - full object)
-
-  Room? room                  // Optional room assignment- room: Room? (optional room assignment)
-
-  AppointmentStatus status    // Status enum- status: AppointmentStatus (enum: SCHEDULE, IN_PROGRESS, COMPLETED, CANCELLED, NO_SHOW)
-
-  String reason               // Appointment reason- reason: String (appointment reason/notes)
-
-  String? notes               // Additional notes```
-
-}
-
-```#### Equipment
-
-```dart
-
-#### 💊 Prescription- equipmentId: String (equipment identifier)
-
-```dart- name: String (equipment name)
-
-Prescription {- type: String (equipment type)
-
-  String id                   // Unique identifier (PR001-PR999)- serialNumber: String (equipment serial number)
-
-  DateTime time               // Prescription date/time- status: EquipmentStatus (enum: OPERATIONAL, IN_MAINTENANCE, NEEDS_CALIBRATION, OUT_OF_SERVICE)
-
-  Patient patient             // Patient object- lastServiceDate: DateTime (not lastMaintenanceDate)
-
-  Doctor doctor               // Prescribing doctor- nextServiceDate: DateTime (not nextMaintenanceDate)
-
-  List<Medication> medications // Prescribed medications```
-
-  String instructions         // Medication instructions
-
-  DateTime? expiryDate        // Prescription expiry#### Patient
-
-  bool isActive               // Active status```dart
-
-}- patientID: String (not id - specific to patient domain)
-
-```- name: String (inherited from Person, not firstName/lastName)
-
-- dateOfBirth: String
-
-#### 🏥 Room- address: String
-
-```dart- tel: String
-
-Room {- bloodType: String
-
-  String roomId               // Unique identifier (R101-R999)- medicalRecords: List<String>
-
-  String number               // Room number- allergies: List<String>
-
-  RoomType roomType           // Type enum- emergencyContact: String
-
-  RoomStatus status           // Status enum- assignedDoctors: List<Doctor>
-
-  List<Bed> beds              // Room beds- assignedNurses: List<Nurse>
-
-  List<Equipment> equipment   // Room equipment- prescriptions: List<Prescription>
-
-  String? currentPatientId    // Current occupant- currentRoom: Room?
-
-  double pricePerDay          // Daily rate- currentBed: Bed?
-
-}```
-
-```
-
-#### Doctor
-
-### Enumerations```dart
-
-- staffID: String (from Staff inheritance)
-
-```dart- name: String (from Person inheritance)
-
-// Appointment Status Lifecycle- specialization: String
-
-enum AppointmentStatus {- department: String
-
-  SCHEDULE,        // Newly scheduled```
-
-  IN_PROGRESS,     // Currently ongoing
-
-  COMPLETED,       // Successfully completed#### Room
-
-  CANCELLED,       // Cancelled by patient/doctor```dart
-
-  NO_SHOW          // Patient didn't show up- roomId: String
-
-}- number: String (not roomNumber)
-
-- roomType: RoomType (enum: ICU, GENERAL, OPERATION_THEATRE, etc.)
-
-// Room Types- status: RoomStatus (enum: AVAILABLE, OCCUPIED, UNDER_MAINTENANCE)
-
-enum RoomType {- equipment: List<Equipment>
-
-  GENERAL,         // Standard ward- beds: List<Bed>
-
-  ICU,             // Intensive Care Unit```
-
-  EMERGENCY,       // Emergency room
-
-  OPERATION_THEATRE, // Surgery room## 🧪 Testing Strategy
-
-  MATERNITY,       // Maternity ward
-
-  PEDIATRIC,       // Children's ward- **Unit Tests**: Test individual classes and methods
-
-  ISOLATION,       // Isolation room- **Integration Tests**: Test interaction between layers
-
-  VIP              // Premium room- **Domain Tests**: Focus on business logic validation
-
-}- **Data Tests**: Mock data sources, test repositories
-
-- **Presentation Tests**: Test controllers and input validation
-
-// Nurse Shifts
-
-enum NurseShift {### Running Tests
-
-  MORNING,         // 6:00 AM - 2:00 PM```bash
-
-  AFTERNOON,       // 2:00 PM - 10:00 PM# Run all tests
-
-  NIGHT            // 10:00 PM - 6:00 AMdart test
-
-}
-
-```# Run specific test file
-
-dart test test/domain/entities/patient_meeting_test.dart
 
 ---
 
-# Run with coverage
+## 📦 Data Model
 
-## 🎯 Use Casesdart test --coverage
+### Core Entities
 
+#### 👤 Patient
+```dart
+Patient {
+  String patientID            // Unique identifier (P001-P050)
+  String name                 // Full name (Khmer names)
+  String dateOfBirth          // Birth date (YYYY-MM-DD)
+  String address              // Physical address
+  String tel                  // Contact: 012-XXX-XXXX
+  String bloodType            // A+, A-, B+, B-, AB+, AB-, O+, O-
+  List<String> medicalRecords // Medical history
+  List<String> allergies      // Allergy information
+  String emergencyContact     // Emergency contact number
+  List<Doctor> assignedDoctors // Assigned doctors
+  List<Nurse> assignedNurses  // Assigned nurses
+  List<Prescription> prescriptions // Current prescriptions
+  Room? currentRoom           // Current room (if admitted)
+  Bed? currentBed             // Current bed (if admitted)
+  bool hasNextMeeting         // Meeting scheduled flag
+  DateTime? nextMeetingDate   // Next appointment date
+  Doctor? nextMeetingDoctor   // Next appointment doctor
+}
+```
 
+#### 👨‍⚕️ Doctor
+```dart
+Doctor {
+  String staffID              // Unique identifier (D001-D025)
+  String name                 // Full name
+  String specialization       // Medical specialty
+  String department           // Hospital department
+  Map<String, Map> workingHours // Schedule by day
+  List<Patient> patientIds    // Assigned patients
+  double consultationFee      // Consultation fee
+  String licenseNumber        // Medical license
+  int yearsOfExperience       // Experience years
+}
+```
 
-### Use Case Architecture# See the meeting scheduling example
+#### 👩‍⚕️ Nurse
+```dart
+Nurse {
+  String staffID              // Unique identifier (N001-N040)
+  String name                 // Full name
+  String department           // Hospital department
+  NurseShift shift            // MORNING, AFTERNOON, NIGHT
+  List<Patient> assignedPatients // Assigned patients
+  List<Room> assignedRooms    // Assigned rooms
+  Map<String, List<DateTime>> schedule // Work schedule
+  String licenseNumber        // Nursing license
+  List<String> specializations // Nursing specializations
+}
+```
 
-dart run examples/meeting_scheduling_example.dart
+#### 📅 Appointment
+```dart
+Appointment {
+  String id                   // Unique identifier (A001-A999)
+  DateTime dateTime           // Appointment date and time
+  int duration                // Duration in minutes
+  Patient patient             // Patient object
+  Doctor doctor               // Doctor object
+  Room? room                  // Optional room assignment
+  AppointmentStatus status    // Status enum
+  String reason               // Appointment reason
+  String? notes               // Additional notes
+}
+```
 
-All use cases inherit from the base `UseCase<Input, Output>` class:```
+#### 💊 Prescription
+```dart
+Prescription {
+  String id                   // Unique identifier (PR001-PR999)
+  DateTime time               // Prescription date/time
+  Patient patient             // Patient object
+  Doctor doctor               // Prescribing doctor
+  List<Medication> medications // Prescribed medications
+  String instructions         // Medication instructions
+  DateTime? expiryDate        // Prescription expiry
+  bool isActive               // Active status
+}
+```
 
+#### 🏥 Room
+```dart
+Room {
+  String roomId               // Unique identifier (R101-R999)
+  String number               // Room number
+  RoomType roomType           // Type enum
+  RoomStatus status           // Status enum
+  List<Bed> beds              // Room beds
+  List<Equipment> equipment   // Room equipment
+  String? currentPatientId    // Current occupant
+  double pricePerDay          // Daily rate
+}
+```
 
+### Enumerations
 
-```dart## 📄 License
+```dart
+// Appointment Status Lifecycle
+enum AppointmentStatus {
+  SCHEDULE,        // Newly scheduled
+  IN_PROGRESS,     // Currently ongoing
+  COMPLETED,       // Successfully completed
+  CANCELLED,       // Cancelled by patient/doctor
+  NO_SHOW          // Patient didn't show up
+}
 
+// Room Types
+enum RoomType {
+  GENERAL,         // Standard ward
+  ICU,             // Intensive Care Unit
+  EMERGENCY,       // Emergency room
+  OPERATION_THEATRE, // Surgery room
+  MATERNITY,       // Maternity ward
+  PEDIATRIC,       // Children's ward
+  ISOLATION,       // Isolation room
+  VIP              // Premium room
+}
+
+// Nurse Shifts
+enum NurseShift {
+  MORNING,         // 6:00 AM - 2:00 PM
+  AFTERNOON,       // 2:00 PM - 10:00 PM
+  NIGHT            // 10:00 PM - 6:00 AM
+}
+```
+
+---
+
+## 🎯 Use Cases
+
+### Use Case Architecture
+
+All use cases inherit from the base `UseCase<Input, Output>` class:
+
+```dart
 abstract class UseCase<Input, Output> {
-
-  /// Validate input before executionThis project is for educational purposes.
-
+  /// Validate input before execution
   Future<bool> validate(Input input) async => true;
-
-  ## 👥 Contributors
-
-  /// Execute the business logic
-
-  Future<Output> execute(Input input);- Development Team
-
   
-
-  /// Hook called on successful execution---
-
+  /// Execute the business logic
+  Future<Output> execute(Input input);
+  
+  /// Hook called on successful execution
   Future<void> onSuccess(Output result, Input input) async {}
-
-  **Note**: This is a console-based application following Clean Architecture principles. The structure supports easy migration to GUI (Flutter) or web interfaces in the future.
+  
   /// Hook called on error
   Future<void> onError(Exception error, Input input) async {}
   
   /// Execute with full lifecycle
   Future<Output> call(Input input) async {
-    // 1. Validate
-    if (!await validate(input)) {
-      throw Exception('Validation failed');
-    }
-    
-    try {
-      // 2. Execute
-      final result = await execute(input);
-      
-      // 3. Success hook
-      await onSuccess(result, input);
-      
-      return result;
-    } catch (e) {
-      // 4. Error hook
-      await onError(e as Exception, input);
-      rethrow;
-    }
+    // 1. Validate → 2. Execute → 3. Success/Error hooks
   }
 }
 ```
 
 ### Use Case Categories
 
-#### 👥 Patient Use Cases (7)
+<details>
+<summary><b>👥 Patient Use Cases (7)</b></summary>
+
 | Use Case | Description | Input | Output |
 |----------|-------------|-------|--------|
 | `AdmitPatient` | Admit patient to hospital | Patient, Room, Bed | bool |
@@ -1073,7 +559,11 @@ abstract class UseCase<Input, Output> {
 | `CancelPatientMeeting` | Cancel meeting | patientId | bool |
 | `GetMeetingReminders` | Get upcoming meetings | patientId | List<Meeting> |
 
-#### 📅 Appointment Use Cases (8)
+</details>
+
+<details>
+<summary><b>📅 Appointment Use Cases (8)</b></summary>
+
 | Use Case | Description | Input | Output |
 |----------|-------------|-------|--------|
 | `ScheduleAppointment` | Create new appointment | AppointmentData | Appointment |
@@ -1085,7 +575,11 @@ abstract class UseCase<Input, Output> {
 | `UpdateAppointmentStatus` | Update status | appointmentId, status | bool |
 | `CancelAppointment` | Cancel appointment | appointmentId, reason | bool |
 
-#### 💊 Prescription Use Cases (7)
+</details>
+
+<details>
+<summary><b>💊 Prescription Use Cases (7)</b></summary>
+
 | Use Case | Description | Input | Output |
 |----------|-------------|-------|--------|
 | `PrescribeMedication` | Create prescription | PrescriptionData | Prescription |
@@ -1096,7 +590,11 @@ abstract class UseCase<Input, Output> {
 | `RefillPrescription` | Refill prescription | prescriptionId | Prescription |
 | `DiscontinuePrescription` | Stop prescription | prescriptionId, reason | bool |
 
-#### 👩‍⚕️ Nurse Use Cases (6)
+</details>
+
+<details>
+<summary><b>👩‍⚕️ Nurse Use Cases (6)</b></summary>
+
 | Use Case | Description | Input | Output |
 |----------|-------------|-------|--------|
 | `AssignNurseToPatient` | Assign nurse to patient | nurseId, patientId | bool |
@@ -1106,7 +604,11 @@ abstract class UseCase<Input, Output> {
 | `GetNurseWorkload` | Get workload analysis | nurseId | WorkloadData |
 | `GetAvailableNurses` | Get available nurses | shift, date | List<Nurse> |
 
-#### 🏥 Room Use Cases (6)
+</details>
+
+<details>
+<summary><b>🏥 Room Use Cases (6)</b></summary>
+
 | Use Case | Description | Input | Output |
 |----------|-------------|-------|--------|
 | `SearchAvailableRooms` | Find available rooms | roomType, date | List<Room> |
@@ -1116,7 +618,11 @@ abstract class UseCase<Input, Output> {
 | `TransferPatient` | Transfer patient | patientId, toRoom | bool |
 | `GetRoomOccupancy` | Get occupancy stats | - | OccupancyData |
 
-#### 🚨 Emergency Use Cases (5)
+</details>
+
+<details>
+<summary><b>🚨 Emergency Use Cases (5)</b></summary>
+
 | Use Case | Description | Input | Output |
 |----------|-------------|-------|--------|
 | `InitiateEmergencyProtocol` | Start emergency protocol | - | bool |
@@ -1125,7 +631,11 @@ abstract class UseCase<Input, Output> {
 | `NotifyEmergencyStaff` | Alert emergency staff | emergencyData | bool |
 | `GetAvailableICUCapacity` | Check ICU capacity | - | CapacityData |
 
-#### 🔍 Search Use Cases (6)
+</details>
+
+<details>
+<summary><b>🔍 Search Use Cases (6)</b></summary>
+
 | Use Case | Description | Input | Output |
 |----------|-------------|-------|--------|
 | `SearchPatients` | Search patients | criteria | List<Patient> |
@@ -1134,6 +644,8 @@ abstract class UseCase<Input, Output> {
 | `SearchPrescriptions` | Search prescriptions | criteria | List<Prescription> |
 | `SearchRooms` | Search rooms | criteria | List<Room> |
 | `SearchMedicalRecords` | Search medical records | criteria | List<Record> |
+
+</details>
 
 ---
 
@@ -1153,7 +665,7 @@ flutter --version
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-org/Hospital_Management_System.git
+git clone https://github.com/Choeng-Rayu/Hospital_Management_System.git
 cd Hospital_Management_System
 ```
 
@@ -1297,12 +809,12 @@ testEntityIds.add(saved.id); // Track for cleanup
 
 ### Test Quality Features
 
-✅ **Comprehensive Assertions** - Full entity validation
-✅ **Edge Case Coverage** - Boundary and error conditions
-✅ **Performance Testing** - Search and bulk operations
-✅ **Detailed Output** - Emoji-based progress indicators
-✅ **Summary Reports** - Statistics per test group
-✅ **Cleanup Verification** - Data integrity checks
+✅ **Comprehensive Assertions** - Full entity validation  
+✅ **Edge Case Coverage** - Boundary and error conditions  
+✅ **Performance Testing** - Search and bulk operations  
+✅ **Detailed Output** - Emoji-based progress indicators  
+✅ **Summary Reports** - Statistics per test group  
+✅ **Cleanup Verification** - Data integrity checks  
 
 ---
 
@@ -1405,11 +917,11 @@ All data is stored in JSON files under the `data/` directory:
 
 ### Data Characteristics
 
-✅ **Realistic Data** - Authentic Khmer names and medical records
-✅ **Referential Integrity** - All foreign keys valid
-✅ **Data Consistency** - Cross-referenced relationships
-✅ **Type Safety** - Validated enumerations
-✅ **Data Quality** - Clean, professional records
+✅ **Realistic Data** - Authentic Khmer names and medical records  
+✅ **Referential Integrity** - All foreign keys valid  
+✅ **Data Consistency** - Cross-referenced relationships  
+✅ **Type Safety** - Validated enumerations  
+✅ **Data Quality** - Clean, professional records  
 
 ---
 
@@ -1502,14 +1014,14 @@ This project is licensed for **educational purposes only**.
 
 ## 🏆 Key Achievements
 
-✅ **100% Test Coverage** - All 137 tests passing
-✅ **Zero Compilation Errors** - Clean, production-ready code
-✅ **Clean Architecture** - Proper layer separation
-✅ **Realistic Data** - 450+ authentic healthcare records
-✅ **Comprehensive Documentation** - Every feature documented
-✅ **SOLID Principles** - Throughout the codebase
-✅ **Best Practices** - Industry-standard patterns
-✅ **Educational Value** - Perfect for learning
+✅ **100% Test Coverage** - All 137 tests passing  
+✅ **Zero Compilation Errors** - Clean, production-ready code  
+✅ **Clean Architecture** - Proper layer separation  
+✅ **Realistic Data** - 450+ authentic healthcare records  
+✅ **Comprehensive Documentation** - Every feature documented  
+✅ **SOLID Principles** - Throughout the codebase  
+✅ **Best Practices** - Industry-standard patterns  
+✅ **Educational Value** - Perfect for learning  
 
 ---
 
