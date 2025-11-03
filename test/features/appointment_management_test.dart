@@ -150,7 +150,8 @@ void main() {
         print('   📋 Duration: ${created.duration} minutes');
         print('   📋 Notes: ${created.notes}');
 
-        expect(created.duration, equals(60)); // Duration set to 60 in appointment creation
+        expect(created.duration,
+            equals(60)); // Duration set to 60 in appointment creation
         expect(created.notes, isNotNull);
 
         print('   ✅ Appointment with details created');
@@ -175,7 +176,8 @@ void main() {
 
         await appointmentRepository.saveAppointment(appointment1);
         final all1 = await appointmentRepository.getAllAppointments();
-        final saved = all1.firstWhere((a) => a.reason == 'Duplicate test original');
+        final saved =
+            all1.firstWhere((a) => a.reason == 'Duplicate test original');
         testAppointmentIds.add(saved.id);
 
         // Try to create another with same ID
@@ -238,7 +240,7 @@ void main() {
         final existingDurationTests = existingAppts
             .where((a) => a.reason.contains('Duration test'))
             .toList();
-        
+
         for (final apt in existingDurationTests) {
           await appointmentRepository.deleteAppointment(apt.id);
         }
