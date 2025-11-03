@@ -32,6 +32,7 @@ A production-ready hospital management system built with **Clean Architecture** 
 - [Menu System](#-menu-system)
 - [Data Management](#-data-management)
 - [Development Guide](#-development-guide)
+- [Documentation](#-documentation)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -335,7 +336,14 @@ hospital_management/
 │   │
 │   └── integration/                   # Integration Tests
 │
-├── docs/                              # 📚 Additional Documentation
+├── docs/                              # 📚 Comprehensive Documentation
+│   ├── README.md                      # Documentation hub
+│   ├── DOMAIN_LAYER.md                # Domain layer guide
+│   ├── DATA_LAYER.md                  # Data layer guide
+│   ├── PRESENTATION_LAYER.md          # Presentation layer guide
+│   ├── LAYER_INTERACTIONS.md          # Layer communication
+│   ├── ARCHITECTURE_OVERVIEW.md       # Architecture details
+│   └── QUICK_START.md                 # Getting started
 ├── UML/                               # 🎨 UML Diagrams
 ├── pubspec.yaml                       # 📦 Project Dependencies
 └── README.md                          # 📖 This File
@@ -957,11 +965,45 @@ try {
   print('Error saving patient: $e');
 }
 ```
+---
+
+## 📚 Documentation
+
+### Comprehensive Documentation Suite
+
+For detailed documentation on every aspect of the system, visit the **[Documentation Hub](docs/README.md)**:
+
+| Document | Description | Topics |
+|----------|-------------|--------|
+| **[📖 Documentation Hub](docs/README.md)** | Central navigation for all docs | Quick reference, role-based guides |
+| **[🎯 Domain Layer](docs/DOMAIN_LAYER.md)** | Business logic and entities | 12 entities, 8 repositories, 50+ use cases |
+| **[💾 Data Layer](docs/DATA_LAYER.md)** | Data persistence and models | Models, data sources, AUTO ID system |
+| **[🖥️ Presentation Layer](docs/PRESENTATION_LAYER.md)** | User interface and menus | 8 menus, controllers, validators |
+| **[🔄 Layer Interactions](docs/LAYER_INTERACTIONS.md)** | How layers communicate | Dependency rule, data flow patterns |
+| **[🏗️ Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)** | System architecture | Clean Architecture, design patterns |
+| **[⚡ Quick Start Guide](docs/QUICK_START.md)** | Getting started quickly | Installation, common tasks, troubleshooting |
+
+### Documentation Features
+
+✅ **Modern Design** - Emojis, badges, tables, collapsible sections  
+✅ **Comprehensive** - Every tiny detail documented  
+✅ **Real Examples** - Actual code from the project  
+✅ **Role-Based** - Guides for developers, architects, QA engineers  
+✅ **Easy Navigation** - Quick reference tables and search  
+
+### Quick Links
+
+- 🚀 **New to the project?** Start with [Quick Start Guide](docs/QUICK_START.md)
+- 🏗️ **Understanding architecture?** Read [Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)
+- 🎯 **Learning entities?** Check [Domain Layer - Entities](docs/DOMAIN_LAYER.md#-entities)
+- 💾 **Need data info?** See [Data Layer - AUTO ID](docs/DATA_LAYER.md#-auto-id-generation)
+- 🖥️ **Using menus?** View [Presentation Layer - Menus](docs/PRESENTATION_LAYER.md#-all-menus)
 
 ---
 
 ## 🤝 Contributing
 
+We welcome contributions! Please follow these guidelines:
 We welcome contributions! Please follow these guidelines:
 
 ### How to Contribute
