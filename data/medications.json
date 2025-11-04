@@ -1,0 +1,602 @@
+[
+  {
+    "id": "M001",
+    "name": "Amoxicillin",
+    "dosage": "500mg",
+    "manufacturer": "PharmaCorp",
+    "sideEffects": [
+      "Nausea",
+      "Diarrhea",
+      "Allergic reaction",
+      "Headache"
+    ]
+  },
+  {
+    "id": "M002",
+    "name": "Azithromycin",
+    "dosage": "250mg",
+    "manufacturer": "PharmaCorp",
+    "sideEffects": [
+      "Diarrhea",
+      "Nausea",
+      "Abdominal pain",
+      "Vomiting"
+    ]
+  },
+  {
+    "id": "M003",
+    "name": "Ciprofloxacin",
+    "dosage": "500mg",
+    "manufacturer": "AntiBio Labs",
+    "sideEffects": [
+      "Nausea",
+      "Dizziness",
+      "Headache",
+      "Insomnia"
+    ]
+  },
+  {
+    "id": "M004",
+    "name": "Doxycycline",
+    "dosage": "100mg",
+    "manufacturer": "AntiBio Labs",
+    "sideEffects": [
+      "Photosensitivity",
+      "Nausea",
+      "Diarrhea",
+      "Rash"
+    ]
+  },
+  {
+    "id": "M005",
+    "name": "Lisinopril",
+    "dosage": "10mg",
+    "manufacturer": "CardioMeds Inc",
+    "sideEffects": [
+      "Dry cough",
+      "Dizziness",
+      "Hyperkalemia",
+      "Fatigue"
+    ]
+  },
+  {
+    "id": "M006",
+    "name": "Aspirin",
+    "dosage": "81mg",
+    "manufacturer": "HeartHealth Co",
+    "sideEffects": [
+      "Stomach irritation",
+      "Bleeding",
+      "Tinnitus",
+      "Allergic reaction"
+    ]
+  },
+  {
+    "id": "M007",
+    "name": "Atorvastatin",
+    "dosage": "20mg",
+    "manufacturer": "CardioMeds Inc",
+    "sideEffects": [
+      "Muscle pain",
+      "Liver damage",
+      "Digestive problems",
+      "Memory loss"
+    ]
+  },
+  {
+    "id": "M008",
+    "name": "Metoprolol",
+    "dosage": "50mg",
+    "manufacturer": "HeartHealth Co",
+    "sideEffects": [
+      "Fatigue",
+      "Dizziness",
+      "Depression",
+      "Cold hands"
+    ]
+  },
+  {
+    "id": "M009",
+    "name": "Amlodipine",
+    "dosage": "5mg",
+    "manufacturer": "CardioMeds Inc",
+    "sideEffects": [
+      "Swelling",
+      "Flushing",
+      "Dizziness",
+      "Palpitations"
+    ]
+  },
+  {
+    "id": "M010",
+    "name": "Warfarin",
+    "dosage": "5mg",
+    "manufacturer": "BloodCare Pharma",
+    "sideEffects": [
+      "Bleeding",
+      "Bruising",
+      "Hair loss",
+      "Skin necrosis"
+    ]
+  },
+  {
+    "id": "M011",
+    "name": "Ibuprofen",
+    "dosage": "400mg",
+    "manufacturer": "PainRelief Ltd",
+    "sideEffects": [
+      "Stomach upset",
+      "Heartburn",
+      "Dizziness",
+      "Drowsiness"
+    ]
+  },
+  {
+    "id": "M012",
+    "name": "Acetaminophen",
+    "dosage": "500mg",
+    "manufacturer": "PainRelief Ltd",
+    "sideEffects": [
+      "Liver damage",
+      "Allergic reaction",
+      "Rash",
+      "Nausea"
+    ]
+  },
+  {
+    "id": "M013",
+    "name": "Naproxen",
+    "dosage": "250mg",
+    "manufacturer": "PainRelief Ltd",
+    "sideEffects": [
+      "Stomach upset",
+      "Heartburn",
+      "Headache",
+      "Drowsiness"
+    ]
+  },
+  {
+    "id": "M014",
+    "name": "Tramadol",
+    "dosage": "50mg",
+    "manufacturer": "PainCare Solutions",
+    "sideEffects": [
+      "Dizziness",
+      "Nausea",
+      "Constipation",
+      "Drowsiness"
+    ]
+  },
+  {
+    "id": "M015",
+    "name": "Metformin",
+    "dosage": "850mg",
+    "manufacturer": "DiabeteCare",
+    "sideEffects": [
+      "Nausea",
+      "Diarrhea",
+      "Metallic taste",
+      "Lactic acidosis"
+    ]
+  },
+  {
+    "id": "M016",
+    "name": "Glipizide",
+    "dosage": "5mg",
+    "manufacturer": "DiabeteCare",
+    "sideEffects": [
+      "Hypoglycemia",
+      "Nausea",
+      "Diarrhea",
+      "Dizziness"
+    ]
+  },
+  {
+    "id": "M017",
+    "name": "Insulin Glargine",
+    "dosage": "100U/mL",
+    "manufacturer": "DiabeteCare",
+    "sideEffects": [
+      "Hypoglycemia",
+      "Injection site reaction",
+      "Weight gain",
+      "Swelling"
+    ]
+  },
+  {
+    "id": "M018",
+    "name": "Albuterol",
+    "dosage": "2.5mg/3mL",
+    "manufacturer": "RespiroCare",
+    "sideEffects": [
+      "Tremor",
+      "Nervousness",
+      "Headache",
+      "Palpitations"
+    ]
+  },
+  {
+    "id": "M019",
+    "name": "Prednisone",
+    "dosage": "10mg",
+    "manufacturer": "RespiroCare",
+    "sideEffects": [
+      "Weight gain",
+      "Mood changes",
+      "Insomnia",
+      "High blood pressure"
+    ]
+  },
+  {
+    "id": "M020",
+    "name": "Montelukast",
+    "dosage": "10mg",
+    "manufacturer": "RespiroCare",
+    "sideEffects": [
+      "Headache",
+      "Dizziness",
+      "Stomach pain",
+      "Fatigue"
+    ]
+  },
+  {
+    "id": "M021",
+    "name": "Omeprazole",
+    "dosage": "20mg",
+    "manufacturer": "GastroPharma",
+    "sideEffects": [
+      "Headache",
+      "Diarrhea",
+      "Nausea",
+      "Stomach pain"
+    ]
+  },
+  {
+    "id": "M022",
+    "name": "Ranitidine",
+    "dosage": "150mg",
+    "manufacturer": "GastroPharma",
+    "sideEffects": [
+      "Headache",
+      "Constipation",
+      "Diarrhea",
+      "Dizziness"
+    ]
+  },
+  {
+    "id": "M023",
+    "name": "Ondansetron",
+    "dosage": "4mg",
+    "manufacturer": "GastroPharma",
+    "sideEffects": [
+      "Headache",
+      "Constipation",
+      "Dizziness",
+      "Fatigue"
+    ]
+  },
+  {
+    "id": "M024",
+    "name": "Gabapentin",
+    "dosage": "300mg",
+    "manufacturer": "NeuroCare",
+    "sideEffects": [
+      "Dizziness",
+      "Drowsiness",
+      "Fatigue",
+      "Coordination problems"
+    ]
+  },
+  {
+    "id": "M025",
+    "name": "Diazepam",
+    "dosage": "5mg",
+    "manufacturer": "NeuroCare",
+    "sideEffects": [
+      "Drowsiness",
+      "Fatigue",
+      "Muscle weakness",
+      "Confusion"
+    ]
+  },
+  {
+    "id": "M026",
+    "name": "Levetiracetam",
+    "dosage": "500mg",
+    "manufacturer": "NeuroCare",
+    "sideEffects": [
+      "Drowsiness",
+      "Dizziness",
+      "Weakness",
+      "Mood changes"
+    ]
+  },
+  {
+    "id": "M027",
+    "name": "Sertraline",
+    "dosage": "50mg",
+    "manufacturer": "MindHealth Pharma",
+    "sideEffects": [
+      "Nausea",
+      "Diarrhea",
+      "Insomnia",
+      "Sexual dysfunction"
+    ]
+  },
+  {
+    "id": "M028",
+    "name": "Fluoxetine",
+    "dosage": "20mg",
+    "manufacturer": "MindHealth Pharma",
+    "sideEffects": [
+      "Nausea",
+      "Insomnia",
+      "Anxiety",
+      "Sexual dysfunction"
+    ]
+  },
+  {
+    "id": "M029",
+    "name": "Alprazolam",
+    "dosage": "0.5mg",
+    "manufacturer": "MindHealth Pharma",
+    "sideEffects": [
+      "Drowsiness",
+      "Dizziness",
+      "Memory problems",
+      "Confusion"
+    ]
+  },
+  {
+    "id": "M030",
+    "name": "Levothyroxine",
+    "dosage": "100mcg",
+    "manufacturer": "EndocrineCare",
+    "sideEffects": [
+      "Weight loss",
+      "Tremor",
+      "Headache",
+      "Insomnia"
+    ]
+  },
+  {
+    "id": "M031",
+    "name": "Cephalexin",
+    "dosage": "500mg",
+    "manufacturer": "AntiBio Labs",
+    "sideEffects": [
+      "Diarrhea",
+      "Nausea",
+      "Vomiting",
+      "Rash"
+    ]
+  },
+  {
+    "id": "M032",
+    "name": "Metronidazole",
+    "dosage": "500mg",
+    "manufacturer": "AntiBio Labs",
+    "sideEffects": [
+      "Nausea",
+      "Metallic taste",
+      "Headache",
+      "Loss of appetite"
+    ]
+  },
+  {
+    "id": "M033",
+    "name": "Rivaroxaban",
+    "dosage": "10mg",
+    "manufacturer": "BloodCare Pharma",
+    "sideEffects": [
+      "Bleeding",
+      "Nausea",
+      "Back pain",
+      "Dizziness"
+    ]
+  },
+  {
+    "id": "M034",
+    "name": "Apixaban",
+    "dosage": "5mg",
+    "manufacturer": "BloodCare Pharma",
+    "sideEffects": [
+      "Bleeding",
+      "Nausea",
+      "Anemia",
+      "Bruising"
+    ]
+  },
+  {
+    "id": "M035",
+    "name": "Furosemide",
+    "dosage": "40mg",
+    "manufacturer": "CardioMeds Inc",
+    "sideEffects": [
+      "Dehydration",
+      "Low potassium",
+      "Dizziness",
+      "Headache"
+    ]
+  },
+  {
+    "id": "M036",
+    "name": "Hydrochlorothiazide",
+    "dosage": "25mg",
+    "manufacturer": "CardioMeds Inc",
+    "sideEffects": [
+      "Dizziness",
+      "Headache",
+      "Increased urination",
+      "Low potassium"
+    ]
+  },
+  {
+    "id": "M037",
+    "name": "Hydrocortisone",
+    "dosage": "20mg",
+    "manufacturer": "RespiroCare",
+    "sideEffects": [
+      "Weight gain",
+      "Mood changes",
+      "Increased appetite",
+      "Insomnia"
+    ]
+  },
+  {
+    "id": "M038",
+    "name": "Dexamethasone",
+    "dosage": "4mg",
+    "manufacturer": "RespiroCare",
+    "sideEffects": [
+      "Increased blood sugar",
+      "Mood changes",
+      "Insomnia",
+      "Weight gain"
+    ]
+  },
+  {
+    "id": "M039",
+    "name": "Vitamin D3",
+    "dosage": "1000IU",
+    "manufacturer": "WellnessSupplements",
+    "sideEffects": [
+      "Constipation",
+      "Nausea",
+      "Weakness",
+      "Headache"
+    ]
+  },
+  {
+    "id": "M040",
+    "name": "Calcium Carbonate",
+    "dosage": "500mg",
+    "manufacturer": "WellnessSupplements",
+    "sideEffects": [
+      "Constipation",
+      "Gas",
+      "Bloating",
+      "Stomach upset"
+    ]
+  },
+  {
+    "id": "M041",
+    "name": "Multivitamin",
+    "dosage": "1 tablet",
+    "manufacturer": "WellnessSupplements",
+    "sideEffects": [
+      "Constipation",
+      "Diarrhea",
+      "Stomach upset",
+      "Allergic reaction"
+    ]
+  },
+  {
+    "id": "M042",
+    "name": "Cetirizine",
+    "dosage": "10mg",
+    "manufacturer": "AllergyRelief Co",
+    "sideEffects": [
+      "Drowsiness",
+      "Dry mouth",
+      "Fatigue",
+      "Headache"
+    ]
+  },
+  {
+    "id": "M043",
+    "name": "Loratadine",
+    "dosage": "10mg",
+    "manufacturer": "AllergyRelief Co",
+    "sideEffects": [
+      "Headache",
+      "Drowsiness",
+      "Dry mouth",
+      "Fatigue"
+    ]
+  },
+  {
+    "id": "M044",
+    "name": "Epinephrine",
+    "dosage": "0.3mg",
+    "manufacturer": "EmergencyMeds",
+    "sideEffects": [
+      "Palpitations",
+      "Tremor",
+      "Anxiety",
+      "Headache"
+    ]
+  },
+  {
+    "id": "M045",
+    "name": "Atropine",
+    "dosage": "1mg",
+    "manufacturer": "EmergencyMeds",
+    "sideEffects": [
+      "Dry mouth",
+      "Blurred vision",
+      "Urinary retention",
+      "Tachycardia"
+    ]
+  },
+  {
+    "id": "M046",
+    "name": "Morphine",
+    "dosage": "10mg",
+    "manufacturer": "PainCare Solutions",
+    "sideEffects": [
+      "Drowsiness",
+      "Constipation",
+      "Nausea",
+      "Respiratory depression"
+    ]
+  },
+  {
+    "id": "M047",
+    "name": "Cyclophosphamide",
+    "dosage": "50mg",
+    "manufacturer": "OncologyPharm",
+    "sideEffects": [
+      "Nausea",
+      "Vomiting",
+      "Hair loss",
+      "Bladder irritation"
+    ]
+  },
+  {
+    "id": "M048",
+    "name": "Methotrexate",
+    "dosage": "2.5mg",
+    "manufacturer": "OncologyPharm",
+    "sideEffects": [
+      "Nausea",
+      "Mouth sores",
+      "Fatigue",
+      "Liver damage"
+    ]
+  },
+  {
+    "id": "M049",
+    "name": "Fluconazole",
+    "dosage": "150mg",
+    "manufacturer": "AntiBio Labs",
+    "sideEffects": [
+      "Headache",
+      "Nausea",
+      "Stomach pain",
+      "Diarrhea"
+    ]
+  },
+  {
+    "id": "M050",
+    "name": "Oseltamivir",
+    "dosage": "75mg",
+    "manufacturer": "VirusCare Pharma",
+    "sideEffects": [
+      "Nausea",
+      "Vomiting",
+      "Headache",
+      "Diarrhea"
+    ]
+  }
+]

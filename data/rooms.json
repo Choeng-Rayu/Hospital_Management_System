@@ -1,0 +1,162 @@
+[
+  {
+    "roomId": "R001",
+    "number": "101",
+    "roomType": "RoomType.GENERAL_WARD",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E001", "E002"],
+    "bedIds": ["B101A", "B101B", "B101C", "B101D"]
+  },
+  {
+    "roomId": "R002", 
+    "number": "102",
+    "roomType": "RoomType.GENERAL_WARD",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E001", "E002"],
+    "bedIds": ["B102A", "B102B", "B102C", "B102D"]
+  },
+  {
+    "roomId": "R003",
+    "number": "103",
+    "roomType": "RoomType.GENERAL_WARD",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E001", "E002"],
+    "bedIds": ["B103A", "B103B"]
+  },
+  {
+    "roomId": "R004",
+    "number": "201",
+    "roomType": "RoomType.PRIVATE_ROOM",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E003", "E009"],
+    "bedIds": ["B201A"]
+  },
+  {
+    "roomId": "R005",
+    "number": "202",
+    "roomType": "RoomType.PRIVATE_ROOM",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E003", "E009"],
+    "bedIds": ["B202A"]
+  },
+  {
+    "roomId": "R006",
+    "number": "203",
+    "roomType": "RoomType.PRIVATE_ROOM",
+    "status": "RoomStatus.RESERVED",
+    "equipmentIds": ["E003", "E009"],
+    "bedIds": ["B203A"]
+  },
+  {
+    "roomId": "R007",
+    "number": "301",
+    "roomType": "RoomType.ICU",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E006", "E007", "E008", "E010"],
+    "bedIds": ["B301A", "B301B"]
+  },
+  {
+    "roomId": "R008",
+    "number": "302",
+    "roomType": "RoomType.ICU",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E006", "E007", "E008", "E010"],
+    "bedIds": ["B302A", "B302B"]
+  },
+  {
+    "roomId": "R009",
+    "number": "303",
+    "roomType": "RoomType.ICU",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E006", "E007", "E008", "E010"],
+    "bedIds": ["B303A"]
+  },
+  {
+    "roomId": "R010",
+    "number": "401",
+    "roomType": "RoomType.PEDIATRIC",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E011", "E012"],
+    "bedIds": ["B401A", "B401B", "B401C"]
+  },
+  {
+    "roomId": "R011",
+    "number": "402",
+    "roomType": "RoomType.PEDIATRIC",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E011", "E012"],
+    "bedIds": ["B402A", "B402B"]
+  },
+  {
+    "roomId": "R012",
+    "number": "501",
+    "roomType": "RoomType.MATERNITY",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E004", "E005", "E013"],
+    "bedIds": ["B501A", "B501B"]
+  },
+  {
+    "roomId": "R013",
+    "number": "502",
+    "roomType": "RoomType.MATERNITY",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E004", "E005", "E013"],
+    "bedIds": ["B502A", "B502B"]
+  },
+  {
+    "roomId": "R014",
+    "number": "601",
+    "roomType": "RoomType.ISOLATION",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E014", "E015"],
+    "bedIds": ["B601A"]
+  },
+  {
+    "roomId": "R015",
+    "number": "602",
+    "roomType": "RoomType.ISOLATION",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E014", "E015"],
+    "bedIds": ["B602A"]
+  },
+  {
+    "roomId": "R016",
+    "number": "ER-1",
+    "roomType": "RoomType.EMERGENCY",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E016", "E017", "E018", "E019"],
+    "bedIds": ["BER1A", "BER1B", "BER1C"]
+  },
+  {
+    "roomId": "R017",
+    "number": "ER-2",
+    "roomType": "RoomType.EMERGENCY",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E016", "E017", "E018", "E019"],
+    "bedIds": ["BER2A", "BER2B", "BER2C"]
+  },
+  {
+    "roomId": "R018",
+    "number": "ER-3",
+    "roomType": "RoomType.EMERGENCY",
+    "status": "RoomStatus.OCCUPIED",
+    "equipmentIds": ["E016", "E017", "E018", "E019"],
+    "bedIds": ["BER3A", "BER3B"]
+  },
+  {
+    "roomId": "R019",
+    "number": "ER-4",
+    "roomType": "RoomType.EMERGENCY",
+    "status": "RoomStatus.AVAILABLE",
+    "equipmentIds": ["E016", "E017", "E018", "E019", "E020"],
+    "bedIds": ["BER4A", "BER4B", "BER4C", "BER4D"]
+  },
+  {
+    "roomId": "R020",
+    "number": "104",
+    "roomType": "RoomType.GENERAL_WARD",
+    "status": "RoomStatus.UNDER_MAINTENANCE",
+    "equipmentIds": [],
+    "bedIds": ["B104A", "B104B"]
+  }
+]

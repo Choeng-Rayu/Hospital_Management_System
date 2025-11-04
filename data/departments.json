@@ -1,0 +1,256 @@
+[
+  {
+    "departmentId": "DEPT001",
+    "name": "Cardiology",
+    "description": "Diagnosis and treatment of heart and cardiovascular conditions",
+    "headDoctorId": "D001",
+    "staffIds": [
+      "D001",
+      "N001",
+      "N002",
+      "N003"
+    ],
+    "roomIds": [
+      "R101",
+      "R102"
+    ],
+    "budget": 2500000,
+    "phoneExtension": "2001"
+  },
+  {
+    "departmentId": "DEPT002",
+    "name": "General Surgery",
+    "description": "Surgical procedures and post-operative care",
+    "headDoctorId": "D002",
+    "staffIds": [
+      "D002",
+      "D013",
+      "N004",
+      "N005",
+      "N006"
+    ],
+    "roomIds": [
+      "R103",
+      "R104"
+    ],
+    "budget": 3200000,
+    "phoneExtension": "2002"
+  },
+  {
+    "departmentId": "DEPT003",
+    "name": "Obstetrics and Gynecology",
+    "description": "Women's health, pregnancy, and childbirth care",
+    "headDoctorId": "D003",
+    "staffIds": [
+      "D003",
+      "N007",
+      "N008",
+      "N009"
+    ],
+    "roomIds": [
+      "R501",
+      "R502"
+    ],
+    "budget": 2800000,
+    "phoneExtension": "2003"
+  },
+  {
+    "departmentId": "DEPT004",
+    "name": "Internal Medicine",
+    "description": "Diagnosis and non-surgical treatment of adult diseases",
+    "headDoctorId": "D004",
+    "staffIds": [
+      "D004",
+      "N010",
+      "N011"
+    ],
+    "roomIds": [
+      "R201",
+      "R202"
+    ],
+    "budget": 2200000,
+    "phoneExtension": "2004"
+  },
+  {
+    "departmentId": "DEPT005",
+    "name": "Emergency Medicine",
+    "description": "24/7 emergency care and trauma treatment",
+    "headDoctorId": "D005",
+    "staffIds": [
+      "D005",
+      "D022",
+      "N012",
+      "N013",
+      "N014",
+      "N015"
+    ],
+    "roomIds": [
+      "R016",
+      "R017",
+      "R018",
+      "R019"
+    ],
+    "budget": 4500000,
+    "phoneExtension": "9999"
+  },
+  {
+    "departmentId": "DEPT006",
+    "name": "Radiology",
+    "description": "Medical imaging and diagnostic services",
+    "headDoctorId": "D006",
+    "staffIds": [
+      "D006",
+      "N016",
+      "N017"
+    ],
+    "roomIds": [],
+    "budget": 3500000,
+    "phoneExtension": "2006"
+  },
+  {
+    "departmentId": "DEPT007",
+    "name": "Pediatrics",
+    "description": "Medical care for infants, children, and adolescents",
+    "headDoctorId": "D007",
+    "staffIds": [
+      "D007",
+      "N018",
+      "N019",
+      "N020"
+    ],
+    "roomIds": [
+      "R401",
+      "R402"
+    ],
+    "budget": 2400000,
+    "phoneExtension": "2007"
+  },
+  {
+    "departmentId": "DEPT008",
+    "name": "Neurology",
+    "description": "Treatment of nervous system disorders",
+    "headDoctorId": "D008",
+    "staffIds": [
+      "D008",
+      "N021",
+      "N022"
+    ],
+    "roomIds": [
+      "R301"
+    ],
+    "budget": 2900000,
+    "phoneExtension": "2008"
+  },
+  {
+    "departmentId": "DEPT009",
+    "name": "Orthopedics",
+    "description": "Musculoskeletal system treatment and surgery",
+    "headDoctorId": "D009",
+    "staffIds": [
+      "D009",
+      "N023",
+      "N024"
+    ],
+    "roomIds": [
+      "R302"
+    ],
+    "budget": 2700000,
+    "phoneExtension": "2009"
+  },
+  {
+    "departmentId": "DEPT010",
+    "name": "Dermatology",
+    "description": "Skin, hair, and nail disorder treatment",
+    "headDoctorId": "D010",
+    "staffIds": [
+      "D010",
+      "N025"
+    ],
+    "roomIds": [
+      "R203"
+    ],
+    "budget": 1800000,
+    "phoneExtension": "2010"
+  },
+  {
+    "departmentId": "DEPT011",
+    "name": "Psychiatry",
+    "description": "Mental health and behavioral disorder treatment",
+    "headDoctorId": "D011",
+    "staffIds": [
+      "D011",
+      "N026",
+      "N027"
+    ],
+    "roomIds": [],
+    "budget": 2100000,
+    "phoneExtension": "2011"
+  },
+  {
+    "departmentId": "DEPT012",
+    "name": "Oncology",
+    "description": "Cancer diagnosis, treatment, and care",
+    "headDoctorId": "D012",
+    "staffIds": [
+      "D012",
+      "N028",
+      "N029",
+      "N030"
+    ],
+    "roomIds": [
+      "R303"
+    ],
+    "budget": 4200000,
+    "phoneExtension": "2012"
+  },
+  {
+    "departmentId": "DEPT013",
+    "name": "Anesthesiology",
+    "description": "Perioperative care and pain management",
+    "headDoctorId": "D013",
+    "staffIds": [
+      "D013",
+      "N031"
+    ],
+    "roomIds": [],
+    "budget": 2600000,
+    "phoneExtension": "2013"
+  },
+  {
+    "departmentId": "DEPT014",
+    "name": "Intensive Care Unit",
+    "description": "Critical care for severely ill patients",
+    "headDoctorId": "D004",
+    "staffIds": [
+      "D004",
+      "N032",
+      "N033",
+      "N034",
+      "N035"
+    ],
+    "roomIds": [
+      "R301",
+      "R302",
+      "R303"
+    ],
+    "budget": 5000000,
+    "phoneExtension": "2014"
+  },
+  {
+    "departmentId": "DEPT015",
+    "name": "Isolation Ward",
+    "description": "Infectious disease containment and treatment",
+    "headDoctorId": "D022",
+    "staffIds": [
+      "D022",
+      "N036",
+      "N037"
+    ],
+    "roomIds": [
+      "R601",
+      "R602"
+    ],
+    "budget": 3300000,
+    "phoneExtension": "2015"
+  }
+]

@@ -2,8 +2,20 @@ name: hospital_management
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.4.10
+  riverpod_annotation: ^2.3.4
+  uuid: ^4.5.1
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   test: ^1.25.0
-dependencies:
-  uuid: ^4.5.1
+  build_runner: ^2.4.8
+  riverpod_generator: ^2.3.11
+  custom_lint: ^0.6.2
+  riverpod_lint: ^2.3.9
