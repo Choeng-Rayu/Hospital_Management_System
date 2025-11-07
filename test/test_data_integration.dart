@@ -1,6 +1,6 @@
-import 'lib/data/datasources/doctor_local_data_source.dart';
-import 'lib/data/datasources/patient_local_data_source.dart';
-import 'lib/data/repositories/patient_repository_impl.dart';
+import '../lib/data/datasources/doctor_local_data_source.dart';
+import '../lib/data/datasources/patient_local_data_source.dart';
+import '../lib/data/repositories/patient_repository_impl.dart';
 
 void main() async {
   print('Testing real data integration...');
