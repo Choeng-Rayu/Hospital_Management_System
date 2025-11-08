@@ -2,8 +2,8 @@ import '../../domain/repositories/doctor_repository.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../../domain/entities/doctor.dart';
 import '../../domain/entities/patient.dart';
-import '../datasources/doctor_local_data_source.dart';
-import '../datasources/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
 import '../models/doctor_model.dart';
 
 /// Implementation of DoctorRepository using local JSON data sources

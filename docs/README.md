@@ -31,7 +31,7 @@ New to the project? Start here:
 Comprehensive guides for each architectural layer:
 
 ### 🎯 [Domain Layer](DOMAIN_LAYER.md)
-**The heart of the business logic**
+**The heart of the business logic - Clean, self-documenting code**
 
 - 12 Entities with complete field documentation
 - 8 Repository interfaces
@@ -39,6 +39,7 @@ Comprehensive guides for each architectural layer:
 - Business rules and validation
 - Entity relationships and patterns
 - Enumerations and type safety
+- **Clean code with minimal comments** - Focus on "why" not "what"
 
 **Topics Covered:**
 - Entity hierarchy (Person → Staff → Doctor/Nurse/Admin)
@@ -48,6 +49,7 @@ Comprehensive guides for each architectural layer:
 - Prescription and medication handling
 - Use Case pattern with lifecycle hooks
 - Repository pattern contracts
+- **Code quality**: 398 lines of excessive comments removed (4.2% reduction)
 
 ---
 

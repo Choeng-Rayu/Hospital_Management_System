@@ -34,7 +34,6 @@ class RemoveNurseAssignment extends UseCase<RemoveNurseAssignmentInput, void> {
       );
     }
 
-    // Validate nurse exists
     final nurseExists = await nurseRepository.nurseExists(input.nurseId);
     if (!nurseExists) {
       throw EntityNotFoundException('Nurse', input.nurseId);
@@ -45,12 +44,10 @@ class RemoveNurseAssignment extends UseCase<RemoveNurseAssignmentInput, void> {
 
   @override
   Future<void> execute(RemoveNurseAssignmentInput input) async {
-    // Get nurse
     final nurse = await nurseRepository.getNurseById(input.nurseId);
 
     bool assignmentRemoved = false;
 
-    // Remove patient assignment
     if (input.hasPatientId) {
       final patientId = input.patientId!;
       final patientIndex =
@@ -67,7 +64,6 @@ class RemoveNurseAssignment extends UseCase<RemoveNurseAssignmentInput, void> {
       }
     }
 
-    // Remove room assignment
     if (input.hasRoomId) {
       final roomId = input.roomId!;
       final roomIndex =
@@ -84,7 +80,6 @@ class RemoveNurseAssignment extends UseCase<RemoveNurseAssignmentInput, void> {
       }
     }
 
-    // Update nurse record
     if (assignmentRemoved) {
       await nurseRepository.updateNurse(nurse);
     }

@@ -9,7 +9,6 @@ class Bed {
   Patient? _currentPatient; // Nullable since bed might be empty
   final List<String> _features;
 
-  // Getters
   String get bedNumber => _bedNumber;
   BedType get bedType => _bedType;
   bool get isOccupied => _isOccupied;

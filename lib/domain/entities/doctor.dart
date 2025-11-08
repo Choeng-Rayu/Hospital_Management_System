@@ -9,7 +9,6 @@ class Doctor extends Staff {
   final Map<String, Map<String, String>>
       _workingHours; // Working schedule from JSON
 
-  // Getters
   String get specialization => _specialization;
   UnmodifiableListView<String> get certifications =>
       UnmodifiableListView(_certifications);
@@ -55,24 +54,20 @@ class Doctor extends Staff {
     }
   }
 
-  // Add a patient to doctor's current patients
   void addPatient(Patient patient) {
     if (!_currentPatients.contains(patient)) {
       _currentPatients.add(patient);
     }
   }
 
-  // Remove a patient from doctor's current patients
   void removePatient(Patient patient) {
     _currentPatients.remove(patient);
   }
 
-  // Check if doctor is certified in a specific area
   bool hasCertification(String certification) {
     return _certifications.contains(certification);
   }
 
-  // Add a new certification
   void addCertification(String certification) {
     if (!_certifications.contains(certification)) {
       _certifications.add(certification);
@@ -107,7 +102,6 @@ class Doctor extends Staff {
 
     final requestedEnd = dateTime.add(Duration(minutes: durationMinutes));
 
-    // Check if both start and end times fall within working hours
     return (dateTime.isAfter(workStart) ||
             dateTime.isAtSameMomentAs(workStart)) &&
         (requestedEnd.isBefore(workEnd) ||

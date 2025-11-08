@@ -33,25 +33,20 @@ class PrescribeMedication {
     required List<Medication> medications,
     required String instructions,
   }) async {
-    // 1. Get patient
     final patient = await patientRepository.getPatientById(patientId);
 
-    // 2. Get doctor
     final doctor = await doctorRepository.getDoctorById(doctorId);
 
-    // 3. Validate doctor is assigned to patient
     if (!patient.assignedDoctors.any((d) => d.staffID == doctorId)) {
       throw DoctorNotAssignedException(
         'Doctor $doctorId is not assigned to patient $patientId',
       );
     }
 
-    // 4. Check for allergies and side effects
     for (final medication in medications) {
       _checkForAllergicReaction(patient, medication);
     }
 
-    // 5. Create prescription
     final prescription = Prescription(
       id: prescriptionId,
       time: DateTime.now(),
@@ -61,13 +56,10 @@ class PrescribeMedication {
       prescribedTo: patient,
     );
 
-    // 6. Add prescription to patient's records
     patient.addPrescription(prescription);
 
-    // 7. Save prescription
     await prescriptionRepository.savePrescription(prescription);
 
-    // 8. Update patient record
     await patientRepository.updatePatient(patient);
 
     return prescription;
@@ -75,7 +67,6 @@ class PrescribeMedication {
 
   /// Check if patient has allergies to medication or its side effects
   void _checkForAllergicReaction(Patient patient, Medication medication) {
-    // Check medication name against patient allergies
     for (final allergy in patient.allergies) {
       if (medication.name.toLowerCase().contains(allergy.toLowerCase()) ||
           allergy.toLowerCase().contains(medication.name.toLowerCase())) {
@@ -84,7 +75,6 @@ class PrescribeMedication {
         );
       }
 
-      // Check medication side effects against patient allergies
       for (final sideEffect in medication.sideEffects) {
         if (sideEffect.toLowerCase().contains(allergy.toLowerCase()) ||
             allergy.toLowerCase().contains(sideEffect.toLowerCase())) {

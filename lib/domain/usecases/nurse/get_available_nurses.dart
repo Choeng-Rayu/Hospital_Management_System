@@ -26,38 +26,31 @@ class GetAvailableNurses extends UseCase<GetAvailableNursesInput, List<Nurse>> {
 
   @override
   Future<List<Nurse>> execute(GetAvailableNursesInput input) async {
-    // Get all available nurses (with capacity)
     final availableNurses = await nurseRepository.getAvailableNurses();
 
-    // Apply filters
     List<Nurse> filteredNurses = availableNurses;
 
-    // Filter by maximum patients
     if (input.maxPatients != null) {
       filteredNurses = filteredNurses
           .where((nurse) => nurse.assignedPatients.length < input.maxPatients!)
           .toList();
     }
 
-    // Filter by maximum rooms
     if (input.maxRooms != null) {
       filteredNurses = filteredNurses
           .where((nurse) => nurse.assignedRooms.length < input.maxRooms!)
           .toList();
     }
 
-    // Filter by schedule availability at specific time
     if (input.availableAt != null) {
       filteredNurses = filteredNurses.where((nurse) {
         final dateKey =
             '${input.availableAt!.year}-${input.availableAt!.month.toString().padLeft(2, '0')}-${input.availableAt!.day.toString().padLeft(2, '0')}';
 
-        // Check if nurse has a schedule for this date
         return nurse.schedule.containsKey(dateKey);
       }).toList();
     }
 
-    // Sort by workload (ascending - least busy first)
     filteredNurses.sort((a, b) {
       final aLoad = a.assignedPatients.length + a.assignedRooms.length;
       final bLoad = b.assignedPatients.length + b.assignedRooms.length;

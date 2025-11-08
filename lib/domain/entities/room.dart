@@ -14,7 +14,6 @@ class Room {
   final List<Equipment> _equipment;
   final List<Bed> _beds;
 
-  // Getters
   String get roomId => _roomId;
   String get number => _number;
   RoomType get roomType => _roomType;

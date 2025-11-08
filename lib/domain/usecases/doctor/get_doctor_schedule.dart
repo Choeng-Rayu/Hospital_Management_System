@@ -54,17 +54,14 @@ class GetDoctorSchedule {
     required DateTime date,
   }) async {
     try {
-      // 1. Get doctor's occupied times
       final occupiedTimes = await doctorRepository.getDoctorScheduleForDate(
         doctorId,
         date,
       );
 
-      // 2. Get patients with meetings with this doctor on this date
       final patients =
           await patientRepository.getPatientsByDoctorMeetings(doctorId);
 
-      // Filter patients who have meetings on the specified date
       final patientsOnDate = patients.where((patient) {
         if (!patient.hasNextMeeting || patient.nextMeetingDate == null) {
           return false;
@@ -75,11 +72,9 @@ class GetDoctorSchedule {
             meetingDate.day == date.day;
       }).toList();
 
-      // 3. Build schedule entries with patient information
       final scheduleEntries = <ScheduleEntry>[];
 
       for (final time in occupiedTimes) {
-        // Find patient with meeting at this time
         final patient = patientsOnDate.firstWhere(
           (p) => p.nextMeetingDate == time,
           orElse: () => patientsOnDate.first, // Fallback if not found
@@ -93,7 +88,6 @@ class GetDoctorSchedule {
         ));
       }
 
-      // Sort by time
       scheduleEntries.sort((a, b) => a.time.compareTo(b.time));
 
       return scheduleEntries;

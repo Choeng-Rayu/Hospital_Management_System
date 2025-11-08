@@ -97,17 +97,14 @@ class CheckDrugInteractions
   @override
   Future<DrugInteractionResult> execute(
       CheckDrugInteractionsInput input) async {
-    // Get active prescriptions
     final activePrescriptions = await prescriptionRepository
         .getActivePrescriptionsByPatient(input.patientId);
 
-    // Get all current medications
     final currentMedications = <String>{};
     for (final prescription in activePrescriptions) {
       currentMedications.addAll(prescription.medicationNames);
     }
 
-    // Check for interactions
     final interactions = <DrugInteractionWarning>[];
 
     for (final newMed in input.newMedicationNames) {
@@ -119,12 +116,10 @@ class CheckDrugInteractions
       }
     }
 
-    // Determine overall safety
     final hasCritical = interactions.any((i) => i.severity == 'CRITICAL');
     final hasWarnings = interactions.isNotEmpty;
     final isSafe = !hasWarnings;
 
-    // Generate recommendation
     String recommendation;
     if (hasCritical) {
       recommendation =
@@ -136,7 +131,6 @@ class CheckDrugInteractions
       recommendation = 'Safe to prescribe. No known interactions detected.';
     }
 
-    // Sort by severity
     interactions.sort((a, b) {
       const severityOrder = {'CRITICAL': 0, 'HIGH': 1, 'MEDIUM': 2, 'LOW': 3};
       return (severityOrder[a.severity] ?? 99)
@@ -182,7 +176,6 @@ class CheckDrugInteractions
       },
     };
 
-    // Check for keyword matches
     for (final pair in criticalPairs.keys) {
       if (_matchesPair(med1Lower, med2Lower, pair)) {
         final info = criticalPairs[pair]!;

@@ -1,3 +1,4 @@
+import '../../entities/patient.dart';
 import '../../repositories/patient_repository.dart';
 
 /// Exception thrown when getting meeting reminders fails
@@ -114,7 +115,7 @@ class GetMeetingReminders {
   }
 
   /// Helper method to build reminder objects from patients
-  List<MeetingReminder> _buildReminders(List<dynamic> patients) {
+  List<MeetingReminder> _buildReminders(List<Patient> patients) {
     final reminders = <MeetingReminder>[];
 
     for (final patient in patients) {
@@ -136,7 +137,6 @@ class GetMeetingReminders {
       }
     }
 
-    // Sort by date (earliest first)
     reminders.sort((a, b) => a.meetingDate.compareTo(b.meetingDate));
 
     return reminders;

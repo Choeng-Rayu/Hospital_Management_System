@@ -80,7 +80,6 @@ class SearchPatients extends UseCase<SearchPatientsInput, PatientSearchResult> {
     // Start with all patients
     List<Patient> results = await patientRepository.getAllPatients();
 
-    // Apply filters sequentially
     if (input.patientId != null) {
       results = results
           .where((p) => p.patientID
@@ -111,13 +110,11 @@ class SearchPatients extends UseCase<SearchPatientsInput, PatientSearchResult> {
       }
     }
 
-    // Apply limit
     final totalFound = results.length;
     if (input.limit != null && results.length > input.limit!) {
       results = results.take(input.limit!).toList();
     }
 
-    // Generate filter stats
     final stats = <String, int>{
       'Total Results': totalFound,
       'Displayed': results.length,
@@ -136,7 +133,6 @@ class SearchPatients extends UseCase<SearchPatientsInput, PatientSearchResult> {
           .length,
     };
 
-    // Build query description
     final queryParts = <String>[];
     if (input.name != null) queryParts.add('name:"${input.name}"');
     if (input.patientId != null) queryParts.add('id:"${input.patientId}"');

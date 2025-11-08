@@ -16,7 +16,6 @@ abstract class UseCase<Input, Output> {
   /// Execute with full lifecycle (validation, execution, hooks)
   Future<Output> call(Input input) async {
     try {
-      // Validate input
       final isValid = await validate(input);
       if (!isValid) {
         throw UseCaseValidationException('Input validation failed');
@@ -61,7 +60,7 @@ abstract class NoOutputUseCase<Input> {
 class UseCaseException implements Exception {
   final String message;
   final String? code;
-  final dynamic details;
+  final Object? details;
 
   UseCaseException(this.message, {this.code, this.details});
 
@@ -76,7 +75,7 @@ class UseCaseException implements Exception {
 
 /// Validation exception
 class UseCaseValidationException extends UseCaseException {
-  UseCaseValidationException(String message, {String? code, dynamic details})
+  UseCaseValidationException(String message, {String? code, Object? details})
       : super(message, code: code, details: details);
 }
 
@@ -93,7 +92,7 @@ class EntityNotFoundException extends UseCaseException {
 
 /// Conflict exception
 class EntityConflictException extends UseCaseException {
-  EntityConflictException(String message, {String? code, dynamic details})
+  EntityConflictException(String message, {String? code, Object? details})
       : super(message, code: code ?? 'ENTITY_CONFLICT', details: details);
 }
 

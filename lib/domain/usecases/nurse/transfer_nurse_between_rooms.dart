@@ -31,19 +31,16 @@ class TransferNurseBetweenRooms
 
   @override
   Future<bool> validate(TransferNurseBetweenRoomsInput input) async {
-    // Validate nurse exists
     final nurseExists = await nurseRepository.nurseExists(input.nurseId);
     if (!nurseExists) {
       throw EntityNotFoundException('Nurse', input.nurseId);
     }
 
-    // Validate source room exists
     final fromRoomExists = await roomRepository.roomExists(input.fromRoomId);
     if (!fromRoomExists) {
       throw EntityNotFoundException('Source Room', input.fromRoomId);
     }
 
-    // Validate target room exists
     final toRoomExists = await roomRepository.roomExists(input.toRoomId);
     if (!toRoomExists) {
       throw EntityNotFoundException('Target Room', input.toRoomId);
@@ -62,14 +59,11 @@ class TransferNurseBetweenRooms
 
   @override
   Future<void> execute(TransferNurseBetweenRoomsInput input) async {
-    // Get nurse
     final nurse = await nurseRepository.getNurseById(input.nurseId);
 
-    // Get rooms
     final fromRoom = await roomRepository.getRoomById(input.fromRoomId);
     final toRoom = await roomRepository.getRoomById(input.toRoomId);
 
-    // Check if nurse is assigned to source room
     final fromRoomIndex =
         nurse.assignedRooms.indexWhere((r) => r.roomId == input.fromRoomId);
 
@@ -80,7 +74,6 @@ class TransferNurseBetweenRooms
       );
     }
 
-    // Check if nurse is already assigned to target room
     final isAlreadyAssignedToTarget =
         nurse.assignedRooms.any((r) => r.roomId == input.toRoomId);
 
@@ -91,13 +84,10 @@ class TransferNurseBetweenRooms
       );
     }
 
-    // Remove from source room
     nurse.assignedRooms.removeAt(fromRoomIndex);
 
-    // Add to target room
     nurse.assignedRooms.add(toRoom);
 
-    // Update nurse record
     await nurseRepository.updateNurse(nurse);
   }
 }

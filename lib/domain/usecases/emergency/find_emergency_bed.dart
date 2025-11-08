@@ -1,6 +1,25 @@
 import '../../entities/enums/emergency_level.dart';
+import '../../entities/room.dart';
+import '../../entities/bed.dart';
 import '../../repositories/room_repository.dart';
 import '../base/use_case.dart';
+
+/// Room score for emergency bed selection
+class _RoomScore {
+  final num score;
+  final Room room;
+  final Bed bed;
+  final double distance;
+  final int responseTime;
+
+  _RoomScore({
+    required this.score,
+    required this.room,
+    required this.bed,
+    required this.distance,
+    required this.responseTime,
+  });
+}
 
 /// Input for finding emergency bed
 class FindEmergencyBedInput {
@@ -72,7 +91,7 @@ class FindEmergencyBed
     }
 
     // Filter by ICU requirement
-    List<dynamic> candidateRooms = allRooms;
+    List<Room> candidateRooms = allRooms;
     if (input.requiresICU) {
       candidateRooms = allRooms
           .where((room) => room.roomType.toString().contains('ICU'))
@@ -87,7 +106,7 @@ class FindEmergencyBed
     }
 
     // Score each room based on emergency criteria
-    final scoredRooms = <Map<String, dynamic>>[];
+    final scoredRooms = <_RoomScore>[];
 
     for (final room in candidateRooms) {
       // Find available beds
@@ -123,13 +142,13 @@ class FindEmergencyBed
             100 - (roomNum % 100); // Lower room numbers = closer
         score += proximityScore;
 
-        scoredRooms.add({
-          'score': score,
-          'room': room,
-          'bed': bed,
-          'distance': roomNum.toDouble() * 5, // Simulate distance in meters
-          'responseTime': (roomNum % 50) + 30, // 30-80 seconds
-        });
+        scoredRooms.add(_RoomScore(
+          score: score,
+          room: room,
+          bed: bed,
+          distance: roomNum.toDouble() * 5, // Simulate distance in meters
+          responseTime: (roomNum % 50) + 30, // 30-80 seconds
+        ));
       }
     }
 
@@ -141,24 +160,20 @@ class FindEmergencyBed
     }
 
     // Sort by score (highest first)
-    scoredRooms
-        .sort((a, b) => (b['score'] as int).compareTo(a['score'] as int));
+    scoredRooms.sort((a, b) => b.score.compareTo(a.score));
 
     // Select best option
     final best = scoredRooms.first;
-    final selectedRoom = best['room'];
-    final selectedBed = best['bed'];
 
     return EmergencyBedAssignment(
-      bedId: selectedBed.bedId,
-      bedNumber: selectedBed.bedNumber,
-      roomId: selectedRoom.roomId,
-      roomNumber: selectedRoom.number,
-      roomType: selectedRoom.roomType.toString(),
-      distanceFromER: best['distance'],
-      responseTime: best['responseTime'],
-      availableEquipment:
-          selectedRoom.equipment.map((e) => e.name as String).toList(),
+      bedId: best.bed.bedNumber, // Bed uses bedNumber as identifier
+      bedNumber: best.bed.bedNumber,
+      roomId: best.room.roomId,
+      roomNumber: best.room.number,
+      roomType: best.room.roomType.toString(),
+      distanceFromER: best.distance,
+      responseTime: best.responseTime,
+      availableEquipment: best.room.equipment.map((e) => e.name).toList(),
     );
   }
 

@@ -28,13 +28,11 @@ class AssignNurseToRoom extends UseCase<AssignNurseToRoomInput, void> {
 
   @override
   Future<bool> validate(AssignNurseToRoomInput input) async {
-    // Validate nurse exists
     final nurseExists = await nurseRepository.nurseExists(input.nurseId);
     if (!nurseExists) {
       throw EntityNotFoundException('Nurse', input.nurseId);
     }
 
-    // Validate room exists
     final roomExists = await roomRepository.roomExists(input.roomId);
     if (!roomExists) {
       throw EntityNotFoundException('Room', input.roomId);
@@ -45,13 +43,10 @@ class AssignNurseToRoom extends UseCase<AssignNurseToRoomInput, void> {
 
   @override
   Future<void> execute(AssignNurseToRoomInput input) async {
-    // Get nurse
     final nurse = await nurseRepository.getNurseById(input.nurseId);
 
-    // Get room
     final room = await roomRepository.getRoomById(input.roomId);
 
-    // Check if nurse already assigned to room
     if (nurse.assignedRooms.any((r) => r.roomId == input.roomId)) {
       throw EntityConflictException(
         'Nurse ${nurse.name} is already assigned to room ${room.number}',
@@ -59,7 +54,6 @@ class AssignNurseToRoom extends UseCase<AssignNurseToRoomInput, void> {
       );
     }
 
-    // Check nurse workload (maximum rooms)
     if (nurse.assignedRooms.length >= maxRoomsPerNurse) {
       throw BusinessRuleViolationException(
         'MAX_ROOMS_PER_NURSE',
@@ -67,10 +61,8 @@ class AssignNurseToRoom extends UseCase<AssignNurseToRoomInput, void> {
       );
     }
 
-    // Assign nurse to room
     nurse.assignedRooms.add(room);
 
-    // Update nurse record
     await nurseRepository.updateNurse(nurse);
   }
 }

@@ -24,30 +24,24 @@ class TransferPatient {
     required String targetRoomId,
     required String targetBedNumber,
   }) async {
-    // 1. Get patient
     final patient = await patientRepository.getPatientById(patientId);
 
-    // 2. Validate patient is currently admitted
     if (patient.currentRoom == null || patient.currentBed == null) {
       throw PatientNotAdmittedException(
         'Patient $patientId is not currently admitted',
       );
     }
 
-    // 3. Get current room
     final currentRoom = patient.currentRoom!;
 
-    // 4. Get target room
     final targetRoom = await roomRepository.getRoomById(targetRoomId);
 
-    // 5. Check if target room has available beds
     if (!targetRoom.hasAvailableBeds) {
       throw NoAvailableBedsException(
         'Target room $targetRoomId has no available beds',
       );
     }
 
-    // 6. Find target bed
     final targetBed = targetRoom.beds.firstWhere(
       (b) => b.bedNumber == targetBedNumber,
       orElse: () => throw BedNotFoundException(
@@ -55,20 +49,16 @@ class TransferPatient {
       ),
     );
 
-    // 7. Check if target bed is available
     if (!targetBed.isAvailable) {
       throw BedNotAvailableException(
         'Bed $targetBedNumber is already occupied',
       );
     }
 
-    // 8. Discharge from current bed
     patient.discharge();
 
-    // 9. Assign to new bed
     patient.assignToBed(targetRoom, targetBed);
 
-    // 10. Update all records
     await patientRepository.updatePatient(patient);
     await roomRepository.updateRoom(currentRoom);
     await roomRepository.updateRoom(targetRoom);

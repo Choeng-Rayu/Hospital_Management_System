@@ -36,20 +36,16 @@ class SchedulePatientMeeting {
     int durationMinutes = 30,
   }) async {
     try {
-      // 1. Validate patient exists and get patient
       final patient = await patientRepository.getPatientById(patientId);
 
-      // 2. Validate doctor exists and get doctor
       final doctor = await doctorRepository.getDoctorById(doctorId);
 
-      // 3. Validate meeting date is in the future
       if (meetingDate.isBefore(DateTime.now())) {
         throw SchedulePatientMeetingException(
           'Cannot schedule meeting in the past. Requested: $meetingDate',
         );
       }
 
-      // 4. Validate doctor is assigned to patient
       if (!patient.assignedDoctors.contains(doctor)) {
         throw SchedulePatientMeetingException(
           'Doctor ${doctor.name} is not assigned to patient ${patient.name}. '
@@ -57,7 +53,6 @@ class SchedulePatientMeeting {
         );
       }
 
-      // 5. Check doctor availability
       final isAvailable = await doctorRepository.isDoctorAvailableAt(
         doctorId,
         meetingDate,
@@ -71,14 +66,12 @@ class SchedulePatientMeeting {
         );
       }
 
-      // 6. Schedule the meeting on the patient entity
       patient.scheduleNextMeeting(
         doctor: doctor,
         meetingDate: meetingDate,
         durationMinutes: durationMinutes,
       );
 
-      // 7. Update patient and doctor in repositories
       await patientRepository.updatePatient(patient);
       await doctorRepository.updateDoctor(doctor);
     } on SchedulePatientMeetingException {
@@ -99,7 +92,6 @@ class SchedulePatientMeeting {
     int startHour = 8,
     int endHour = 17,
   }) async {
-    // Validate patient and doctor exist
     final patientExists = await patientRepository.patientExists(patientId);
     if (!patientExists) {
       throw SchedulePatientMeetingException(
@@ -114,7 +106,6 @@ class SchedulePatientMeeting {
       );
     }
 
-    // Get available slots from doctor repository
     return await doctorRepository.getAvailableTimeSlots(
       doctorId,
       date,

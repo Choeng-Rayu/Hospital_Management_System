@@ -22,7 +22,6 @@ abstract class PatientRepository {
   /// Check if a patient exists
   Future<bool> patientExists(String patientId);
 
-  // Meeting management methods
 
   /// Get all patients with upcoming meetings (within next 7 days)
   Future<List<Patient>> getPatientsWithUpcomingMeetings();

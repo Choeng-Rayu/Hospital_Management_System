@@ -58,19 +58,15 @@ class GetNurseWorkload extends UseCase<String, NurseWorkload> {
 
   @override
   Future<NurseWorkload> execute(String nurseId) async {
-    // Get nurse
     final nurse = await nurseRepository.getNurseById(nurseId);
 
-    // Calculate workload metrics
     final patientsCount = nurse.assignedPatients.length;
     final roomsCount = nurse.assignedRooms.length;
 
-    // Calculate workload percentage (weighted: 70% patients, 30% rooms)
     final patientLoad = (patientsCount / maxPatientsPerNurse) * 0.7;
     final roomLoad = (roomsCount / maxRoomsPerNurse) * 0.3;
     final workloadPercentage = (patientLoad + roomLoad) * 100;
 
-    // Determine status
     final isOverloaded =
         patientsCount > maxPatientsPerNurse || roomsCount > maxRoomsPerNurse;
     final isAvailable =

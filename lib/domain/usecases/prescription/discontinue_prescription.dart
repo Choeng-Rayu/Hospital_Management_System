@@ -68,7 +68,6 @@ class DiscontinuePrescription extends UseCase<DiscontinuePrescriptionInput,
       throw UseCaseValidationException('Doctor ID is required');
     }
 
-    // Verify prescription exists
     final exists =
         await prescriptionRepository.prescriptionExists(input.prescriptionId);
     if (!exists) {
@@ -80,7 +79,6 @@ class DiscontinuePrescription extends UseCase<DiscontinuePrescriptionInput,
   @override
   Future<DiscontinuePrescriptionOutput> execute(
       DiscontinuePrescriptionInput input) async {
-    // Get prescription details before deletion
     final prescription =
         await prescriptionRepository.getPrescriptionById(input.prescriptionId);
 

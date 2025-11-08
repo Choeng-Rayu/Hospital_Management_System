@@ -1,8 +1,8 @@
 import '../../domain/repositories/patient_repository.dart';
 import '../../domain/entities/patient.dart';
 import '../../domain/entities/doctor.dart';
-import '../datasources/patient_local_data_source.dart';
-import '../datasources/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
 import '../datasources/id_generator.dart';
 import '../models/patient_model.dart';
 

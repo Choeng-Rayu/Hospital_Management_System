@@ -56,7 +56,6 @@ class ReserveBed extends UseCase<ReserveBedInput, BedReservationResult> {
 
   @override
   Future<bool> validate(ReserveBedInput input) async {
-    // Validate reservation date is not in the past
     final now = DateTime.now();
     if (input.reservationDate
         .isBefore(now.subtract(const Duration(hours: 1)))) {
@@ -65,7 +64,6 @@ class ReserveBed extends UseCase<ReserveBedInput, BedReservationResult> {
       );
     }
 
-    // Validate reservation is not too far in the future (max 30 days)
     final maxDate = now.add(const Duration(days: 30));
     if (input.reservationDate.isAfter(maxDate)) {
       throw UseCaseValidationException(
@@ -77,10 +75,8 @@ class ReserveBed extends UseCase<ReserveBedInput, BedReservationResult> {
 
   @override
   Future<BedReservationResult> execute(ReserveBedInput input) async {
-    // Get the room to verify bed existence
     final room = await roomRepository.getRoomById(input.roomId);
 
-    // Find the specific bed
     final bed = room.beds.firstWhere(
       (b) => b.bedNumber == input.bedId,
       orElse: () => throw EntityNotFoundException(
@@ -89,15 +85,12 @@ class ReserveBed extends UseCase<ReserveBedInput, BedReservationResult> {
       ),
     );
 
-    // Check if bed is available
     if (!bed.isAvailable) {
       throw EntityConflictException(
         'Bed is already occupied or reserved',
       );
     }
 
-    // Create updated bed with reservation
-    // Create a patient for the bed
     final patient = await patientRepository.getPatientById(input.patientId);
     final updatedBed = Bed(
       bedNumber: bed.bedNumber,
@@ -107,12 +100,10 @@ class ReserveBed extends UseCase<ReserveBedInput, BedReservationResult> {
       features: bed.features.toList(),
     );
 
-    // Update the room with the reserved bed
     final updatedBeds = room.beds.map((b) {
       return b.bedNumber == input.bedId ? updatedBed : b;
     }).toList();
 
-    // Create a new room with updated beds
     final updatedRoom = Room(
       roomId: room.roomId,
       number: room.number,
@@ -123,7 +114,6 @@ class ReserveBed extends UseCase<ReserveBedInput, BedReservationResult> {
     );
     await roomRepository.updateRoom(updatedRoom);
 
-    // Generate confirmation number
     final confirmationNumber =
         'BR-${input.roomId.substring(0, 4)}-${input.bedId.substring(0, 4)}-${DateTime.now().millisecondsSinceEpoch % 10000}';
 

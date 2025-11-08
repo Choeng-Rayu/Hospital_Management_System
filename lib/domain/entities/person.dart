@@ -4,7 +4,6 @@ abstract class Person {
   final String _address;
   final String _tel;
 
-  // Getters
   String get name => _name;
   String get dateOfBirth => _dateOfBirth;
   String get address => _address;

@@ -21,26 +21,20 @@ class DischargePatient {
   /// 4. Update patient information
   /// 5. Update room information
   Future<void> execute({required String patientId}) async {
-    // 1. Get the patient
     final patient = await patientRepository.getPatientById(patientId);
 
-    // 2. Check if patient is currently admitted
     if (patient.currentRoom == null || patient.currentBed == null) {
       throw PatientNotAdmittedException(
         'Patient $patientId is not currently admitted',
       );
     }
 
-    // 3. Get the room before discharge
     final room = patient.currentRoom!;
 
-    // 4. Discharge patient (removes from bed and room)
     patient.discharge();
 
-    // 5. Update patient record
     await patientRepository.updatePatient(patient);
 
-    // 6. Update room record
     await roomRepository.updateRoom(room);
   }
 }

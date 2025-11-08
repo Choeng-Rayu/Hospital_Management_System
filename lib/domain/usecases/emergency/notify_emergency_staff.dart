@@ -1,3 +1,4 @@
+import '../../entities/doctor.dart';
 import '../../repositories/nurse_repository.dart';
 import '../../repositories/doctor_repository.dart';
 import '../base/use_case.dart';
@@ -80,11 +81,9 @@ class NotifyEmergencyStaff
       NotifyEmergencyStaffInput input) async {
     final notificationTime = DateTime.now();
 
-    // Get all available doctors
     final allDoctors = await doctorRepository.getAllDoctors();
 
-    // Filter by specialty if required
-    List<dynamic> targetDoctors = allDoctors;
+    List<Doctor> targetDoctors = allDoctors;
     if (input.requiredSpecialties != null &&
         input.requiredSpecialties!.isNotEmpty) {
       targetDoctors = allDoctors
@@ -93,12 +92,10 @@ class NotifyEmergencyStaff
           .toList();
     }
 
-    // Filter available doctors (not currently in surgery/busy)
     final availableDoctors = targetDoctors
-        .where((doc) => doc.availability) // Assuming availability field exists
+        .where((doc) => doc.patientCount < 10) // Not overloaded (< 10 patients)
         .toList();
 
-    // Get available nurses
     final allNurses = await nurseRepository.getAllNurses();
     final availableNurses = allNurses
         .where((nurse) => nurse.patientCount < 5) // Not overloaded
@@ -143,7 +140,6 @@ class NotifyEmergencyStaff
         expectedResponseTime = 600;
     }
 
-    // Generate alert code
     final alertCode =
         '${input.urgency.substring(0, 3)}-${input.emergencyType.substring(0, 3).toUpperCase()}-${notificationTime.millisecondsSinceEpoch % 10000}';
 

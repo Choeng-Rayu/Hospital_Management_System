@@ -85,11 +85,9 @@ class GetActivePrescriptions
   @override
   Future<ActivePrescriptionsResult> execute(
       GetActivePrescriptionsInput input) async {
-    // Get active prescriptions from repository
     final prescriptions = await prescriptionRepository
         .getActivePrescriptionsByPatient(input.patientId);
 
-    // Transform to summaries
     final summaries = prescriptions.map((prescription) {
       final daysActive = DateTime.now().difference(prescription.time).inDays;
 
@@ -103,10 +101,8 @@ class GetActivePrescriptions
       );
     }).toList();
 
-    // Sort by most recent first
     summaries.sort((a, b) => b.prescribedDate.compareTo(a.prescribedDate));
 
-    // Count total medications
     final allMedications = <String>{};
     for (final summary in summaries) {
       allMedications.addAll(summary.medicationNames);

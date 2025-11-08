@@ -1,0 +1,6 @@
+# Test configuration for Hospital Management System
+# Run tests serially to avoid race conditions with shared JSON data files
+
+# Set concurrency to 1 to run tests one at a time
+# This prevents issues with tests that modify shared data files
+concurrency: 1

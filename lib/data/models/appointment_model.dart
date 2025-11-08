@@ -1,4 +1,7 @@
 import '../../domain/entities/appointment.dart';
+import '../../domain/entities/patient.dart';
+import '../../domain/entities/doctor.dart';
+import '../../domain/entities/room.dart';
 import '../../domain/entities/enums/appointment_status.dart';
 
 /// Data Transfer Object for Appointment entity
@@ -45,9 +48,9 @@ class AppointmentModel {
   /// Note: Requires fetching related entities (patient, doctor, optionally room)
   /// This will be done by the repository
   Appointment toEntity({
-    required dynamic patient,
-    required dynamic doctor,
-    dynamic room,
+    required Patient patient,
+    required Doctor doctor,
+    Room? room,
   }) {
     // Parse status string back to enum
     AppointmentStatus statusEnum;

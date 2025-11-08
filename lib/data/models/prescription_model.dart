@@ -1,4 +1,7 @@
 import '../../domain/entities/prescription.dart';
+import '../../domain/entities/patient.dart';
+import '../../domain/entities/doctor.dart';
+import '../../domain/entities/medication.dart';
 
 /// Data Transfer Object for Prescription entity
 /// Handles JSON serialization and conversion to/from domain entity
@@ -35,9 +38,9 @@ class PrescriptionModel {
   /// Note: Requires fetching related entities (patient, doctor, medications)
   /// This will be done by the repository
   Prescription toEntity({
-    required dynamic patient,
-    required dynamic doctor,
-    required List<dynamic> medications,
+    required Patient patient,
+    required Doctor doctor,
+    required List<Medication> medications,
   }) {
     return Prescription(
       id: id,

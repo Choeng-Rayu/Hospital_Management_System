@@ -24,20 +24,16 @@ class AssignDoctorToPatient {
     required String patientId,
     required String doctorId,
   }) async {
-    // 1. Get the patient
     final patient = await patientRepository.getPatientById(patientId);
 
-    // 2. Get the doctor
     final doctor = await doctorRepository.getDoctorById(doctorId);
 
-    // 3. Check if doctor already assigned to patient
     if (patient.assignedDoctors.any((d) => d.staffID == doctorId)) {
       throw DoctorAlreadyAssignedException(
         'Doctor $doctorId is already assigned to patient $patientId',
       );
     }
 
-    // 4. Optional: Check doctor's patient load (business rule)
     const maxPatientsPerDoctor = 50; // Example business rule
     if (doctor.patientCount >= maxPatientsPerDoctor) {
       throw DoctorOverloadedException(
@@ -45,10 +41,8 @@ class AssignDoctorToPatient {
       );
     }
 
-    // 5. Assign doctor to patient (bidirectional update)
     patient.assignDoctor(doctor);
 
-    // 6. Update both records
     await patientRepository.updatePatient(patient);
     await doctorRepository.updateDoctor(doctor);
   }

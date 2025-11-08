@@ -4,10 +4,10 @@ import '../../domain/entities/patient.dart';
 import '../../domain/entities/bed.dart';
 import '../../domain/entities/enums/room_type.dart';
 import '../../domain/entities/enums/room_status.dart';
-import '../datasources/room_local_data_source.dart';
-import '../datasources/bed_local_data_source.dart';
-import '../datasources/equipment_local_data_source.dart';
-import '../datasources/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/room_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/bed_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/equipment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
 import '../models/room_model.dart';
 
 /// Implementation of RoomRepository using local JSON data sources

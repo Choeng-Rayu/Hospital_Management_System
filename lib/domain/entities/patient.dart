@@ -25,7 +25,6 @@ class Patient extends Person {
   DateTime? _nextMeetingDate;
   Doctor? _nextMeetingDoctor;
 
-  // Getters
   String get patientID => _patientID;
   String get bloodType => _bloodType;
   UnmodifiableListView<String> get medicalRecords =>
@@ -147,7 +146,6 @@ class Patient extends Person {
     }
   }
 
-  // Get active prescriptions (not older than 30 days)
   UnmodifiableListView<Prescription> get activePrescriptions =>
       UnmodifiableListView(_prescriptions.where((p) => p.isRecent));
 
@@ -158,12 +156,10 @@ class Patient extends Person {
     required DateTime meetingDate,
     int durationMinutes = 30, // Default meeting duration
   }) {
-    // Validate meeting date is in the future
     if (meetingDate.isBefore(DateTime.now())) {
       throw ArgumentError('Meeting date must be in the future');
     }
 
-    // Validate doctor is assigned to patient
     if (!_assignedDoctors.contains(doctor)) {
       throw ArgumentError(
         'Cannot schedule meeting with unassigned doctor. '
@@ -171,7 +167,6 @@ class Patient extends Person {
       );
     }
 
-    // Check if doctor is available at the requested time
     if (!_isDoctorAvailable(doctor, meetingDate, durationMinutes)) {
       throw ArgumentError(
         'Doctor ${doctor.name} is not available at ${_formatDateTime(meetingDate)}. '
@@ -190,13 +185,11 @@ class Patient extends Person {
     _nextMeetingDate = meetingDate;
     _nextMeetingDoctor = doctor;
 
-    // Add the meeting to doctor's schedule
     _addMeetingToDoctorSchedule(doctor, meetingDate);
   }
 
   /// Cancel the next scheduled meeting
   void cancelNextMeeting() {
-    // Remove meeting from doctor's schedule
     if (_hasNextMeeting &&
         _nextMeetingDoctor != null &&
         _nextMeetingDate != null) {
@@ -225,7 +218,6 @@ class Patient extends Person {
       throw StateError('Meeting doctor information is missing');
     }
 
-    // Check if doctor is available at the new time
     if (!_isDoctorAvailable(
         _nextMeetingDoctor!, newMeetingDate, durationMinutes)) {
       throw ArgumentError(
@@ -234,14 +226,12 @@ class Patient extends Person {
       );
     }
 
-    // Remove old meeting from doctor's schedule
     if (_nextMeetingDate != null) {
       _removeMeetingFromDoctorSchedule(_nextMeetingDoctor!, _nextMeetingDate!);
     }
 
     _nextMeetingDate = newMeetingDate;
 
-    // Add new meeting to doctor's schedule
     _addMeetingToDoctorSchedule(_nextMeetingDoctor!, newMeetingDate);
   }
 
@@ -278,7 +268,6 @@ class Patient extends Person {
     final DateTime startOfDay =
         DateTime(date.year, date.month, date.day, startHour);
 
-    // Generate time slots from startHour to endHour
     DateTime currentSlot = startOfDay;
     final DateTime endOfDay =
         DateTime(date.year, date.month, date.day, endHour);
@@ -320,7 +309,6 @@ class Patient extends Person {
       final DateTime scheduledEnd =
           scheduledTime.add(const Duration(minutes: 30));
 
-      // Check if there's any overlap
       bool hasConflict = (requestedTime.isBefore(scheduledEnd) &&
           requestedEnd.isAfter(scheduledTime));
 
@@ -408,7 +396,6 @@ class Patient extends Person {
       throw ArgumentError('Emergency contact cannot be empty');
     }
 
-    // Validate next meeting data consistency
     if (_hasNextMeeting) {
       if (_nextMeetingDate == null) {
         throw ArgumentError(
@@ -423,21 +410,18 @@ class Patient extends Person {
     }
   }
 
-  // Add a medical record
   void addMedicalRecord(String record) {
     if (record.trim().isNotEmpty) {
       _medicalRecords.add(record);
     }
   }
 
-  // Add an allergy
   void addAllergy(String allergy) {
     if (allergy.trim().isNotEmpty && !_allergies.contains(allergy)) {
       _allergies.add(allergy);
     }
   }
 
-  // Remove an allergy
   void removeAllergy(String allergy) {
     _allergies.remove(allergy);
   }

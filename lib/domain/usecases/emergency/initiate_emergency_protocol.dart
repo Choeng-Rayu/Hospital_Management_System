@@ -95,7 +95,6 @@ class InitiateEmergencyProtocol
       InitiateEmergencyProtocolInput input) async {
     final initiatedAt = DateTime.now();
 
-    // Get protocol-specific steps
     final steps = _getProtocolSteps(input.protocolType);
     final completedSteps = <String>[];
 
@@ -124,7 +123,6 @@ class InitiateEmergencyProtocol
     // In real implementation, this would create incident report
     completedSteps.add('Incident logged');
 
-    // Generate protocol ID
     final protocolId =
         '${input.protocolType}-${initiatedAt.millisecondsSinceEpoch % 100000}';
 

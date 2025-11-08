@@ -1,9 +1,9 @@
 import '../../domain/repositories/prescription_repository.dart';
 import '../../domain/entities/prescription.dart';
-import '../datasources/prescription_local_data_source.dart';
-import '../datasources/patient_local_data_source.dart';
-import '../datasources/doctor_local_data_source.dart';
-import '../datasources/medication_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/prescription_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/medication_local_data_source.dart';
 import '../datasources/id_generator.dart';
 import '../models/prescription_model.dart';
 
