@@ -7,7 +7,6 @@ class Nurse extends Staff {
   final List<Room> _assignedRooms;
   final List<Patient> _assignedPatients;
 
-  // Getters
   UnmodifiableListView<Room> get assignedRooms =>
       UnmodifiableListView(_assignedRooms);
   UnmodifiableListView<Patient> get assignedPatients =>
@@ -38,11 +37,9 @@ class Nurse extends Staff {
         );
 
   void _validateAssignments() {
-    // Add any validation logic here if needed
     // For example, checking maximum number of assignments
   }
 
-  // Add a room to nurse's assignments
   void assignRoom(Room room) {
     if (!_assignedRooms.contains(room)) {
       _assignedRooms.add(room);
@@ -50,12 +47,10 @@ class Nurse extends Staff {
     }
   }
 
-  // Remove a room from nurse's assignments
   void removeRoom(Room room) {
     _assignedRooms.remove(room);
   }
 
-  // Add a patient to nurse's assignments
   void assignPatient(Patient patient) {
     if (!_assignedPatients.contains(patient)) {
       _assignedPatients.add(patient);
@@ -63,15 +58,12 @@ class Nurse extends Staff {
     }
   }
 
-  // Remove a patient from nurse's assignments
   void removePatient(Patient patient) {
     _assignedPatients.remove(patient);
   }
 
-  // Get total number of patients
   int get patientCount => _assignedPatients.length;
 
-  // Get total number of rooms
   int get roomCount => _assignedRooms.length;
 
   @override

@@ -38,6 +38,14 @@ void main() {
       );
     });
 
+    test('getPatientsByBloodType returns correct patients', () async {
+      final oPositivePatients = await repository.getPatientsByBloodType('O+');
+      expect(oPositivePatients, isNotEmpty);
+      for (final patient in oPositivePatients) {
+        expect(patient.bloodType, equals('O+'));
+      }
+    });
+
     test('getAllPatients returns non-empty list', () async {
       final patients = await repository.getAllPatients();
       expect(patients, isNotEmpty);
@@ -66,14 +74,6 @@ void main() {
         () => repository.getPatientById('INVALID_ID'),
         throwsException,
       );
-    });
-
-    test('getPatientsByBloodType returns correct patients', () async {
-      final oPositivePatients = await repository.getPatientsByBloodType('O+');
-      expect(oPositivePatients, isNotEmpty);
-      for (final patient in oPositivePatients) {
-        expect(patient.bloodType, equals('O+'));
-      }
     });
 
     test('patients have correct relationship data', () async {

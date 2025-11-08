@@ -90,17 +90,13 @@ class RefillPrescription
   @override
   Future<RefillPrescriptionResult> execute(
       RefillPrescriptionInput input) async {
-    // Get original prescription
     final prescription =
         await prescriptionRepository.getPrescriptionById(input.prescriptionId);
 
-    // Verify patient exists
     await patientRepository.getPatientById(prescription.prescribedTo.patientID);
 
-    // Verify doctor exists
     await doctorRepository.getDoctorById(prescription.prescribedBy.staffID);
 
-    // Check if prescription is recent (not too old to refill)
     final daysSincePrescribed =
         DateTime.now().difference(prescription.time).inDays;
     if (daysSincePrescribed > 90) {
@@ -110,11 +106,9 @@ class RefillPrescription
       );
     }
 
-    // Parse refill information from instructions
     final currentRefills = _extractRefillCount(prescription.instructions);
     final maxRefills = _extractMaxRefills(prescription.instructions);
 
-    // Check if refills are available
     if (currentRefills >= maxRefills) {
       throw BusinessRuleViolationException(
         'No refills remaining. Please contact doctor for new prescription',
@@ -122,7 +116,6 @@ class RefillPrescription
       );
     }
 
-    // Check if too soon to refill (80% rule - can refill when 80% consumed)
     const expectedDuration = 30; // Default 30-day supply
 
     if (daysSincePrescribed < (expectedDuration * 0.8).round()) {
@@ -132,10 +125,8 @@ class RefillPrescription
       );
     }
 
-    // Determine if requires doctor approval (controlled substances)
     final requiresApproval = _requiresDoctorApproval(prescription);
 
-    // Create refilled prescription
     final refillNumber = currentRefills + 1;
     final remainingRefills = maxRefills - refillNumber;
 
@@ -149,10 +140,8 @@ class RefillPrescription
       prescribedTo: prescription.prescribedTo,
     );
 
-    // Update prescription
     await prescriptionRepository.updatePrescription(refilledPrescription);
 
-    // Generate confirmation number
     final confirmationNumber =
         'RFL-${input.requestDate.millisecondsSinceEpoch % 100000}';
 
@@ -190,7 +179,6 @@ class RefillPrescription
       'controlled',
     ];
 
-    // Check medication names and instructions
     final allText =
         '${prescription.medicationNames.join(' ')} ${prescription.instructions}'
             .toLowerCase();

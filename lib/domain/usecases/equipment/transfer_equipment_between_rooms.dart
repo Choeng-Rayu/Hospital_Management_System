@@ -60,14 +60,12 @@ class TransferEquipmentBetweenRooms extends UseCase<
 
   @override
   Future<bool> validate(TransferEquipmentBetweenRoomsInput input) async {
-    // Validate source and target are different
     if (input.sourceRoomId == input.targetRoomId) {
       throw UseCaseValidationException(
         'Source and target rooms must be different',
       );
     }
 
-    // Validate transfer date is not in future (allow same day)
     if (input.transferDate
         .isAfter(DateTime.now().add(const Duration(hours: 1)))) {
       throw UseCaseValidationException(
@@ -80,11 +78,9 @@ class TransferEquipmentBetweenRooms extends UseCase<
   @override
   Future<EquipmentTransferResult> execute(
       TransferEquipmentBetweenRoomsInput input) async {
-    // Get source and target rooms
     final sourceRoom = await roomRepository.getRoomById(input.sourceRoomId);
     final targetRoom = await roomRepository.getRoomById(input.targetRoomId);
 
-    // Find equipment in source room
     final equipment = sourceRoom.equipment.firstWhere(
       (eq) => eq.equipmentId == input.equipmentId,
       orElse: () => throw EntityNotFoundException(
@@ -93,7 +89,6 @@ class TransferEquipmentBetweenRooms extends UseCase<
       ),
     );
 
-    // Check if equipment is already in target room
     if (targetRoom.equipment.any((eq) => eq.equipmentId == input.equipmentId)) {
       throw EntityConflictException(
         'Equipment already exists in target room',
@@ -103,15 +98,12 @@ class TransferEquipmentBetweenRooms extends UseCase<
 
     // Equipment transfer will be logged through the repository
 
-    // Remove equipment from source room
     sourceRoom.removeEquipment(input.equipmentId);
     await roomRepository.updateRoom(sourceRoom);
 
-    // Add equipment to target room
     targetRoom.addEquipment(equipment);
     await roomRepository.updateRoom(targetRoom);
 
-    // Generate transfer ID
     final transferId = 'TRF-${DateTime.now().millisecondsSinceEpoch % 100000}';
 
     return EquipmentTransferResult(

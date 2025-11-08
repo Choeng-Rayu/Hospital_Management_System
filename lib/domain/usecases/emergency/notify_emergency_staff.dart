@@ -80,10 +80,8 @@ class NotifyEmergencyStaff
       NotifyEmergencyStaffInput input) async {
     final notificationTime = DateTime.now();
 
-    // Get all available doctors
     final allDoctors = await doctorRepository.getAllDoctors();
 
-    // Filter by specialty if required
     List<dynamic> targetDoctors = allDoctors;
     if (input.requiredSpecialties != null &&
         input.requiredSpecialties!.isNotEmpty) {
@@ -93,12 +91,10 @@ class NotifyEmergencyStaff
           .toList();
     }
 
-    // Filter available doctors (not currently in surgery/busy)
     final availableDoctors = targetDoctors
         .where((doc) => doc.availability) // Assuming availability field exists
         .toList();
 
-    // Get available nurses
     final allNurses = await nurseRepository.getAllNurses();
     final availableNurses = allNurses
         .where((nurse) => nurse.patientCount < 5) // Not overloaded
@@ -143,7 +139,6 @@ class NotifyEmergencyStaff
         expectedResponseTime = 600;
     }
 
-    // Generate alert code
     final alertCode =
         '${input.urgency.substring(0, 3)}-${input.emergencyType.substring(0, 3).toUpperCase()}-${notificationTime.millisecondsSinceEpoch % 10000}';
 

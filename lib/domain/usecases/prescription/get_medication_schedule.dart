@@ -99,15 +99,12 @@ class GetMedicationSchedule
       targetDate.day,
     );
 
-    // Get active prescriptions
     final activePrescriptions = await prescriptionRepository
         .getActivePrescriptionsByPatient(input.patientId);
 
-    // Generate schedule for the day
     final schedule = <MedicationDose>[];
 
     for (final prescription in activePrescriptions) {
-      // Parse frequency from instructions
       final doses = _generateDosesForDay(
         prescription,
         scheduleDate,
@@ -115,10 +112,8 @@ class GetMedicationSchedule
       schedule.addAll(doses);
     }
 
-    // Sort by time
     schedule.sort((a, b) => a.scheduledTime.compareTo(b.scheduledTime));
 
-    // Calculate adherence (simplified - in reality would check actual intake records)
     final takenDoses = schedule.where((d) => d.isTaken).length;
     final missedDoses = schedule.length - takenDoses;
     final adherencePercentage = schedule.isNotEmpty
@@ -142,10 +137,8 @@ class GetMedicationSchedule
   ) {
     final doses = <MedicationDose>[];
 
-    // Parse frequency (simplified - would be more sophisticated in production)
     final instructions = prescription.instructions.toLowerCase();
 
-    // Determine dosing times based on frequency
     List<int> dosingHours;
     if (instructions.contains('once daily') || instructions.contains('1x')) {
       dosingHours = [8]; // 8 AM
@@ -166,7 +159,6 @@ class GetMedicationSchedule
       dosingHours = [8];
     }
 
-    // Create doses for each medication in the prescription
     for (final medName in prescription.medicationNames) {
       for (final hour in dosingHours) {
         doses.add(MedicationDose(

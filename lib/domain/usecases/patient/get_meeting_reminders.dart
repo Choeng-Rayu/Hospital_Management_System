@@ -136,7 +136,6 @@ class GetMeetingReminders {
       }
     }
 
-    // Sort by date (earliest first)
     reminders.sort((a, b) => a.meetingDate.compareTo(b.meetingDate));
 
     return reminders;

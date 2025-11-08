@@ -14,7 +14,6 @@ class Appointment {
   final String _reason;
   final String? _notes;
 
-  // Getters
   String get id => _id;
   DateTime get dateTime => _dateTime;
   int get duration => _duration;

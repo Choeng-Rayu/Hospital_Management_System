@@ -71,7 +71,6 @@ class SearchDoctors extends UseCase<SearchDoctorsInput, DoctorSearchResult> {
     }
 
     if (input.isAvailable != null && input.isAvailable!) {
-      // Filter to doctors with fewer patients (available)
       results = results.where((d) => d.patientCount < 10).toList();
     }
 

@@ -9,7 +9,6 @@ class Equipment {
   final DateTime _lastServiceDate;
   final DateTime _nextServiceDate;
 
-  // Getters
   String get equipmentId => _equipmentId;
   String get name => _name;
   String get type => _type;

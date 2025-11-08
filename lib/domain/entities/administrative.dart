@@ -3,7 +3,6 @@ import 'staff.dart';
 class Administrative extends Staff {
   final String _responsibility;
 
-  // Getter
   String get responsibility => _responsibility;
 
   Administrative({

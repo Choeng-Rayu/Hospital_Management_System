@@ -7,7 +7,6 @@ class Medication {
   final String _manufacturer;
   final List<String> _sideEffects;
 
-  // Getters
   String get id => _id;
   String get name => _name;
   String get dosage => _dosage;
@@ -44,22 +43,18 @@ class Medication {
     }
   }
 
-  // Check if medication has specific side effect
   bool hasSideEffect(String sideEffect) {
     return _sideEffects.contains(sideEffect);
   }
 
-  // Add a new side effect to the list
   void addSideEffect(String sideEffect) {
     if (sideEffect.trim().isNotEmpty && !_sideEffects.contains(sideEffect)) {
       _sideEffects.add(sideEffect);
     }
   }
 
-  // Get formatted dosage information
   String get dosageInfo => '$_name - $_dosage';
 
-  // Get full medication details
   Map<String, dynamic> get fullDetails => {
         'id': _id,
         'name': _name,

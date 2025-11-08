@@ -61,18 +61,15 @@ class GetAvailableICUCapacity extends NoInputUseCase<ICUCapacityStatus> {
 
   @override
   Future<ICUCapacityStatus> execute() async {
-    // Get ICU bed availability
     final getICUBedsUseCase =
         GetAvailableICUBeds(roomRepository: roomRepository);
     final bedAvailability = await getICUBedsUseCase.call();
 
-    // Get all ICU rooms for equipment check
     final allRooms = await roomRepository.getAllRooms();
     final icuRooms = allRooms
         .where((room) => room.roomType.toString().contains('ICU'))
         .toList();
 
-    // Count available ventilators
     int ventilatorCount = 0;
     for (final room in icuRooms) {
       ventilatorCount += room.equipment
@@ -85,7 +82,6 @@ class GetAvailableICUCapacity extends NoInputUseCase<ICUCapacityStatus> {
     // Simulate on-call staff count (in real impl, query staff repository)
     final onCallStaff = 8; // Typical ICU staffing
 
-    // Determine capacity level
     final occupancyPercent = bedAvailability.occupancyPercentage;
     String capacityLevel;
     bool canAcceptCriticalPatients;
@@ -104,7 +100,6 @@ class GetAvailableICUCapacity extends NoInputUseCase<ICUCapacityStatus> {
       canAcceptCriticalPatients = true;
     }
 
-    // Generate recommendations
     final recommendations = _generateRecommendations(
       bedAvailability,
       ventilatorCount,

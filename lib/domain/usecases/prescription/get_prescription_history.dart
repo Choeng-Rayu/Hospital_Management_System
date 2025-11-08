@@ -82,19 +82,15 @@ class GetPrescriptionHistory
   @override
   Future<PrescriptionHistoryResult> execute(
       GetPrescriptionHistoryInput input) async {
-    // Get all prescriptions for patient
     final prescriptions =
         await prescriptionRepository.getPrescriptionsByPatient(input.patientId);
 
-    // Sort by date (most recent first)
     prescriptions.sort((a, b) => b.time.compareTo(a.time));
 
-    // Apply limit if provided
     final limitedPrescriptions = input.limit != null
         ? prescriptions.take(input.limit!).toList()
         : prescriptions;
 
-    // Create history entries
     final now = DateTime.now();
     final history = limitedPrescriptions.map((prescription) {
       final daysAgo = now.difference(prescription.time).inDays;

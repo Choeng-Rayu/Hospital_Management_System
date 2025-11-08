@@ -16,7 +16,6 @@ abstract class UseCase<Input, Output> {
   /// Execute with full lifecycle (validation, execution, hooks)
   Future<Output> call(Input input) async {
     try {
-      // Validate input
       final isValid = await validate(input);
       if (!isValid) {
         throw UseCaseValidationException('Input validation failed');

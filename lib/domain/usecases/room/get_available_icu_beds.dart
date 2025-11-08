@@ -44,13 +44,11 @@ class GetAvailableICUBeds extends NoInputUseCase<ICUBedAvailability> {
 
   @override
   Future<ICUBedAvailability> execute() async {
-    // Get all ICU rooms
     final allRooms = await roomRepository.getAllRooms();
     final icuRooms = allRooms
         .where((room) => room.roomType.toString().contains('ICU'))
         .toList();
 
-    // Count total and available ICU beds
     int totalICUBeds = 0;
     int availableICUBeds = 0;
     int occupiedICUBeds = 0;
@@ -58,7 +56,6 @@ class GetAvailableICUBeds extends NoInputUseCase<ICUBedAvailability> {
 
     for (final room in icuRooms) {
       for (final bed in room.beds) {
-        // Count all ICU-type beds
         if (bed.bedType == BedType.ICU_BED) {
           totalICUBeds++;
 
@@ -77,15 +74,12 @@ class GetAvailableICUBeds extends NoInputUseCase<ICUBedAvailability> {
       }
     }
 
-    // Calculate occupancy
     final occupancyPercentage = totalICUBeds > 0
         ? (occupiedICUBeds / totalICUBeds * 100).toDouble()
         : 0.0;
 
-    // Check if capacity is critical (>80% occupied or <20% available)
     final criticalCapacity = occupancyPercentage > 80;
 
-    // Sort available beds by priority (with equipment/features first)
     availableBeds.sort((a, b) {
       final aFeatureCount = a.bed.features.length;
       final bFeatureCount = b.bed.features.length;

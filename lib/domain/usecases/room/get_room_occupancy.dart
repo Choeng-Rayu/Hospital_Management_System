@@ -65,10 +65,8 @@ class GetRoomOccupancy extends NoInputUseCase<RoomOccupancyReport> {
 
   @override
   Future<RoomOccupancyReport> execute() async {
-    // Get all rooms
     final allRooms = await roomRepository.getAllRooms();
 
-    // Calculate totals
     final totalRooms = allRooms.length;
     final availableRooms = allRooms
         .where((room) => room.status.toString().contains('AVAILABLE'))
@@ -80,7 +78,6 @@ class GetRoomOccupancy extends NoInputUseCase<RoomOccupancyReport> {
     final occupancyPercentage =
         totalRooms > 0 ? (occupiedRooms / totalRooms) * 100.0 : 0.0;
 
-    // Calculate bed statistics
     int totalBeds = 0;
     int availableBeds = 0;
     int occupiedBeds = 0;
@@ -94,7 +91,6 @@ class GetRoomOccupancy extends NoInputUseCase<RoomOccupancyReport> {
     final bedOccupancyPercentage =
         totalBeds > 0 ? (occupiedBeds / totalBeds) * 100.0 : 0.0;
 
-    // Calculate by room type
     final byRoomType = <String, RoomTypeOccupancy>{};
     final roomsByType = <String, List<dynamic>>{};
 

@@ -7,7 +7,6 @@ abstract class Staff extends Person {
   final double _salary;
   final Map<String, List<DateTime>> _schedule;
 
-  // Getters
   String get staffID => _staffID;
   DateTime get hireDate => _hireDate;
   double get salary => _salary;
@@ -56,7 +55,6 @@ abstract class Staff extends Person {
     }
   }
 
-  // Add a schedule entry
   void addScheduleEntry(String key, DateTime time) {
     _schedule.update(
       key,
@@ -65,16 +63,13 @@ abstract class Staff extends Person {
     );
   }
 
-  // Remove a schedule entry
   void removeScheduleEntry(String key, DateTime time) {
     _schedule[key]?.remove(time);
-    // Remove the key if no times left
     if (_schedule[key]?.isEmpty ?? false) {
       _schedule.remove(key);
     }
   }
 
-  // Get schedule for a specific day
   List<DateTime> getScheduleFor(String key) {
     return UnmodifiableListView(_schedule[key] ?? []);
   }

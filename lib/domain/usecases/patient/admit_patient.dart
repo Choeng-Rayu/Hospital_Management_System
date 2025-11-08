@@ -27,7 +27,6 @@ class AdmitPatient {
     required String roomId,
     required String bedNumber,
   }) async {
-    // 1. Check if patient already exists
     final exists = await patientRepository.patientExists(patient.patientID);
     if (exists) {
       throw PatientAlreadyExistsException(
@@ -35,17 +34,14 @@ class AdmitPatient {
       );
     }
 
-    // 2. Get the room
     final room = await roomRepository.getRoomById(roomId);
 
-    // 3. Check if room has available beds
     if (!room.hasAvailableBeds) {
       throw NoAvailableBedsException(
         'Room $roomId has no available beds',
       );
     }
 
-    // 4. Find the specific bed
     final bed = room.beds.firstWhere(
       (b) => b.bedNumber == bedNumber,
       orElse: () => throw BedNotFoundException(
@@ -53,20 +49,16 @@ class AdmitPatient {
       ),
     );
 
-    // 5. Check if bed is available
     if (!bed.isAvailable) {
       throw BedNotAvailableException(
         'Bed $bedNumber is already occupied',
       );
     }
 
-    // 6. Assign patient to bed
     patient.assignToBed(room, bed);
 
-    // 7. Save patient
     await patientRepository.savePatient(patient);
 
-    // 8. Update room (bed assignment is already done in patient.assignToBed)
     await roomRepository.updateRoom(room);
 
     return patient;

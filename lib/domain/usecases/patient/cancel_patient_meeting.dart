@@ -29,17 +29,14 @@ class CancelPatientMeeting {
   /// - Doctor information is invalid
   Future<void> execute({required String patientId}) async {
     try {
-      // 1. Get patient
       final patient = await patientRepository.getPatientById(patientId);
 
-      // 2. Validate patient has a meeting scheduled
       if (!patient.hasNextMeeting) {
         throw CancelPatientMeetingException(
           'Patient ${patient.name} has no scheduled meeting to cancel',
         );
       }
 
-      // 3. Get doctor information before canceling
       final doctorId = patient.nextMeetingDoctor?.staffID;
       if (doctorId == null) {
         throw CancelPatientMeetingException(
@@ -47,13 +44,10 @@ class CancelPatientMeeting {
         );
       }
 
-      // 4. Get doctor to update their schedule
       final doctor = await doctorRepository.getDoctorById(doctorId);
 
-      // 5. Cancel the meeting (this will update both patient and doctor schedule)
       patient.cancelNextMeeting();
 
-      // 6. Update both entities in repositories
       await patientRepository.updatePatient(patient);
       await doctorRepository.updateDoctor(doctor);
     } on CancelPatientMeetingException {

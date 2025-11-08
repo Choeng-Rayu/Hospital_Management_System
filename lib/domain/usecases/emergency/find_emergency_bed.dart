@@ -61,7 +61,6 @@ class FindEmergencyBed
 
   @override
   Future<EmergencyBedAssignment> execute(FindEmergencyBedInput input) async {
-    // Get all available rooms
     final allRooms = await roomRepository.getAvailableRooms();
 
     if (allRooms.isEmpty) {
@@ -71,7 +70,6 @@ class FindEmergencyBed
       );
     }
 
-    // Filter by ICU requirement
     List<dynamic> candidateRooms = allRooms;
     if (input.requiresICU) {
       candidateRooms = allRooms
@@ -90,7 +88,6 @@ class FindEmergencyBed
     final scoredRooms = <Map<String, dynamic>>[];
 
     for (final room in candidateRooms) {
-      // Find available beds
       final availableBeds = room.beds.where((bed) => bed.isAvailable).toList();
 
       if (availableBeds.isEmpty) continue;
@@ -140,7 +137,6 @@ class FindEmergencyBed
       );
     }
 
-    // Sort by score (highest first)
     scoredRooms
         .sort((a, b) => (b['score'] as int).compareTo(a['score'] as int));
 

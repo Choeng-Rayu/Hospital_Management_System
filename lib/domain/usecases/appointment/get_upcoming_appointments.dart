@@ -101,7 +101,6 @@ class GetUpcomingAppointments
       );
     }
 
-    // Validate daysAhead
     if (input.daysAhead < 1 || input.daysAhead > 365) {
       throw UseCaseValidationException(
         'Days ahead must be between 1 and 365',
@@ -119,10 +118,8 @@ class GetUpcomingAppointments
     final weekEnd = today.add(const Duration(days: 7));
     final futureLimit = now.add(Duration(days: input.daysAhead));
 
-    // Get all appointments
     final allAppointments = await appointmentRepository.getAllAppointments();
 
-    // Filter by patient or doctor
     List<Appointment> filteredAppointments = allAppointments;
 
     if (input.patientId != null) {
@@ -137,7 +134,6 @@ class GetUpcomingAppointments
           .toList();
     }
 
-    // Filter for upcoming appointments
     filteredAppointments = filteredAppointments.where((apt) {
       final aptDate = apt.dateTime;
 
@@ -148,13 +144,11 @@ class GetUpcomingAppointments
       }
     }).toList();
 
-    // Filter out cancelled appointments
     filteredAppointments = filteredAppointments
         .where((apt) => apt.status != AppointmentStatus.CANCELLED)
         .toList(); // Sort by date (soonest first)
     filteredAppointments.sort((a, b) => a.dateTime.compareTo(b.dateTime));
 
-    // Create appointment info objects
     int todayCount = 0;
     int tomorrowCount = 0;
     int thisWeekCount = 0;

@@ -104,13 +104,11 @@ class SearchMedicalRecords
       patients = await patientRepository.getAllPatients();
     }
 
-    // Filter and build entries
     final entries = <MedicalRecordEntry>[];
 
     for (final patient in patients) {
       List<String> matchingRecords = patient.medicalRecords.toList();
 
-      // Filter by keyword
       if (input.keyword != null) {
         matchingRecords = matchingRecords
             .where((record) =>
@@ -118,14 +116,12 @@ class SearchMedicalRecords
             .toList();
       }
 
-      // Filter by allergy
       bool matchesAllergy = true;
       if (input.allergy != null) {
         matchesAllergy = patient.allergies.any((allergy) =>
             allergy.toLowerCase().contains(input.allergy!.toLowerCase()));
       }
 
-      // Add entry if matches criteria
       if ((matchingRecords.isNotEmpty || input.keyword == null) &&
           matchesAllergy) {
         entries.add(MedicalRecordEntry(
@@ -138,12 +134,10 @@ class SearchMedicalRecords
       }
     }
 
-    // Apply limit
     if (input.limit != null && entries.length > input.limit!) {
       entries.removeRange(input.limit!, entries.length);
     }
 
-    // Build query description
     final queryParts = <String>[];
     if (input.patientId != null) queryParts.add('patient:"${input.patientId}"');
     if (input.keyword != null) queryParts.add('keyword:"${input.keyword}"');

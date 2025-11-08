@@ -93,11 +93,9 @@ class GetAppointmentsByPatient
   @override
   Future<PatientAppointmentsSummary> execute(
       GetAppointmentsByPatientInput input) async {
-    // Verify patient exists
     final patient = await patientRepository.getPatientById(input.patientId);
     final patientName = patient.name;
 
-    // Get all appointments for this patient
     final allAppointments = await appointmentRepository.getAllAppointments();
     final patientAppointments = allAppointments
         .where((apt) => apt.patient.patientID == input.patientId)
@@ -121,7 +119,6 @@ class GetAppointmentsByPatient
       }
     }
 
-    // Apply status filter if provided
     if (input.statusFilter != null) {
       final filterStatus = input.statusFilter!.toUpperCase();
       pastAppointments = pastAppointments
@@ -132,11 +129,9 @@ class GetAppointmentsByPatient
           .toList();
     }
 
-    // Sort appointments
     pastAppointments.sort((a, b) => b.dateTime.compareTo(a.dateTime));
     upcomingAppointments.sort((a, b) => a.dateTime.compareTo(b.dateTime));
 
-    // Calculate statistics
     final completedCount = patientAppointments
         .where((apt) => apt.status == AppointmentStatus.COMPLETED)
         .length;
@@ -147,7 +142,6 @@ class GetAppointmentsByPatient
         .where((apt) => apt.status == AppointmentStatus.NO_SHOW)
         .length;
 
-    // Get next and last appointments
     final nextAppointment =
         upcomingAppointments.isNotEmpty ? upcomingAppointments.first : null;
     final lastAppointment =

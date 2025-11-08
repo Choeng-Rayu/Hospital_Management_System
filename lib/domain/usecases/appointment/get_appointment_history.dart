@@ -105,7 +105,6 @@ class GetAppointmentHistory
       );
     }
 
-    // Validate date range
     if (input.startDate != null && input.endDate != null) {
       if (input.endDate!.isBefore(input.startDate!)) {
         throw UseCaseValidationException(
@@ -114,7 +113,6 @@ class GetAppointmentHistory
       }
     }
 
-    // Validate limit
     if (input.limit != null && (input.limit! < 1 || input.limit! > 1000)) {
       throw UseCaseValidationException(
         'Limit must be between 1 and 1000',
@@ -126,10 +124,8 @@ class GetAppointmentHistory
   @override
   Future<AppointmentHistoryResult> execute(
       GetAppointmentHistoryInput input) async {
-    // Get all appointments
     final allAppointments = await appointmentRepository.getAllAppointments();
 
-    // Filter by patient or doctor
     List<Appointment> filteredAppointments = allAppointments;
 
     if (input.patientId != null) {
@@ -144,7 +140,6 @@ class GetAppointmentHistory
           .toList();
     }
 
-    // Filter by date range
     if (input.startDate != null) {
       filteredAppointments = filteredAppointments
           .where((apt) => apt.dateTime.isAfter(input.startDate!))
@@ -157,7 +152,6 @@ class GetAppointmentHistory
           .toList();
     }
 
-    // Filter by status
     if (input.statusFilter != null && input.statusFilter!.isNotEmpty) {
       filteredAppointments = filteredAppointments
           .where((apt) => input.statusFilter!.any((status) =>
@@ -166,15 +160,12 @@ class GetAppointmentHistory
           .toList();
     }
 
-    // Sort by date (most recent first)
     filteredAppointments.sort((a, b) => b.dateTime.compareTo(a.dateTime));
 
-    // Apply limit
     if (input.limit != null && filteredAppointments.length > input.limit!) {
       filteredAppointments = filteredAppointments.take(input.limit!).toList();
     }
 
-    // Create history entries
     final now = DateTime.now();
     final history = filteredAppointments.map((apt) {
       final daysAgo = now.difference(apt.dateTime).inDays;
@@ -201,7 +192,6 @@ class GetAppointmentHistory
       );
     }).toList();
 
-    // Calculate statistics
     final completedCount = history.where((e) => e.wasCompleted).length;
     final cancelledCount = history.where((e) => e.wasCancelled).length;
     final rescheduledCount = history.where((e) => e.wasRescheduled).length;

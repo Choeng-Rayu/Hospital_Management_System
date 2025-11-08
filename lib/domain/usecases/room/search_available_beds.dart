@@ -52,32 +52,25 @@ class SearchAvailableBeds
   Future<List<BedSearchResult>> execute(SearchAvailableBedsInput input) async {
     List<BedSearchResult> results = [];
 
-    // Get rooms to search
     final rooms = input.roomId != null
         ? [await roomRepository.getRoomById(input.roomId!)]
         : await roomRepository.getAllRooms();
 
-    // Search beds in each room
     for (final room in rooms) {
-      // Filter by room type if specified
       if (input.roomType != null &&
           !room.roomType.toString().contains(input.roomType!)) {
         continue;
       }
 
-      // Get beds from room
       for (final bed in room.beds) {
-        // Filter by availability
         if (input.onlyAvailable && !bed.isAvailable) {
           continue;
         }
 
-        // Filter by bed type
         if (input.bedType != null && bed.bedType != input.bedType) {
           continue;
         }
 
-        // Filter by required features
         if (input.requiredFeatures != null &&
             input.requiredFeatures!.isNotEmpty) {
           final hasAllFeatures = input.requiredFeatures!
@@ -87,7 +80,6 @@ class SearchAvailableBeds
           }
         }
 
-        // Add matching bed to results
         results.add(BedSearchResult(
           bed: bed,
           roomId: room.roomId,
@@ -97,7 +89,6 @@ class SearchAvailableBeds
       }
     }
 
-    // Sort by bed type priority (ICU beds first, then ELECTRIC, then STANDARD)
     results.sort((a, b) {
       const typePriority = {
         'BedType.ICU': 0,

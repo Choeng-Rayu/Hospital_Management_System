@@ -106,7 +106,6 @@ class GetMaintenanceDueEquipment
     final overdueList = <MaintenanceDueInfo>[];
     final upcomingList = <MaintenanceDueInfo>[];
 
-    // Get all rooms and their equipment
     final allRooms = await roomRepository.getAllRooms();
 
     for (final room in allRooms) {
@@ -125,7 +124,6 @@ class GetMaintenanceDueEquipment
           continue;
         }
 
-        // Calculate priority
         final priority = _calculatePriority(daysUntilMaintenance, equipment);
 
         final maintenanceInfo = MaintenanceDueInfo(
@@ -146,11 +144,9 @@ class GetMaintenanceDueEquipment
       }
     }
 
-    // Sort overdue by how many days overdue (most overdue first)
     overdueList.sort(
         (a, b) => a.daysUntilMaintenance.compareTo(b.daysUntilMaintenance));
 
-    // Sort upcoming by days until maintenance (soonest first)
     upcomingList.sort(
         (a, b) => a.daysUntilMaintenance.compareTo(b.daysUntilMaintenance));
 
@@ -163,7 +159,6 @@ class GetMaintenanceDueEquipment
   }
 
   String _calculatePriority(int daysUntilMaintenance, Equipment equipment) {
-    // Check if equipment is critical (life-support, diagnostic, etc.)
     final isCritical = equipment.type.toLowerCase().contains('ventilator') ||
         equipment.type.toLowerCase().contains('monitor') ||
         equipment.type.toLowerCase().contains('defibrillator');

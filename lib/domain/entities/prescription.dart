@@ -11,7 +11,6 @@ class Prescription {
   final Doctor _prescribedBy;
   final Patient _prescribedTo;
 
-  // Getters
   String get id => _id;
   DateTime get time => _time;
   UnmodifiableListView<Medication> get medications =>
@@ -45,26 +44,21 @@ class Prescription {
     }
   }
 
-  // Get total number of medications in prescription
   int get medicationCount => _medications.length;
 
-  // Add a medication to the prescription
   void addMedication(Medication medication) {
     if (!_medications.contains(medication)) {
       _medications.add(medication);
     }
   }
 
-  // Remove a medication from the prescription
   void removeMedication(Medication medication) {
     _medications.remove(medication);
   }
 
-  // Get all medication names as a list
   UnmodifiableListView<String> get medicationNames =>
       UnmodifiableListView(_medications.map((med) => med.name));
 
-  // Get full prescription details
   Map<String, dynamic> get fullDetails => {
         'id': _id,
         'time': _time.toIso8601String(),
@@ -74,10 +68,8 @@ class Prescription {
         'patient': _prescribedTo.name,
       };
 
-  // Check if prescription is recent (within last 30 days)
   bool get isRecent => DateTime.now().difference(_time).inDays <= 30;
 
-  // Get formatted prescription date
   String get formattedDate =>
       '${_time.year}-${_time.month.toString().padLeft(2, '0')}-${_time.day.toString().padLeft(2, '0')}';
 

@@ -55,7 +55,6 @@ class UpdateAppointmentStatus extends UseCase<UpdateAppointmentStatusInput,
 
   @override
   Future<bool> validate(UpdateAppointmentStatusInput input) async {
-    // Validate status value
     final validStatuses = [
       'SCHEDULED',
       'CONFIRMED',
@@ -77,13 +76,11 @@ class UpdateAppointmentStatus extends UseCase<UpdateAppointmentStatusInput,
   @override
   Future<UpdateAppointmentStatusResult> execute(
       UpdateAppointmentStatusInput input) async {
-    // Get appointment
     final appointment =
         await appointmentRepository.getAppointmentById(input.appointmentId);
 
     final previousStatus = appointment.status;
 
-    // Parse new status
     AppointmentStatus newStatusEnum;
     try {
       newStatusEnum = AppointmentStatus.values.firstWhere(
@@ -97,10 +94,8 @@ class UpdateAppointmentStatus extends UseCase<UpdateAppointmentStatusInput,
       );
     }
 
-    // Create timestamp note
     final updatedAt = DateTime.now();
 
-    // Update appointment status
     appointment.updateStatus(newStatusEnum);
 
     await appointmentRepository.updateAppointment(appointment);

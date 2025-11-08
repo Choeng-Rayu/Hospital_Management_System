@@ -34,24 +34,20 @@ class ReschedulePatientMeeting {
     int durationMinutes = 30,
   }) async {
     try {
-      // 1. Get patient
       final patient = await patientRepository.getPatientById(patientId);
 
-      // 2. Validate patient has a meeting scheduled
       if (!patient.hasNextMeeting) {
         throw ReschedulePatientMeetingException(
           'Patient ${patient.name} has no scheduled meeting to reschedule',
         );
       }
 
-      // 3. Validate new meeting date is in the future
       if (newMeetingDate.isBefore(DateTime.now())) {
         throw ReschedulePatientMeetingException(
           'Cannot reschedule meeting to the past. Requested: $newMeetingDate',
         );
       }
 
-      // 4. Get doctor information
       final doctorId = patient.nextMeetingDoctor?.staffID;
       if (doctorId == null) {
         throw ReschedulePatientMeetingException(
@@ -59,7 +55,6 @@ class ReschedulePatientMeeting {
         );
       }
 
-      // 5. Check doctor availability at new time
       final isAvailable = await doctorRepository.isDoctorAvailableAt(
         doctorId,
         newMeetingDate,
@@ -73,16 +68,13 @@ class ReschedulePatientMeeting {
         );
       }
 
-      // 6. Get doctor to update their schedule
       final doctor = await doctorRepository.getDoctorById(doctorId);
 
-      // 7. Reschedule the meeting (updates both schedules)
       patient.rescheduleNextMeeting(
         newMeetingDate,
         durationMinutes: durationMinutes,
       );
 
-      // 8. Update both entities in repositories
       await patientRepository.updatePatient(patient);
       await doctorRepository.updateDoctor(doctor);
     } on ReschedulePatientMeetingException {
@@ -103,17 +95,14 @@ class ReschedulePatientMeeting {
     int endHour = 17,
   }) async {
     try {
-      // Get patient
       final patient = await patientRepository.getPatientById(patientId);
 
-      // Validate patient has a meeting
       if (!patient.hasNextMeeting) {
         throw ReschedulePatientMeetingException(
           'Patient has no scheduled meeting',
         );
       }
 
-      // Get doctor ID
       final doctorId = patient.nextMeetingDoctor?.staffID;
       if (doctorId == null) {
         throw ReschedulePatientMeetingException(
@@ -121,7 +110,6 @@ class ReschedulePatientMeeting {
         );
       }
 
-      // Get available slots from doctor repository
       return await doctorRepository.getAvailableTimeSlots(
         doctorId,
         date,

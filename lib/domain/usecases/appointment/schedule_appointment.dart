@@ -39,20 +39,16 @@ class ScheduleAppointment {
     String? roomId,
     String? notes,
   }) async {
-    // 1. Validate patient exists
     final patient = await patientRepository.getPatientById(patientId);
 
-    // 2. Validate doctor exists
     final doctor = await doctorRepository.getDoctorById(doctorId);
 
-    // 3. Check if appointment time is in the future
     if (dateTime.isBefore(DateTime.now())) {
       throw InvalidAppointmentTimeException(
         'Appointment time must be in the future',
       );
     }
 
-    // 4. Check for doctor schedule conflicts
     final existingAppointments = await appointmentRepository
         .getAppointmentsByDoctorAndDate(doctorId, dateTime);
 
@@ -62,11 +58,9 @@ class ScheduleAppointment {
       );
     }
 
-    // 5. Get room if specified
     final room =
         roomId != null ? await roomRepository.getRoomById(roomId) : null;
 
-    // 6. Create appointment
     final appointment = Appointment(
       id: appointmentId,
       dateTime: dateTime,
@@ -79,7 +73,6 @@ class ScheduleAppointment {
       notes: notes,
     );
 
-    // 7. Save appointment
     await appointmentRepository.saveAppointment(appointment);
 
     return appointment;
@@ -99,7 +92,6 @@ class ScheduleAppointment {
         Duration(minutes: appointment.duration),
       );
 
-      // Check if times overlap
       if ((newStart.isBefore(existingEnd) && newEnd.isAfter(existingStart)) ||
           newStart.isAtSameMomentAs(existingStart)) {
         return true;

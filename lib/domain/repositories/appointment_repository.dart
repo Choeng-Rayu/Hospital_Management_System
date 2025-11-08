@@ -31,7 +31,6 @@ abstract class AppointmentRepository {
 
   Future<bool> appointmentExists(String appointmentId);
 
-  // Conflict detection methods
 
   /// Check if a doctor has any appointments that conflict with the given time period
   Future<bool> hasDoctorConflict(

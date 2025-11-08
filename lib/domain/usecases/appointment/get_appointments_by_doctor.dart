@@ -119,17 +119,14 @@ class GetAppointmentsByDoctor
   @override
   Future<DoctorAppointmentsSummary> execute(
       GetAppointmentsByDoctorInput input) async {
-    // Verify doctor exists
     final doctor = await doctorRepository.getDoctorById(input.doctorId);
     final doctorName = doctor.name;
 
-    // Get all appointments for this doctor
     final allAppointments = await appointmentRepository.getAllAppointments();
     List<Appointment> doctorAppointments = allAppointments
         .where((apt) => apt.doctor.staffID == input.doctorId)
         .toList();
 
-    // Filter by date if specified
     DateTime targetDate;
     if (input.onlyToday) {
       final now = DateTime.now();
@@ -141,24 +138,20 @@ class GetAppointmentsByDoctor
       targetDate = DateTime.now(); // Default to today for schedule
     }
 
-    // Filter appointments for target date
     final dateAppointments = doctorAppointments.where((apt) {
       final aptDate =
           DateTime(apt.dateTime.year, apt.dateTime.month, apt.dateTime.day);
       return aptDate.isAtSameMomentAs(targetDate);
     }).toList();
 
-    // Filter completed if needed
     if (!input.includeCompleted) {
       doctorAppointments = doctorAppointments
           .where((apt) => apt.status != AppointmentStatus.COMPLETED)
           .toList();
     }
 
-    // Sort by date/time
     doctorAppointments.sort((a, b) => a.dateTime.compareTo(b.dateTime));
 
-    // Generate daily schedule (8 AM - 6 PM, 30-minute slots)
     final dailySchedule = <ScheduleSlot>[];
     final scheduleDate = targetDate;
 
@@ -173,7 +166,6 @@ class GetAppointmentsByDoctor
         );
         final slotEnd = slotStart.add(const Duration(minutes: 30));
 
-        // Check if there's an appointment in this slot
         final slotAppointment =
             dateAppointments.cast<Appointment?>().firstWhere(
           (apt) {
@@ -198,7 +190,6 @@ class GetAppointmentsByDoctor
       }
     }
 
-    // Calculate statistics
     final now = DateTime.now();
     final completedToday = dateAppointments
         .where((apt) =>

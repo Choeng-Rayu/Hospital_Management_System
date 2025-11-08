@@ -28,13 +28,11 @@ class AssignNurseToPatient extends UseCase<AssignNurseToPatientInput, void> {
 
   @override
   Future<bool> validate(AssignNurseToPatientInput input) async {
-    // Validate nurse exists
     final nurseExists = await nurseRepository.nurseExists(input.nurseId);
     if (!nurseExists) {
       throw EntityNotFoundException('Nurse', input.nurseId);
     }
 
-    // Validate patient exists
     final patientExists =
         await patientRepository.patientExists(input.patientId);
     if (!patientExists) {
@@ -46,13 +44,10 @@ class AssignNurseToPatient extends UseCase<AssignNurseToPatientInput, void> {
 
   @override
   Future<void> execute(AssignNurseToPatientInput input) async {
-    // Get nurse
     final nurse = await nurseRepository.getNurseById(input.nurseId);
 
-    // Get patient
     final patient = await patientRepository.getPatientById(input.patientId);
 
-    // Check if nurse already assigned to patient
     if (nurse.assignedPatients.any((p) => p.patientID == input.patientId)) {
       throw EntityConflictException(
         'Nurse ${nurse.name} is already assigned to patient ${patient.name}',
@@ -60,7 +55,6 @@ class AssignNurseToPatient extends UseCase<AssignNurseToPatientInput, void> {
       );
     }
 
-    // Check nurse workload
     if (nurse.assignedPatients.length >= maxPatientsPerNurse) {
       throw BusinessRuleViolationException(
         'MAX_PATIENTS_PER_NURSE',
@@ -68,10 +62,8 @@ class AssignNurseToPatient extends UseCase<AssignNurseToPatientInput, void> {
       );
     }
 
-    // Assign nurse to patient (bidirectional)
     nurse.assignedPatients.add(patient);
 
-    // Update nurse record
     await nurseRepository.updateNurse(nurse);
 
     // Note: Patient entity doesn't track assigned nurses directly in current implementation
