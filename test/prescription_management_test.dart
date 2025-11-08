@@ -9,7 +9,6 @@ import 'package:hospital_management/data/datasources/local/patient_local_data_so
 import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
 import 'package:hospital_management/data/datasources/local/medication_local_data_source.dart';
 import 'package:hospital_management/domain/entities/prescription.dart';
-import 'package:hospital_management/domain/entities/medication.dart';
 
 void main() {
   group('Prescription Management Tests', () {
