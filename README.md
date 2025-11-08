@@ -6,7 +6,7 @@
 
 [![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 [![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
-[![Tests](https://img.shields.io/badge/Tests-137%2F137-success?style=for-the-badge&logo=github-actions&logoColor=white)](test/)
+[![Tests](https://img.shields.io/badge/Tests-228%2F228-success?style=for-the-badge&logo=github-actions&logoColor=white)](test/)
 [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen?style=for-the-badge&logo=codecov&logoColor=white)](#test-coverage)
 [![Clean Architecture](https://img.shields.io/badge/Architecture-Clean-blue?style=for-the-badge)](#architecture)
 
@@ -47,7 +47,7 @@ The **Hospital Management System** is a comprehensive healthcare management plat
 | Category | Count | Status |
 |----------|-------|--------|
 | **Source Files** | 131 | ✅ Complete |
-| **Test Files** | 20 | ✅ 137 Tests |
+| **Test Files** | 17 | ✅ 228 Tests |
 | **Test Coverage** | 100% | ✅ All Passing |
 | **Domain Entities** | 12 | ✅ Fully Implemented |
 | **Use Cases** | 50+ | ✅ Production Ready |
@@ -151,27 +151,27 @@ This project implements **Clean Architecture** with clear separation of concerns
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Presentation Layer                        │
-│  ┌─────────────┐  ┌──────────────┐  ┌──────────────┐       │
-│  │   Menus     │  │ Controllers  │  │   Providers  │       │
-│  │   (CLI)     │  │   (Logic)    │  │  (Riverpod)  │       │
-│  └─────────────┘  └──────────────┘  └──────────────┘       │
+│                    Presentation Layer                       │
+│  ┌─────────────┐  ┌──────────────┐  ┌──────────────┐        │
+│  │   Menus     │  │ Controllers  │  │   Providers  │        │
+│  │   (CLI)     │  │   (Logic)    │  │  (Riverpod)  │        │
+│  └─────────────┘  └──────────────┘  └──────────────┘        │
 └────────────────────────┬────────────────────────────────────┘
                          │ Depends on ↓
 ┌────────────────────────┴────────────────────────────────────┐
-│                      Domain Layer                            │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │   Entities   │  │  Use Cases   │  │ Repositories │      │
-│  │  (Business)  │  │   (Logic)    │  │ (Interfaces) │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│                      Domain Layer                           │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │   Entities   │  │  Use Cases   │  │ Repositories │       │
+│  │  (Business)  │  │   (Logic)    │  │ (Interfaces) │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └────────────────────────┬────────────────────────────────────┘
                          │ Implemented by ↓
 ┌────────────────────────┴────────────────────────────────────┐
-│                       Data Layer                             │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │    Models    │  │ Repositories │  │ Data Sources │      │
-│  │    (DTOs)    │  │     (Impl)   │  │    (JSON)    │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│                       Data Layer                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │    Models    │  │ Repositories │  │ Data Sources │       │
+│  │    (DTOs)    │  │     (Impl)   │  │    (JSON)    │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -320,7 +320,7 @@ hospital_management/
 │   ├── administrative.json            # 5 admin staff
 │   └── departments.json               # 15 departments
 │
-├── test/                              # 🧪 Comprehensive Testing
+├── test/                              # 🧪 Comprehensive Testing (228 tests)
 │   ├── features/                      # Feature Tests (137 tests)
 │   │   ├── patient_operations_test.dart       # 11 tests ✅
 │   │   ├── doctor_management_test.dart        # 21 tests ✅
@@ -331,19 +331,38 @@ hospital_management/
 │   │   ├── nurse_management_test.dart         # 19 tests ✅
 │   │   └── search_operations_test.dart        # 14 tests ✅
 │   │
-│   ├── domain/                        # Domain Layer Tests
+│   ├── domain/                        # Domain Layer Tests (31 tests)
+│   │   ├── entities/
+│   │   │   └── patient_meeting_test.dart      # 23 tests ✅
 │   │   └── usecases/
+│   │       └── meeting_usecases_test.dart     # 8 tests ✅
 │   │
-│   └── integration/                   # Integration Tests
+│   ├── data/                          # Data Layer Tests (8 tests)
+│   │   └── repositories/
+│   │       └── equipment_repository_test.dart # 8 tests ✅
+│   │
+│   ├── integration/                   # Integration Tests (4 tests)
+│   │   └── patient_admission_integration_test.dart  # 4 tests ✅
+│   │
+│   ├── ui_console/                    # UI Console Tests (9 tests)
+│   │   └── ui_features_validation_test.dart   # 9 tests ✅
+│   │
+│   ├── id_generator_test.dart         # ID Generator (9 tests) ✅
+│   ├── json_id_uniqueness_test.dart   # ID Uniqueness (16 tests) ✅
+│   ├── patient_loading_test.dart      # Patient Loading (4 tests) ✅
+│   ├── write_operations_simulation_test.dart  # Write Ops (10 tests) ✅
+│   └── test.room.dart                 # Room Tests
 │
 ├── docs/                              # 📚 Comprehensive Documentation
 │   ├── README.md                      # Documentation hub
-│   ├── DOMAIN_LAYER.md                # Domain layer guide
-│   ├── DATA_LAYER.md                  # Data layer guide
-│   ├── PRESENTATION_LAYER.md          # Presentation layer guide
-│   ├── LAYER_INTERACTIONS.md          # Layer communication
-│   ├── ARCHITECTURE_OVERVIEW.md       # Architecture details
-│   └── QUICK_START.md                 # Getting started
+│   ├── DOMAIN_LAYER.md                # Domain layer guide (48 KB)
+│   ├── DATA_LAYER.md                  # Data layer guide (43 KB)
+│   ├── PRESENTATION_LAYER.md          # Presentation layer guide (48 KB)
+│   ├── LAYER_INTERACTIONS.md          # Layer communication (21 KB)
+│   ├── ARCHITECTURE_OVERVIEW.md       # Architecture details (19 KB)
+│   └── QUICK_START.md                 # Getting started (12 KB)
+├── scripts/                           # 🛠️ Utility Scripts
+│   └── cleanup_test_data.dart         # Test data cleanup utility
 ├── UML/                               # 🎨 UML Diagrams
 ├── pubspec.yaml                       # 📦 Project Dependencies
 └── README.md                          # 📖 This File
@@ -695,14 +714,22 @@ dart run lib/main.dart
 # Run the application
 dart run lib/main.dart
 
-# Run tests
-dart test test/features/ --concurrency=1
+# Run all tests (228 tests)
+dart test --concurrency=1
 
-# Run specific test suite
-dart test test/features/patient_operations_test.dart
+# Run specific test category
+dart test test/features/ --concurrency=1    # 137 feature tests
+dart test test/domain/ --concurrency=1      # 31 domain tests
+dart test test/data/ --concurrency=1        # 8 data layer tests
+dart test test/integration/ --concurrency=1 # 4 integration tests
+dart test test/ui_console/ --concurrency=1  # 9 UI validation tests
 
 # Run with coverage
-dart test --coverage
+dart test --coverage=coverage --concurrency=1
+
+# Clean up test data
+dart run scripts/cleanup_test_data.dart
+```
 ```
 
 ### First Run
@@ -731,7 +758,7 @@ Enter your choice (0-8):
 
 ## 🧪 Testing
 
-### Test Coverage: 100% (137/137 tests passing)
+### Test Coverage: 100% (228/228 tests passing)
 
 #### Test Structure
 
@@ -746,27 +773,61 @@ test/
 │   ├── room_management_test.dart         ✅ 14/14 tests
 │   ├── nurse_management_test.dart        ✅ 19/19 tests
 │   └── search_operations_test.dart       ✅ 14/14 tests
-├── domain/                      # Domain Tests
+│
+├── domain/                      # Domain Tests (31 tests)
+│   ├── entities/
+│   │   └── patient_meeting_test.dart     ✅ 23/23 tests
 │   └── usecases/
-│       └── meeting_usecases_test.dart
-└── integration/                 # Integration Tests
-    └── patient_admission_integration_test.dart
+│       └── meeting_usecases_test.dart    ✅ 8/8 tests
+│
+├── data/                        # Data Layer Tests (8 tests)
+│   └── repositories/
+│       └── equipment_repository_test.dart ✅ 8/8 tests
+│
+├── integration/                 # Integration Tests (4 tests)
+│   └── patient_admission_integration_test.dart  ✅ 4/4 tests
+│
+├── ui_console/                  # UI Console Tests (9 tests)
+│   └── ui_features_validation_test.dart  ✅ 9/9 tests
+│
+├── id_generator_test.dart       # ID Generator (9 tests) ✅
+├── json_id_uniqueness_test.dart # ID Uniqueness (16 tests) ✅
+├── patient_loading_test.dart    # Patient Loading (4 tests) ✅
+└── write_operations_simulation_test.dart # Write Ops (10 tests) ✅
 ```
 
 ### Running Tests
 
 ```bash
-# Run all tests (MUST use --concurrency=1)
+# Run all tests (MUST use --concurrency=1) - 228 tests
+dart test --concurrency=1
+
+# Run feature tests only (137 tests)
 dart test test/features/ --concurrency=1
 
 # Run specific test file
 dart test test/features/patient_operations_test.dart
 
+# Run specific test category
+dart test test/domain/ --concurrency=1      # 31 tests
+dart test test/data/ --concurrency=1        # 8 tests
+dart test test/integration/ --concurrency=1 # 4 tests
+dart test test/ui_console/ --concurrency=1  # 9 tests
+
+# Run individual test files
+dart test test/id_generator_test.dart                  # 9 tests
+dart test test/json_id_uniqueness_test.dart            # 16 tests
+dart test test/patient_loading_test.dart               # 4 tests
+dart test test/write_operations_simulation_test.dart   # 10 tests
+
 # Run with verbose output
-dart test test/features/ --concurrency=1 --reporter expanded
+dart test --concurrency=1 --reporter expanded
 
 # Run with coverage
-dart test --coverage
+dart test --coverage=coverage --concurrency=1
+
+# Clean up test data after running tests
+dart run scripts/cleanup_test_data.dart
 ```
 
 ### Why `--concurrency=1`?
@@ -823,6 +884,42 @@ testEntityIds.add(saved.id); // Track for cleanup
 ✅ **Detailed Output** - Emoji-based progress indicators  
 ✅ **Summary Reports** - Statistics per test group  
 ✅ **Cleanup Verification** - Data integrity checks  
+✅ **Integration Testing** - Cross-layer validation  
+✅ **UI Validation** - Menu feature accessibility tests  
+✅ **ID Generation** - AUTO ID system validation  
+
+### Test Categories
+
+| Category | Tests | Description |
+|----------|-------|-------------|
+| **Feature Tests** | 137 | Core business functionality (patient, doctor, nurse, etc.) |
+| **Domain Tests** | 31 | Entity and use case validation |
+| **Data Layer Tests** | 8 | Repository implementations |
+| **Integration Tests** | 4 | Cross-layer operations |
+| **UI Console Tests** | 9 | Menu accessibility validation |
+| **ID Generator** | 9 | AUTO ID system |
+| **ID Uniqueness** | 16 | JSON data integrity |
+| **Patient Loading** | 4 | Data loading validation |
+| **Write Operations** | 10 | Concurrent write testing |
+| **Total** | **228** | **100% Passing** ✅ |
+
+### Data Cleanup
+
+After running tests, clean up test data to restore original state:
+
+```bash
+# Restore data files to original state
+dart run scripts/cleanup_test_data.dart
+
+# Or use git to restore data files
+git checkout HEAD -- data/patients.json data/appointments.json
+```
+
+The cleanup script:
+- Removes test patients (keeps only P001-P050)
+- Removes test appointments (keeps only original appointments)
+- Ensures data integrity for next test run
+- Prevents ID conflicts and test failures
 
 ---
 
@@ -1044,9 +1141,9 @@ This project is licensed for **educational purposes only**.
 | Metric | Value |
 |--------|-------|
 | **Total Lines of Code** | ~15,000+ |
-| **Test Coverage** | 100% (137/137) |
+| **Test Coverage** | 100% (228/228) |
 | **Code Quality** | ✅ Zero compilation errors |
-| **Documentation** | ✅ Comprehensive |
+| **Documentation** | ✅ Comprehensive (~200 KB) |
 | **Architecture** | ✅ Clean Architecture |
 | **Design Patterns** | 8+ patterns implemented |
 | **Data Records** | 450+ realistic records |
@@ -1056,14 +1153,17 @@ This project is licensed for **educational purposes only**.
 
 ## 🏆 Key Achievements
 
-✅ **100% Test Coverage** - All 137 tests passing  
+✅ **100% Test Coverage** - All 228 tests passing  
 ✅ **Zero Compilation Errors** - Clean, production-ready code  
 ✅ **Clean Architecture** - Proper layer separation  
 ✅ **Realistic Data** - 450+ authentic healthcare records  
-✅ **Comprehensive Documentation** - Every feature documented  
+✅ **Comprehensive Documentation** - 200+ KB of detailed guides  
 ✅ **SOLID Principles** - Throughout the codebase  
 ✅ **Best Practices** - Industry-standard patterns  
 ✅ **Educational Value** - Perfect for learning  
+✅ **AUTO ID System** - Intelligent ID generation  
+✅ **Integration Testing** - Cross-layer validation  
+✅ **Data Integrity** - ID uniqueness and concurrent write testing  
 
 ---
 

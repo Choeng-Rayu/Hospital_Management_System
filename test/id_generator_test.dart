@@ -65,8 +65,14 @@ void main() {
       print('🆔 Last appointment ID: ${appointments.last['id']}');
       print('✨ Next appointment ID: $nextId');
 
-      // Should be A081 (since we have up to A080)
-      expect(nextId, equals('A081'));
+      // Should generate next ID after the highest existing ID
+      // Extract numeric part from last ID
+      final lastId = appointments.last['id'] as String;
+      final lastNum = int.parse(lastId.substring(1));
+      final expectedNextNum = lastNum + 1;
+      final expectedNextId = 'A${expectedNextNum.toString().padLeft(3, '0')}';
+
+      expect(nextId, equals(expectedNextId));
       expect(IdGenerator.isValidIdFormat(nextId, 'A', 3), isTrue);
     });
 
