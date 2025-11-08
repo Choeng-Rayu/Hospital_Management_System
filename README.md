@@ -64,6 +64,7 @@ This project demonstrates:
 - ✅ **SOLID Principles** throughout the codebase
 - ✅ **Separation of Concerns** across layers
 - ✅ **Real-world healthcare domain** modeling
+- ✅ **Clean Code Practices** - Self-documenting code with minimal comments
 
 ---
 
@@ -355,7 +356,7 @@ hospital_management/
 │
 ├── docs/                              # 📚 Comprehensive Documentation
 │   ├── README.md                      # Documentation hub
-│   ├── DOMAIN_LAYER.md                # Domain layer guide (48 KB)
+│   ├── DOMAIN_LAYER.md                # Domain layer guide (clean code)
 │   ├── DATA_LAYER.md                  # Data layer guide (43 KB)
 │   ├── PRESENTATION_LAYER.md          # Presentation layer guide (48 KB)
 │   ├── LAYER_INTERACTIONS.md          # Layer communication (21 KB)

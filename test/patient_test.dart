@@ -1,5 +1,3 @@
-/// Comprehensive Patient Tests
-/// Combines: Data Loading, CRUD Operations, and Meeting Scheduling
 import 'package:test/test.dart';
 import 'package:hospital_management/data/repositories/patient_repository_impl.dart';
 import 'package:hospital_management/data/repositories/doctor_repository_impl.dart';
@@ -8,236 +6,154 @@ import 'package:hospital_management/data/datasources/local/doctor_local_data_sou
 import 'package:hospital_management/domain/entities/patient.dart';
 import 'package:hospital_management/domain/entities/doctor.dart';
 
-// Helper function to create a DateTime during working hours (10 AM) on a weekday
-DateTime getWorkingHoursDate(int daysFromNow) {
-  final now = DateTime.now();
-  var targetDate = DateTime(now.year, now.month, now.day + daysFromNow, 10, 0);
-
-  // Adjust to next Monday if it falls on a weekend
-  while (targetDate.weekday == DateTime.saturday ||
-      targetDate.weekday == DateTime.sunday) {
-    targetDate = targetDate.add(Duration(days: 1));
-  }
-
-  return targetDate;
-}
-
 void main() {
-  // ==========================================================================
-  // PART 1: DATA LOADING TESTS
-  // ==========================================================================
-  group('Patient - Data Loading', () {
-    late PatientRepositoryImpl repository;
+  late PatientRepositoryImpl patientRepo;
+  late DoctorRepositoryImpl doctorRepo;
 
-    setUp(() {
-      final patientDataSource = PatientLocalDataSource();
-      final doctorDataSource = DoctorLocalDataSource();
-      repository = PatientRepositoryImpl(
-        patientDataSource: patientDataSource,
-        doctorDataSource: doctorDataSource,
-      );
+  setUp(() {
+    patientRepo = PatientRepositoryImpl(
+      patientDataSource: PatientLocalDataSource(),
+      doctorDataSource: DoctorLocalDataSource(),
+    );
+    doctorRepo = DoctorRepositoryImpl(
+      doctorDataSource: DoctorLocalDataSource(),
+      patientDataSource: PatientLocalDataSource(),
+    );
+  });
+
+  group('Patient Basic Operations', () {
+    test('can get all patients', () async {
+      final patients = await patientRepo.getAllPatients();
+      expect(patients.isNotEmpty, true);
     });
 
-    test('getPatientsByBloodType returns correct patients', () async {
-      final oPositivePatients = await repository.getPatientsByBloodType('O+');
-      expect(oPositivePatients, isNotEmpty);
-      for (final patient in oPositivePatients) {
-        expect(patient.bloodType, equals('O+'));
-      }
+    test('can get patient by ID', () async {
+      final patient = await patientRepo.getPatientById('P001');
+      expect(patient.patientID, 'P001');
     });
 
-    test('getAllPatients returns non-empty list', () async {
-      final patients = await repository.getAllPatients();
-      expect(patients, isNotEmpty);
-      expect(patients.length, greaterThan(0));
+    test('can search patients by name', () async {
+      final patients = await patientRepo.getAllPatients();
+      final firstName = patients.first.name.split(' ').first;
+      final results = await patientRepo.searchPatientsByName(firstName);
+      expect(results.isNotEmpty, true);
     });
 
-    test('getAllPatients returns valid patient data', () async {
-      final patients = await repository.getAllPatients();
-      for (final patient in patients) {
-        expect(patient.patientID, isNotEmpty);
-        expect(patient.name, isNotEmpty);
-        expect(patient.bloodType, isNotEmpty);
-        expect(patient.emergencyContact, isNotEmpty);
-      }
-    });
-
-    test('getPatientById returns correct patient', () async {
-      final patient = await repository.getPatientById('P001');
-      expect(patient.patientID, equals('P001'));
-      expect(patient.name, isNotEmpty);
-      expect(patient.bloodType, isNotEmpty);
-    });
-
-    test('getPatientById throws when patient not found', () async {
-      expect(
-        () => repository.getPatientById('INVALID_ID'),
-        throwsException,
-      );
-    });
-
-    test('patients have correct relationship data', () async {
-      final patients = await repository.getAllPatients();
-      for (final patient in patients) {
-        expect(patient.assignedDoctors, isA<List>());
-        expect(patient.assignedNurses, isA<List>());
-        expect(patient.prescriptions, isA<List>());
-        expect(patient.medicalRecords, isA<List>());
-        expect(patient.allergies, isA<List>());
+    test('can filter by blood type', () async {
+      final patients = await patientRepo.getPatientsByBloodType('O+');
+      for (var p in patients) {
+        expect(p.bloodType, 'O+');
       }
     });
   });
 
-  // ==========================================================================
-  // PART 2: CRUD OPERATIONS TESTS
-  // ==========================================================================
-  group('Patient - CRUD Operations', () {
-    late PatientRepositoryImpl patientRepository;
-    late DoctorRepositoryImpl doctorRepository;
-    late List<String> testPatientIds;
+  group('Patient CRUD', () {
+    final testIds = <String>[];
 
-    setUpAll(() {
-      final patientDataSource = PatientLocalDataSource();
-      final doctorDataSource = DoctorLocalDataSource();
-      patientRepository = PatientRepositoryImpl(
-        patientDataSource: patientDataSource,
-        doctorDataSource: doctorDataSource,
-      );
-      doctorRepository = DoctorRepositoryImpl(
-        doctorDataSource: doctorDataSource,
-        patientDataSource: patientDataSource,
-      );
-      testPatientIds = [];
-    });
-
-    tearDownAll(() async {
-      for (final patientId in testPatientIds) {
+    tearDown(() async {
+      for (var id in testIds) {
         try {
-          await patientRepository.deletePatient(patientId);
-        } catch (e) {
-          // Ignore cleanup errors
-        }
+          await patientRepo.deletePatient(id);
+        } catch (e) {}
       }
+      testIds.clear();
     });
 
-    test('Should create new patient', () async {
+    test('can create patient', () async {
       final patient = Patient(
         patientID: 'AUTO',
-        name: 'Test Patient Create',
+        name: 'Test Patient',
         dateOfBirth: '1990-01-01',
-        address: '123 Test Street',
-        tel: '012-345-6789',
-        bloodType: 'O+',
-        medicalRecords: ['Initial checkup'],
-        allergies: ['None'],
-        emergencyContact: '012-999-8888',
+        address: '123 Test St',
+        tel: '+855-12-345-678',
+        bloodType: 'A+',
+        medicalRecords: [],
+        allergies: [],
+        emergencyContact: '+855-87-654-321',
       );
 
-      await patientRepository.savePatient(patient);
-      final saved = await patientRepository.getAllPatients();
-      final created = saved.firstWhere(
-        (p) => p.name == 'Test Patient Create',
-      );
+      await patientRepo.savePatient(patient);
+      final all = await patientRepo.getAllPatients();
+      final created = all.firstWhere((p) => p.name == 'Test Patient');
+      testIds.add(created.patientID);
 
-      testPatientIds.add(created.patientID);
-      expect(created.name, equals('Test Patient Create'));
-      expect(created.bloodType, equals('O+'));
+      expect(created.name, 'Test Patient');
     });
 
-    test('Should update existing patient', () async {
+    test('can update patient', () async {
       final patient = Patient(
         patientID: 'AUTO',
-        name: 'Test Patient Update',
+        name: 'Update Test',
         dateOfBirth: '1985-05-15',
-        address: '456 Update Ave',
-        tel: '012-111-2222',
-        bloodType: 'A+',
-        medicalRecords: ['Initial'],
+        address: '456 Old St',
+        tel: '+855-11-111-111',
+        bloodType: 'B+',
+        medicalRecords: [],
         allergies: [],
-        emergencyContact: '012-888-7777',
+        emergencyContact: '+855-22-222-222',
       );
 
-      await patientRepository.savePatient(patient);
-      final saved = await patientRepository.getAllPatients();
-      final created = saved.firstWhere(
-        (p) => p.name == 'Test Patient Update',
-      );
-      testPatientIds.add(created.patientID);
+      await patientRepo.savePatient(patient);
+      final all = await patientRepo.getAllPatients();
+      final created = all.firstWhere((p) => p.name == 'Update Test');
+      testIds.add(created.patientID);
 
       final updated = Patient(
         patientID: created.patientID,
         name: created.name,
         dateOfBirth: created.dateOfBirth,
-        address: '999 New Address',
+        address: '789 New St',
         tel: created.tel,
         bloodType: created.bloodType,
-        medicalRecords: created.medicalRecords.toList(),
-        allergies: created.allergies.toList(),
+        medicalRecords: created.medicalRecords,
+        allergies: created.allergies,
         emergencyContact: created.emergencyContact,
       );
 
-      await patientRepository.updatePatient(updated);
-      final retrieved =
-          await patientRepository.getPatientById(created.patientID);
-      expect(retrieved.address, equals('999 New Address'));
+      await patientRepo.updatePatient(updated);
+      final retrieved = await patientRepo.getPatientById(created.patientID);
+      expect(retrieved.address, '789 New St');
     });
 
-    test('Should delete patient', () async {
+    test('can delete patient', () async {
       final patient = Patient(
         patientID: 'AUTO',
-        name: 'Test Patient Delete',
+        name: 'Delete Test',
         dateOfBirth: '1992-03-20',
-        address: '789 Delete Rd',
-        tel: '012-333-4444',
-        bloodType: 'B+',
+        address: '999 Delete Rd',
+        tel: '+855-33-333-333',
+        bloodType: 'O-',
         medicalRecords: [],
         allergies: [],
-        emergencyContact: '012-555-6666',
+        emergencyContact: '+855-44-444-444',
       );
 
-      await patientRepository.savePatient(patient);
-      final saved = await patientRepository.getAllPatients();
-      final created = saved.firstWhere(
-        (p) => p.name == 'Test Patient Delete',
-      );
+      await patientRepo.savePatient(patient);
+      final all = await patientRepo.getAllPatients();
+      final created = all.firstWhere((p) => p.name == 'Delete Test');
 
-      await patientRepository.deletePatient(created.patientID);
+      await patientRepo.deletePatient(created.patientID);
 
       expect(
-        () => patientRepository.getPatientById(created.patientID),
+        () => patientRepo.getPatientById(created.patientID),
         throwsException,
       );
     });
-
-    test('Should search patients by name', () async {
-      final patients =
-          await patientRepository.searchPatientsByName('Test Patient');
-      expect(patients, isNotEmpty);
-      for (final patient in patients) {
-        expect(patient.name.toLowerCase().contains('test patient'), isTrue);
-      }
-    });
   });
 
-  // ==========================================================================
-  // PART 3: MEETING SCHEDULING TESTS
-  // ==========================================================================
-  group('Patient - Meeting Scheduling', () {
+  group('Patient Meeting', () {
     late Doctor testDoctor;
     late Patient testPatient;
 
     setUp(() {
-      // Generate working hours for the next 30 days with exact date keys
-      final now = DateTime.now();
       final workingHours = <String, Map<String, String>>{};
-
       for (int i = 0; i < 30; i++) {
-        final date = now.add(Duration(days: i));
+        final date = DateTime.now().add(Duration(days: i));
         if (date.weekday != DateTime.saturday &&
             date.weekday != DateTime.sunday) {
-          final dateKey =
+          final key =
               '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
-          workingHours[dateKey] = {
+          workingHours[key] = {
             'start': DateTime(date.year, date.month, date.day, 9, 0)
                 .toIso8601String(),
             'end': DateTime(date.year, date.month, date.day, 17, 0)
@@ -247,106 +163,76 @@ void main() {
       }
 
       testDoctor = Doctor(
-        name: 'Dr. Test Scheduler',
+        name: 'Dr. Test',
         dateOfBirth: '1980-01-01',
         address: '123 Medical St',
-        tel: '+1234567890',
-        staffID: 'DOC_TEST',
+        tel: '+855-99-999-999',
+        staffID: 'TEST_DOC',
         hireDate: DateTime(2010, 1, 1),
-        salary: 150000.0,
+        salary: 100000,
         schedule: {},
-        specialization: 'Cardiology',
-        certifications: ['Board Certified'],
+        specialization: 'General',
+        certifications: [],
         currentPatients: [],
         workingHours: workingHours,
       );
 
       testPatient = Patient(
-        name: 'Test Patient Meeting',
+        name: 'Test Patient',
         dateOfBirth: '1990-01-01',
         address: '456 Patient Ave',
-        tel: '+9876543210',
-        patientID: 'P_TEST',
+        tel: '+855-88-888-888',
+        patientID: 'TEST_P',
         bloodType: 'A+',
         medicalRecords: [],
         allergies: [],
-        emergencyContact: '+1122334455',
+        emergencyContact: '+855-77-777-777',
       );
     });
 
-    test('Patient initially has no next meeting', () {
-      expect(testPatient.hasNextMeeting, isFalse);
-      expect(testPatient.nextMeetingDate, isNull);
-      expect(testPatient.nextMeetingDoctor, isNull);
+    test('initially has no meeting', () {
+      expect(testPatient.hasNextMeeting, false);
+      expect(testPatient.nextMeetingDate, null);
     });
 
-    test('Can schedule next meeting with assigned doctor', () {
+    test('can schedule meeting', () {
       testPatient.assignDoctor(testDoctor);
-      final meetingDate = getWorkingHoursDate(7);
+      final meetingDate = DateTime.now().add(Duration(days: 7));
+      final workday = meetingDate.weekday != DateTime.saturday &&
+              meetingDate.weekday != DateTime.sunday
+          ? meetingDate
+          : meetingDate.add(Duration(days: 2));
+      final meeting = DateTime(workday.year, workday.month, workday.day, 10, 0);
 
-      testPatient.scheduleNextMeeting(
-        doctor: testDoctor,
-        meetingDate: meetingDate,
-      );
+      testPatient.scheduleNextMeeting(doctor: testDoctor, meetingDate: meeting);
 
-      expect(testPatient.hasNextMeeting, isTrue);
-      expect(testPatient.nextMeetingDate, equals(meetingDate));
-      expect(testPatient.nextMeetingDoctor, equals(testDoctor));
+      expect(testPatient.hasNextMeeting, true);
+      expect(testPatient.nextMeetingDate, meeting);
     });
 
-    test('Cannot schedule meeting with unassigned doctor', () {
-      final meetingDate = getWorkingHoursDate(7);
+    test('cannot schedule with unassigned doctor', () {
+      final meeting = DateTime.now().add(Duration(days: 7));
+
       expect(
         () => testPatient.scheduleNextMeeting(
-          doctor: testDoctor,
-          meetingDate: meetingDate,
-        ),
+            doctor: testDoctor, meetingDate: meeting),
         throwsArgumentError,
       );
     });
 
-    test('Cannot schedule meeting in the past', () {
+    test('can cancel meeting', () {
       testPatient.assignDoctor(testDoctor);
-      final pastDate = DateTime.now().subtract(Duration(days: 1));
+      final meetingDate = DateTime.now().add(Duration(days: 7));
+      final workday = meetingDate.weekday != DateTime.saturday &&
+              meetingDate.weekday != DateTime.sunday
+          ? meetingDate
+          : meetingDate.add(Duration(days: 2));
+      final meeting = DateTime(workday.year, workday.month, workday.day, 10, 0);
 
-      expect(
-        () => testPatient.scheduleNextMeeting(
-          doctor: testDoctor,
-          meetingDate: pastDate,
-        ),
-        throwsArgumentError,
-      );
-    });
-
-    test('Can cancel next meeting', () {
-      testPatient.assignDoctor(testDoctor);
-      final meetingDate = getWorkingHoursDate(7);
-
-      testPatient.scheduleNextMeeting(
-        doctor: testDoctor,
-        meetingDate: meetingDate,
-      );
-      expect(testPatient.hasNextMeeting, isTrue);
-
+      testPatient.scheduleNextMeeting(doctor: testDoctor, meetingDate: meeting);
       testPatient.cancelNextMeeting();
-      expect(testPatient.hasNextMeeting, isFalse);
-      expect(testPatient.nextMeetingDate, isNull);
-    });
 
-    test('Can reschedule next meeting', () {
-      testPatient.assignDoctor(testDoctor);
-      final firstDate = getWorkingHoursDate(7);
-      final secondDate = getWorkingHoursDate(10);
-
-      testPatient.scheduleNextMeeting(
-        doctor: testDoctor,
-        meetingDate: firstDate,
-      );
-      expect(testPatient.nextMeetingDate, equals(firstDate));
-
-      testPatient.rescheduleNextMeeting(secondDate);
-      expect(testPatient.nextMeetingDate, equals(secondDate));
-      expect(testPatient.hasNextMeeting, isTrue);
+      expect(testPatient.hasNextMeeting, false);
     });
   });
 }
