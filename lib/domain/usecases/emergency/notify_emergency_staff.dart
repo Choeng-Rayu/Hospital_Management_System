@@ -1,3 +1,4 @@
+import '../../entities/doctor.dart';
 import '../../repositories/nurse_repository.dart';
 import '../../repositories/doctor_repository.dart';
 import '../base/use_case.dart';
@@ -82,7 +83,7 @@ class NotifyEmergencyStaff
 
     final allDoctors = await doctorRepository.getAllDoctors();
 
-    List<dynamic> targetDoctors = allDoctors;
+    List<Doctor> targetDoctors = allDoctors;
     if (input.requiredSpecialties != null &&
         input.requiredSpecialties!.isNotEmpty) {
       targetDoctors = allDoctors
@@ -92,7 +93,7 @@ class NotifyEmergencyStaff
     }
 
     final availableDoctors = targetDoctors
-        .where((doc) => doc.availability) // Assuming availability field exists
+        .where((doc) => doc.patientCount < 10) // Not overloaded (< 10 patients)
         .toList();
 
     final allNurses = await nurseRepository.getAllNurses();

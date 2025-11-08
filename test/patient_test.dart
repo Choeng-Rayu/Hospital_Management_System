@@ -34,8 +34,8 @@ void main() {
 
     test('can search patients by name', () async {
       final patients = await patientRepo.getAllPatients();
-      final firstName = patients.first.name.split(' ').first;
-      final results = await patientRepo.searchPatientsByName(firstName);
+      final name = patients.first.name.split(' ').first;
+      final results = await patientRepo.searchPatientsByName(name);
       expect(results.isNotEmpty, true);
     });
 

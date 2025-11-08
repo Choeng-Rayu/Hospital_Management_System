@@ -1,3 +1,4 @@
+import '../../entities/room.dart';
 import '../../repositories/room_repository.dart';
 import '../base/use_case.dart';
 
@@ -92,7 +93,7 @@ class GetRoomOccupancy extends NoInputUseCase<RoomOccupancyReport> {
         totalBeds > 0 ? (occupiedBeds / totalBeds) * 100.0 : 0.0;
 
     final byRoomType = <String, RoomTypeOccupancy>{};
-    final roomsByType = <String, List<dynamic>>{};
+    final roomsByType = <String, List<Room>>{};
 
     for (final room in allRooms) {
       final typeKey = room.roomType.toString();
