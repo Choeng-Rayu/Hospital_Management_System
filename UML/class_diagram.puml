@@ -1,0 +1,315 @@
+@startuml Hospital_Management_Classes
+
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam classBorderColor #333
+skinparam arrowColor #333
+skinparam classBackgroundColor #F8F8F8
+
+' ============== BASE CLASSES ==============
+abstract class Person {
+  {field} -name: String
+  {field} -dateOfBirth: String
+  {field} -address: String
+  {field} -tel: String
+  --
+  {method} +getName(): String
+  {method} +getDateOfBirth(): String
+  {method} +getAddress(): String
+  {method} +getTel(): String
+  {method} #validatePerson(): void
+  {method} #validatePhoneNumber(): void
+  {method} #validateDateOfBirth(): void
+}
+
+abstract class Staff extends Person {
+  {field} -staffID: String
+  {field} -hireDate: DateTime
+  {field} -salary: double
+  {field} -schedule: Map<String, List<DateTime>>
+  --
+  {method} +getStaffID(): String
+  {method} +getHireDate(): DateTime
+  {method} +getSalary(): double
+  {method} +getSchedule(): Map
+  {method} +updateSalary(newSalary): void
+  {method} #validateStaff(): void
+}
+
+' ============== PATIENT ==============
+class Patient extends Person {
+  {field} -patientID: String
+  {field} -bloodType: String
+  {field} -medicalRecords: List<String>
+  {field} -allergies: List<String>
+  {field} -emergencyContact: String
+  {field} -assignedDoctors: List<Doctor>
+  {field} -assignedNurses: List<Nurse>
+  {field} -prescriptions: List<Prescription>
+  {field} -currentRoom: Room?
+  {field} -currentBed: Bed?
+  {field} -hasNextMeeting: bool
+  {field} -nextMeetingDate: DateTime?
+  {field} -nextMeetingDoctor: Doctor?
+  --
+  {method} +getPatientID(): String
+  {method} +getBloodType(): String
+  {method} +getMedicalRecords(): List
+  {method} +getAllergies(): List
+  {method} +getEmergencyContact(): String
+  {method} +getAssignedDoctors(): List<Doctor>
+  {method} +getAssignedNurses(): List<Nurse>
+  {method} +getPrescriptions(): List<Prescription>
+  {method} +getCurrentRoom(): Room?
+  {method} +getCurrentBed(): Bed?
+  {method} +addAllergy(allergy): void
+  {method} +addMedicalRecord(record): void
+  {method} +assignDoctor(doctor): void
+  {method} +removeDoctor(doctor): void
+  {method} +assignNurse(nurse): void
+  {method} +removeNurse(nurse): void
+  {method} +scheduleNextMeeting(date, doctor): void
+  {method} +assignToBed(room, bed): void
+  {method} +discharge(): void
+}
+
+' ============== DOCTOR ==============
+class Doctor extends Staff {
+  {field} -specialization: String
+  {field} -certifications: List<String>
+  {field} -currentPatients: List<Patient>
+  {field} -workingHours: Map<String, Map<String, String>>
+  --
+  {method} +getSpecialization(): String
+  {method} +getCertifications(): List
+  {method} +getCurrentPatients(): List<Patient>
+  {method} +getPatientCount(): int
+  {method} +getWorkingHours(): Map
+  {method} +addPatient(patient): void
+  {method} +removePatient(patient): void
+  {method} +hasCertification(cert): bool
+  {method} +addCertification(cert): void
+  {method} +isAvailable(dateTime): bool
+}
+
+' ============== NURSE ==============
+class Nurse extends Staff {
+  {field} -assignedRooms: List<Room>
+  {field} -assignedPatients: List<Patient>
+  --
+  {method} +getAssignedRooms(): List<Room>
+  {method} +getAssignedPatients(): List<Patient>
+  {method} +assignRoom(room): void
+  {method} +removeRoom(room): void
+  {method} +assignPatient(patient): void
+  {method} +removePatient(patient): void
+}
+
+' ============== ADMINISTRATIVE ==============
+class Administrative extends Staff {
+  {field} -department: String
+  {field} -permissions: List<String>
+  --
+  {method} +getDepartment(): String
+  {method} +getPermissions(): List
+  {method} +hasPermission(permission): bool
+  {method} +addPermission(permission): void
+}
+
+' ============== APPOINTMENT ==============
+class Appointment {
+  {field} -id: String
+  {field} -dateTime: DateTime
+  {field} -duration: int
+  {field} -patient: Patient
+  {field} -doctor: Doctor
+  {field} -room: Room?
+  {field} -status: AppointmentStatus
+  {field} -reason: String
+  {field} -notes: String?
+  --
+  {method} +getId(): String
+  {method} +getDateTime(): DateTime
+  {method} +getDuration(): int
+  {method} +getPatient(): Patient
+  {method} +getDoctor(): Doctor
+  {method} +getRoom(): Room?
+  {method} +getStatus(): AppointmentStatus
+  {method} +getReason(): String
+  {method} +getNotes(): String?
+  {method} +updateStatus(status): void
+  {method} +isUpcoming(): bool
+  {method} +getFormattedDate(): String
+  {method} +getFormattedTime(): String
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+  RESCHEDULED
+}
+
+' ============== PRESCRIPTION ==============
+class Prescription {
+  {field} -id: String
+  {field} -time: DateTime
+  {field} -medications: List<Medication>
+  {field} -instructions: String
+  {field} -prescribedBy: Doctor
+  {field} -prescribedTo: Patient
+  --
+  {method} +getId(): String
+  {method} +getTime(): DateTime
+  {method} +getMedications(): List<Medication>
+  {method} +getInstructions(): String
+  {method} +getPrescribedBy(): Doctor
+  {method} +getPrescribedTo(): Patient
+  {method} +getMedicationCount(): int
+  {method} +addMedication(med): void
+  {method} +removeMedication(med): void
+}
+
+class Medication {
+  {field} -id: String
+  {field} -name: String
+  {field} -dosage: String
+  {field} -sideEffects: List<String>
+  {field} -contraindications: List<String>
+  --
+  {method} +getId(): String
+  {method} +getName(): String
+  {method} +getDosage(): String
+  {method} +getSideEffects(): List
+  {method} +getContraindications(): List
+}
+
+' ============== ROOM ==============
+class Room {
+  {field} -roomId: String
+  {field} -number: String
+  {field} -roomType: RoomType
+  {field} -status: RoomStatus
+  {field} -equipment: List<Equipment>
+  {field} -beds: List<Bed>
+  --
+  {method} +getRoomId(): String
+  {method} +getNumber(): String
+  {method} +getRoomType(): RoomType
+  {method} +getStatus(): RoomStatus
+  {method} +getEquipment(): List<Equipment>
+  {method} +getBeds(): List<Bed>
+  {method} +getAvailableBeds(): List<Bed>
+  {method} +hasAvailableBeds(): bool
+  {method} +getAvailableBedCount(): int
+  {method} +updateStatus(status): void
+  {method} +addEquipment(equip): void
+  {method} +removeEquipment(equipId): void
+  {method} +getOperationalEquipment(): List<Equipment>
+  {method} +assignPatientToBed(patient, bed): bool
+  {method} +dischargePatient(patient): void
+}
+
+enum RoomType {
+  GENERAL_WARD
+  PRIVATE_ROOM
+  ICU
+  PEDIATRIC
+  MATERNITY
+  ISOLATION
+  EMERGENCY
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  UNDER_MAINTENANCE
+  RESERVED
+  CLOSED
+}
+
+' ============== BED ==============
+class Bed {
+  {field} -bedNumber: String
+  {field} -bedType: BedType
+  {field} -isOccupied: bool
+  {field} -currentPatient: Patient?
+  {field} -features: List<String>
+  --
+  {method} +getBedNumber(): String
+  {method} +getBedType(): BedType
+  {method} +isOccupied(): bool
+  {method} +getCurrentPatient(): Patient?
+  {method} +getFeatures(): List
+  {method} +isAvailable(): bool
+  {method} +assignPatient(patient): void
+  {method} +removePatient(): void
+}
+
+enum BedType {
+  STANDARD
+  PREMIUM
+  ICU_BED
+  PEDIATRIC_BED
+  STRETCHER
+}
+
+' ============== EQUIPMENT ==============
+class Equipment {
+  {field} -equipmentId: String
+  {field} -name: String
+  {field} -type: String
+  {field} -status: EquipmentStatus
+  {field} -maintenanceDate: DateTime?
+  {field} -location: String
+  --
+  {method} +getEquipmentId(): String
+  {method} +getName(): String
+  {method} +getType(): String
+  {method} +getStatus(): EquipmentStatus
+  {method} +getMaintenanceDate(): DateTime?
+  {method} +getLocation(): String
+  {method} +updateStatus(status): void
+  {method} +scheduleMaintenance(date): void
+  {method} +isOperational(): bool
+}
+
+enum EquipmentStatus {
+  OPERATIONAL
+  UNDER_MAINTENANCE
+  BROKEN
+  DEPRECATED
+}
+
+' ============== RELATIONSHIPS ==============
+Patient "1" -- "0..*" Doctor : "assigned to"
+Patient "1" -- "0..*" Nurse : "cared by"
+Patient "1" -- "0..*" Prescription : "has"
+Patient "1" -- "0..1" Room : "stays in"
+Patient "1" -- "0..1" Bed : "occupies"
+
+Doctor "1" -- "0..*" Patient : "manages"
+Doctor "1" -- "0..*" Appointment : "conducts"
+Doctor "1" -- "0..*" Prescription : "prescribes"
+
+Nurse "1" -- "0..*" Room : "assigned to"
+Nurse "1" -- "0..*" Patient : "cares for"
+
+Appointment "1" -- "1" Patient : "involves"
+Appointment "1" -- "1" Doctor : "conducted by"
+Appointment "1" -- "0..1" Room : "held in"
+
+Prescription "1" -- "1" Doctor : "prescribed by"
+Prescription "1" -- "1" Patient : "prescribed to"
+Prescription "1" -- "1..*" Medication : "contains"
+
+Room "1" -- "1..*" Bed : "contains"
+Room "1" -- "0..*" Equipment : "has"
+Room "1" -- "0..*" Patient : "houses"
+
+Bed "1" -- "0..1" Patient : "occupied by"
+
+Staff "1" -- "0..*" Administrative : "can be"
+
+@enduml

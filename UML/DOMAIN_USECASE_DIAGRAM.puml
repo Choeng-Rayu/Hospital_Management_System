@@ -1,0 +1,65 @@
+@startuml DOMAIN_USECASE_DIAGRAM
+
+skinparam actorBackgroundColor #FFFFFF
+skinparam actorBorderColor #0277BD
+skinparam usecaseBackgroundColor #E1F5FE
+skinparam usecaseBorderColor #0277BD
+
+actor "Doctor" as doctor
+actor "Nurse" as nurse
+actor "Admin" as admin
+actor "Patient" as patient
+
+usecase (Schedule Appointment) as UC1
+usecase (Reschedule Appointment) as UC2
+usecase (Cancel Appointment) as UC3
+usecase (Update Appointment Status) as UC4
+usecase (Schedule Meeting) as UC5
+usecase (Reschedule Meeting) as UC6
+usecase (Cancel Meeting) as UC7
+usecase (Get Meeting Reminders) as UC8
+usecase (Create Prescription) as UC9
+usecase (Update Prescription) as UC10
+usecase (Get Prescriptions) as UC11
+usecase (Get Doctor Schedule) as UC12
+usecase (Assign Doctor) as UC13
+usecase (View Room Availability) as UC14
+usecase (Admit Patient) as UC15
+usecase (Discharge Patient) as UC16
+usecase (Assign to Room) as UC17
+usecase (Release Room) as UC18
+usecase (Assign to Bed) as UC19
+usecase (Assign Nurse) as UC20
+usecase (Search Operations) as UC21
+
+doctor --> UC1
+doctor --> UC2
+doctor --> UC4
+doctor --> UC5
+doctor --> UC6
+doctor --> UC7
+doctor --> UC9
+doctor --> UC10
+doctor --> UC12
+doctor --> UC13
+doctor --> UC14
+
+nurse --> UC12
+nurse --> UC14
+nurse --> UC19
+
+admin --> UC3
+admin --> UC15
+admin --> UC16
+admin --> UC17
+admin --> UC18
+admin --> UC20
+admin --> UC21
+
+patient --> UC1
+patient --> UC5
+patient --> UC7
+patient --> UC8
+patient --> UC11
+
+@enduml

@@ -1,0 +1,51 @@
+@startuml Patient_Admission_Flow
+
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam backgroundColor #FEFEFE
+
+participant Admin as "Admin\n(User)"
+participant PatientMenu as "Patient Menu\n(UI)"
+participant PatientUseCase as "Admit Patient\nUse Case"
+participant PatientRepository as "Patient\nRepository"
+participant RoomRepository as "Room\nRepository"
+participant Database as "JSON\nDatabase"
+
+Admin -> PatientMenu: Select "Admit Patient"
+activate PatientMenu
+
+PatientMenu -> PatientMenu: Get patient details\n(Name, DOB, Address, etc.)
+PatientMenu -> PatientMenu: Get blood type,\nallergies, emergency contact
+
+PatientMenu -> PatientUseCase: execute(AdmitPatientInput)
+activate PatientUseCase
+
+PatientUseCase -> PatientUseCase: Validate patient data\n(Name, DOB, contact info)
+
+PatientUseCase -> RoomRepository: getAvailableRooms()
+activate RoomRepository
+RoomRepository -> Database: Read rooms.json
+activate Database
+Database --> RoomRepository: Room[] with available beds
+deactivate Database
+RoomRepository --> PatientUseCase: Available rooms list
+deactivate RoomRepository
+
+PatientUseCase -> PatientUseCase: Auto-assign to room\nif available
+
+PatientUseCase -> PatientRepository: savePatient(newPatient)
+activate PatientRepository
+PatientRepository -> Database: Write patients.json
+activate Database
+Database --> PatientRepository: Success
+deactivate Database
+PatientRepository --> PatientUseCase: Patient saved
+deactivate PatientRepository
+
+PatientUseCase --> PatientMenu: Patient admitted successfully\nPatient ID: P###
+deactivate PatientUseCase
+
+PatientMenu -> Admin: Display success message\nwith patient details
+deactivate PatientMenu
+
+@enduml

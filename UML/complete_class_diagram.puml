@@ -1,0 +1,355 @@
+@startuml Hospital_Management_Complete_Class_Diagram
+
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam classBorderColor #333
+skinparam arrowColor #333
+skinparam classBackgroundColor #F8F8F8
+skinparam classArrowColor #333
+
+' ==================== ENUMERATIONS ====================
+enum RoomType {
+  GENERAL_WARD
+  PRIVATE_ROOM
+  ICU
+  PEDIATRIC
+  MATERNITY
+  ISOLATION
+  EMERGENCY
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  UNDER_MAINTENANCE
+  RESERVED
+  CLOSED
+}
+
+enum BedType {
+  STANDARD
+  PREMIUM
+  ICU_BED
+  PEDIATRIC_BED
+  STRETCHER
+}
+
+enum AppointmentStatus {
+  SCHEDULE
+  COMPLETED
+  CANCELLED
+  POSTPONED
+}
+
+enum EquipmentStatus {
+  OPERATIONAL
+  IN_MAINTENANCE
+  NEEDS_CALIBRATION
+  OUT_OF_SERVICE
+}
+
+enum EmergencyLevel {
+  CRITICAL
+  HIGH
+  MODERATE
+  LOW
+}
+
+' ==================== ABSTRACT CLASSES ====================
+abstract class Person {
+  {field} #name: String
+  {field} #dateOfBirth: String
+  {field} #address: String
+  {field} #tel: String
+  --
+  {method} +getName(): String
+  {method} +getDateOfBirth(): String
+  {method} +getAddress(): String
+  {method} +getTel(): String
+  {method} #validatePerson(): void
+  {method} #validatePhoneNumber(): void
+  {method} #validateDateOfBirth(): void
+}
+
+abstract class Staff extends Person {
+  {field} #staffID: String
+  {field} #hireDate: DateTime
+  {field} #salary: double
+  {field} #schedule: Map<String, List<DateTime>>
+  --
+  {method} +getStaffID(): String
+  {method} +getHireDate(): DateTime
+  {method} +getSalary(): double
+  {method} +getSchedule(): Map
+  {method} +addScheduleEntry(): void
+  {method} +removeScheduleEntry(): void
+  {method} +getScheduleFor(): List<DateTime>
+  {method} #validateStaff(): void
+  {method} #validateHireDate(): void
+  {method} #validateSalary(): void
+}
+
+' ==================== CONCRETE PERSON CLASSES ====================
+class Patient extends Person {
+  {field} -patientID: String
+  {field} -bloodType: String
+  {field} -medicalRecords: List<String>
+  {field} -allergies: List<String>
+  {field} -emergencyContact: String
+  {field} -assignedDoctors: List<Doctor>
+  {field} -assignedNurses: List<Nurse>
+  {field} -prescriptions: List<Prescription>
+  {field} -currentRoom: Room?
+  {field} -currentBed: Bed?
+  {field} -hasNextMeeting: bool
+  {field} -nextMeetingDate: DateTime?
+  {field} -nextMeetingDoctor: Doctor?
+  --
+  {method} +getPatientID(): String
+  {method} +getBloodType(): String
+  {method} +getMedicalRecords(): List<String>
+  {method} +getAllergies(): List<String>
+  {method} +getEmergencyContact(): String
+  {method} +getAssignedDoctors(): List<Doctor>
+  {method} +getAssignedNurses(): List<Nurse>
+  {method} +getPrescriptions(): List<Prescription>
+  {method} +getCurrentRoom(): Room?
+  {method} +getCurrentBed(): Bed?
+  {method} +assignDoctor(doctor: Doctor): void
+  {method} +removeDoctor(doctor: Doctor): void
+  {method} +assignNurse(nurse: Nurse): void
+  {method} +removeNurse(nurse: Nurse): void
+  {method} +addPrescription(prescription: Prescription): void
+  {method} +removePrescription(prescription: Prescription): void
+  {method} +assignRoom(room: Room, bed: Bed): void
+  {method} +dischargeFromRoom(): void
+  {method} +addMedicalRecord(record: String): void
+  {method} +addAllergy(allergy: String): void
+  {method} #validatePatient(): void
+}
+
+class Doctor extends Staff {
+  {field} -specialization: String
+  {field} -certifications: List<String>
+  {field} -currentPatients: List<Patient>
+  {field} -workingHours: Map<String, Map<String, String>>
+  --
+  {method} +getSpecialization(): String
+  {method} +getCertifications(): List<String>
+  {method} +getCurrentPatients(): List<Patient>
+  {method} +getPatientCount(): int
+  {method} +getWorkingHours(): Map
+  {method} +addPatient(patient: Patient): void
+  {method} +removePatient(patient: Patient): void
+  {method} +hasCertification(cert: String): bool
+  {method} +addCertification(cert: String): void
+  {method} +isWorkingDuring(dateTime: DateTime, duration: int): bool
+  {method} +getWorkingHoursForDate(dateTime: DateTime): Map?
+  {method} #validateDoctor(): void
+}
+
+class Nurse extends Staff {
+  {field} -assignedRooms: List<Room>
+  {field} -assignedPatients: List<Patient>
+  --
+  {method} +getAssignedRooms(): List<Room>
+  {method} +getAssignedPatients(): List<Patient>
+  {method} +assignRoom(room: Room): void
+  {method} +removeRoom(room: Room): void
+  {method} +assignPatient(patient: Patient): void
+  {method} +removePatient(patient: Patient): void
+  {method} +getPatientCount(): int
+  {method} +getRoomCount(): int
+  {method} #validateAssignments(): void
+}
+
+class Administrative extends Staff {
+  {field} -responsibility: String
+  --
+  {method} +getResponsibility(): String
+}
+
+' ==================== FACILITY MANAGEMENT CLASSES ====================
+class Room {
+  {field} -roomId: String
+  {field} -number: String
+  {field} -roomType: RoomType
+  {field} -status: RoomStatus
+  {field} -equipment: List<Equipment>
+  {field} -beds: List<Bed>
+  --
+  {method} +getRoomId(): String
+  {method} +getNumber(): String
+  {method} +getRoomType(): RoomType
+  {method} +getStatus(): RoomStatus
+  {method} +getEquipment(): List<Equipment>
+  {method} +getBeds(): List<Bed>
+  {method} +getAvailableBeds(): List<Bed>
+  {method} +hasAvailableBeds(): bool
+  {method} +getAvailableBedCount(): int
+  {method} +updateStatus(status: RoomStatus): void
+  {method} +addEquipment(equipment: Equipment): void
+  {method} +removeEquipment(equipmentId: String): void
+  {method} +getOperationalEquipment(): List<Equipment>
+  {method} #validateRoom(): void
+}
+
+class Bed {
+  {field} -bedNumber: String
+  {field} -bedType: BedType
+  {field} -isOccupied: bool
+  {field} -currentPatient: Patient?
+  {field} -features: List<String>
+  --
+  {method} +getBedNumber(): String
+  {method} +getBedType(): BedType
+  {method} +isOccupied(): bool
+  {method} +getCurrentPatient(): Patient?
+  {method} +getFeatures(): List<String>
+  {method} +isAvailable(): bool
+  {method} +assignPatient(patient: Patient): void
+  {method} +removePatient(): void
+  {method} #validateBed(): void
+}
+
+class Equipment {
+  {field} -equipmentId: String
+  {field} -name: String
+  {field} -type: String
+  {field} -serialNumber: String
+  {field} -status: EquipmentStatus
+  {field} -lastServiceDate: DateTime
+  {field} -nextServiceDate: DateTime
+  --
+  {method} +getEquipmentId(): String
+  {method} +getName(): String
+  {method} +getType(): String
+  {method} +getSerialNumber(): String
+  {method} +getStatus(): EquipmentStatus
+  {method} +getLastServiceDate(): DateTime
+  {method} +getNextServiceDate(): DateTime
+  {method} +reportMaintenance(): void
+  {method} +updateStatus(status: EquipmentStatus): void
+  {method} #validateEquipment(): void
+}
+
+' ==================== MEDICAL RECORD CLASSES ====================
+class Appointment {
+  {field} -id: String
+  {field} -dateTime: DateTime
+  {field} -duration: int
+  {field} -patient: Patient
+  {field} -doctor: Doctor
+  {field} -room: Room?
+  {field} -status: AppointmentStatus
+  {field} -reason: String
+  {field} -notes: String?
+  --
+  {method} +getId(): String
+  {method} +getDateTime(): DateTime
+  {method} +getDuration(): int
+  {method} +getPatient(): Patient
+  {method} +getDoctor(): Doctor
+  {method} +getRoom(): Room?
+  {method} +getStatus(): AppointmentStatus
+  {method} +getReason(): String
+  {method} +getNotes(): String?
+  {method} +updateStatus(status: AppointmentStatus): void
+  {method} +isUpcoming(): bool
+  {method} +getFormattedDate(): String
+  {method} +getFormattedTime(): String
+  {method} #validateAppointment(): void
+}
+
+class Prescription {
+  {field} -id: String
+  {field} -time: DateTime
+  {field} -medications: List<Medication>
+  {field} -instructions: String
+  {field} -prescribedBy: Doctor
+  {field} -prescribedTo: Patient
+  --
+  {method} +getId(): String
+  {method} +getTime(): DateTime
+  {method} +getMedications(): List<Medication>
+  {method} +getInstructions(): String
+  {method} +getPrescribedBy(): Doctor
+  {method} +getPrescribedTo(): Patient
+  {method} +getMedicationCount(): int
+  {method} +addMedication(med: Medication): void
+  {method} +removeMedication(med: Medication): void
+  {method} +getMedicationNames(): List<String>
+  {method} +getFullDetails(): Map
+  {method} +isRecent(): bool
+  {method} +getFormattedDate(): String
+  {method} #validatePrescription(): void
+}
+
+class Medication {
+  {field} -id: String
+  {field} -name: String
+  {field} -dosage: String
+  {field} -manufacturer: String
+  {field} -sideEffects: List<String>
+  --
+  {method} +getId(): String
+  {method} +getName(): String
+  {method} +getDosage(): String
+  {method} +getManufacturer(): String
+  {method} +getSideEffects(): List<String>
+  {method} +hasSideEffect(effect: String): bool
+  {method} +addSideEffect(effect: String): void
+  {method} +getDosageInfo(): String
+  {method} +getFullDetails(): Map
+}
+
+' ==================== RELATIONSHIPS ====================
+
+' Person hierarchy
+Person <|-- Patient : extends
+Person <|-- Staff : extends
+
+' Staff hierarchy
+Staff <|-- Doctor : extends
+Staff <|-- Nurse : extends
+Staff <|-- Administrative : extends
+
+' Patient relationships
+Patient "*" -- "*" Doctor : assignedDoctors
+Patient "*" -- "*" Nurse : assignedNurses
+Patient "1" o-- "*" Prescription : prescriptions
+Patient "0..1" -- "1" Room : currentRoom
+Patient "0..1" -- "1" Bed : currentBed
+
+' Doctor relationships
+Doctor "1" -- "*" Patient : currentPatients
+
+' Nurse relationships
+Nurse "1" -- "*" Room : assignedRooms
+Nurse "1" -- "*" Patient : assignedPatients
+
+' Room relationships
+Room "1" -- "*" Bed : contains
+Room "1" -- "*" Equipment : has
+Room "1" -- "1" RoomType : ofType
+Room "1" -- "1" RoomStatus : hasStatus
+
+' Bed relationships
+Bed "1" -- "1" BedType : ofType
+Bed "0..1" -- "1" Patient : occupiedBy
+
+' Appointment relationships
+Appointment "1" -- "1" Patient : involves
+Appointment "1" -- "1" Doctor : withDoctor
+Appointment "0..1" -- "1" Room : locatedIn
+Appointment "1" -- "1" AppointmentStatus : hasStatus
+
+' Prescription relationships
+Prescription "1" -- "*" Medication : contains
+Prescription "1" -- "1" Doctor : prescribedBy
+Prescription "1" -- "1" Patient : prescribedTo
+
+' Equipment relationships
+Equipment "1" -- "1" EquipmentStatus : hasStatus
+
+@enduml

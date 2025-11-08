@@ -1,0 +1,67 @@
+@startuml Emergency_Room_Assignment_Flow
+
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam backgroundColor #FEFEFE
+
+participant Emergency as "Emergency\nStaff"
+participant EmergencyMenu as "Emergency Menu\n(UI)"
+participant EmergencyUseCase as "Emergency\nRoom\nAssignment\nUse Case"
+participant RoomRepo as "Room\nRepository"
+participant DoctorRepo as "Doctor\nRepository"
+participant PatientRepo as "Patient\nRepository"
+participant Database as "JSON\nDatabase"
+
+Emergency -> EmergencyMenu: Select "Emergency Room Assignment"
+activate EmergencyMenu
+
+EmergencyMenu -> PatientRepo: getPatientById(emergencyPatientID)
+activate PatientRepo
+PatientRepo -> Database: Read patients.json
+activate Database
+Database --> PatientRepo: Patient info
+deactivate Database
+PatientRepo --> EmergencyMenu: Patient retrieved
+deactivate PatientRepo
+
+EmergencyMenu -> RoomRepo: getAvailableRooms()
+activate RoomRepo
+RoomRepo -> Database: Read rooms.json
+activate Database
+Database --> RoomRepo: Available rooms
+deactivate Database
+RoomRepo --> EmergencyMenu: Emergency rooms list
+deactivate RoomRepo
+
+EmergencyMenu -> EmergencyUseCase: execute(EmergencyAssignmentInput)
+activate EmergencyUseCase
+
+EmergencyUseCase -> EmergencyUseCase: Filter for ICU/Emergency rooms\nwith priority
+
+EmergencyUseCase -> EmergencyUseCase: Check bed availability\nand equipment
+
+EmergencyUseCase -> DoctorRepo: getAvailableDoctors(specialization)
+activate DoctorRepo
+DoctorRepo -> Database: Read doctors.json
+activate Database
+Database --> DoctorRepo: Available doctors
+deactivate Database
+DoctorRepo --> EmergencyUseCase: Doctor list
+deactivate DoctorRepo
+
+EmergencyUseCase -> PatientRepo: updatePatientRoom(patient, room)
+activate PatientRepo
+PatientRepo -> Database: Update patients.json
+activate Database
+Database --> PatientRepo: Success
+deactivate Database
+PatientRepo --> EmergencyUseCase: Patient assigned
+deactivate PatientRepo
+
+EmergencyUseCase --> EmergencyMenu: Room & Doctor assigned\nICU Bed: ICU01-A
+deactivate EmergencyUseCase
+
+EmergencyMenu -> Emergency: Display assignment\nDOCTOR ASSIGNED\nROOM ASSIGNED\nBED ASSIGNED
+deactivate EmergencyMenu
+
+@enduml

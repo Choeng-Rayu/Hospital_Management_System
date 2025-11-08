@@ -1,135 +1,143 @@
-@startuml uml.puml
-classDiagram
-    class Room {
-        -roomId: String
-        -roomNumber: String
-        -roomType: RoomType
-        -status: RoomStatus
-        -capacity: Int
-        -beds: List~Bed~
-        -amenities: List~Amenity~
-        -equipment: List~Equipment~
-        -floor: Int
-        -lastMaintenanceDate: Date
-        -nextMaintenanceDate: Date
-        +addBed(bed: Bed) void
-        +removeBed(bedId: String) void
-        +addAmenity(amenity: Amenity) void
-        +addEquipment(equipment: Equipment) void
-        +updateStatus(newStatus: RoomStatus) void
-        +getAvailableBeds() List~Bed~
-        +getOccupancyRate() Float
-    }
+@startuml Room_Management_Class
 
-    class Bed {
-        -bedId: String
-        -bedNumber: Int
-        -status: BedStatus
-        -bedType: BedType
-        -patient: Patient
-        -assignedDate: Date
-        -dischargeDate: Date
-        +assignPatient(patient: Patient) void
-        +releasePatient() void
-        +updateStatus(newStatus: BedStatus) void
-    }
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam classBorderColor #333
+skinparam arrowColor #333
+skinparam classBackgroundColor #F8F8F8
 
-    class Patient {
-        -patientId: String
-        -firstName: String
-        -lastName: String
-        -dateOfBirth: Date
-        -medicalRecordNumber: String
-        -contactNumber: String
-        -admissionDate: Date
-        -dischargeDate: Date
-        +getFullName() String
-        +getAge() Int
-    }
+' ============== MAIN CLASSES ==============
+class Room {
+  {field} -roomId: String
+  {field} -roomNumber: String
+  {field} -roomType: RoomType
+  {field} -status: RoomStatus
+  {field} -capacity: Int
+  {field} -beds: List<Bed>
+  {field} -amenities: List<Amenity>
+  {field} -equipment: List<Equipment>
+  {field} -floor: Int
+  {field} -lastMaintenanceDate: Date
+  {field} -nextMaintenanceDate: Date
+  --
+  {method} +addBed(bed: Bed): void
+  {method} +removeBed(bedId: String): void
+  {method} +addAmenity(amenity: Amenity): void
+  {method} +addEquipment(equipment: Equipment): void
+  {method} +updateStatus(newStatus: RoomStatus): void
+  {method} +getAvailableBeds(): List<Bed>
+  {method} +getOccupancyRate(): Float
+}
 
-    class Amenity {
-        -amenityId: String
-        -name: String
-        -description: String
-        -status: AmenityStatus
-        +updateStatus(newStatus: AmenityStatus) void
-    }
+class Bed {
+  {field} -bedId: String
+  {field} -bedNumber: Int
+  {field} -status: BedStatus
+  {field} -bedType: BedType
+  {field} -patient: Patient
+  {field} -assignedDate: Date
+  {field} -dischargeDate: Date
+  --
+  {method} +assignPatient(patient: Patient): void
+  {method} +releasePatient(): void
+  {method} +updateStatus(newStatus: BedStatus): void
+}
 
-    class Equipment {
-        -equipmentId: String
-        -name: String
-        -type: String
-        -serialNumber: String
-        -status: EquipmentStatus
-        -lastServiceDate: Date
-        -nextServiceDate: Date
-        +reportMaintenance() void
-        +updateStatus(newStatus: EquipmentStatus) void
-    }
+class Patient {
+  {field} -patientId: String
+  {field} -firstName: String
+  {field} -lastName: String
+  {field} -dateOfBirth: Date
+  {field} -medicalRecordNumber: String
+  {field} -contactNumber: String
+  {field} -admissionDate: Date
+  {field} -dischargeDate: Date
+  --
+  {method} +getFullName(): String
+  {method} +getAge(): Int
+}
 
-    class RoomType {
-        <<enumeration>>
-        GENERAL_WARD
-        PRIVATE_ROOM
-        ICU
-        PEDIATRIC
-        MATERNITY
-        ISOLATION
-        EMERGENCY
-    }
+class Amenity {
+  {field} -amenityId: String
+  {field} -name: String
+  {field} -description: String
+  {field} -status: AmenityStatus
+  --
+  {method} +updateStatus(newStatus: AmenityStatus): void
+}
 
-    class RoomStatus {
-        <<enumeration>>
-        AVAILABLE
-        OCCUPIED
-        UNDER_MAINTENANCE
-        RESERVED
-        CLOSED
-    }
+class Equipment {
+  {field} -equipmentId: String
+  {field} -name: String
+  {field} -type: String
+  {field} -serialNumber: String
+  {field} -status: EquipmentStatus
+  {field} -lastServiceDate: Date
+  {field} -nextServiceDate: Date
+  --
+  {method} +reportMaintenance(): void
+  {method} +updateStatus(newStatus: EquipmentStatus): void
+}
 
-    class BedType {
-        <<enumeration>>
-        STANDARD
-        PREMIUM
-        ICU_BED
-        PEDIATRIC_BED
-        STRETCHER
-    }
+' ============== ENUMERATIONS ==============
+enum RoomType {
+  GENERAL_WARD
+  PRIVATE_ROOM
+  ICU
+  PEDIATRIC
+  MATERNITY
+  ISOLATION
+  EMERGENCY
+}
 
-    class BedStatus {
-        <<enumeration>>
-        AVAILABLE
-        OCCUPIED
-        MAINTENANCE
-        RESERVED
-        OUT_OF_SERVICE
-    }
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  UNDER_MAINTENANCE
+  RESERVED
+  CLOSED
+}
 
-    class AmenityStatus {
-        <<enumeration>>
-        FUNCTIONAL
-        DAMAGED
-        UNDER_REPAIR
-        NEEDS_SERVICE
-    }
+enum BedType {
+  STANDARD
+  PREMIUM
+  ICU_BED
+  PEDIATRIC_BED
+  STRETCHER
+}
 
-    class EquipmentStatus {
-        <<enumeration>>
-        OPERATIONAL
-        IN_MAINTENANCE
-        NEEDS_CALIBRATION
-        OUT_OF_SERVICE
-    }
+enum BedStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+  RESERVED
+  OUT_OF_SERVICE
+}
 
-    Room "1" --> "*" Bed
-    Room "1" --> "*" Amenity
-    Room "1" --> "*" Equipment
-    Bed "1" --> "0..1" Patient
-    Room "1" --> "1" RoomType
-    Room "1" --> "1" RoomStatus
-    Bed "1" --> "1" BedType
-    Bed "1" --> "1" BedStatus
-    Amenity "1" --> "1" AmenityStatus
-    Equipment "1" --> "1" EquipmentStatus
+enum AmenityStatus {
+  FUNCTIONAL
+  DAMAGED
+  UNDER_REPAIR
+  NEEDS_SERVICE
+}
+
+enum EquipmentStatus {
+  OPERATIONAL
+  IN_MAINTENANCE
+  NEEDS_CALIBRATION
+  OUT_OF_SERVICE
+}
+
+' ============== RELATIONSHIPS ==============
+Room "1" --> "0..*" Bed : contains
+Room "1" --> "0..*" Amenity : has
+Room "1" --> "0..*" Equipment : has
+Bed "1" --> "0..1" Patient : occupied by
+Room "1" --> "1" RoomType : is type of
+Room "1" --> "1" RoomStatus : has status
+Bed "1" --> "1" BedType : is type of
+Bed "1" --> "1" BedStatus : has status
+Amenity "1" --> "1" AmenityStatus : has status
+Equipment "1" --> "1" EquipmentStatus : has status
 
 @enduml

@@ -1,0 +1,187 @@
+@startuml Hospital_Management_UseCase_Diagram
+
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam actorBorderColor #333
+skinparam usecaseBorderColor #333
+skinparam arrowColor #333
+
+' ==================== ACTORS ====================
+actor Admin as "Administrator"
+actor Doctor as "Doctor"
+actor Nurse as "Nurse"
+actor Patient as "Patient"
+actor Reception as "Reception Staff"
+
+' ==================== PATIENT MANAGEMENT SYSTEM ====================
+package "Patient Management" {
+  usecase UC_ADD_PATIENT as "Add Patient"
+  usecase UC_VIEW_PATIENT as "View Patient Info"
+  usecase UC_UPDATE_PATIENT as "Update Patient Details"
+  usecase UC_DELETE_PATIENT as "Delete Patient Record"
+  usecase UC_SEARCH_PATIENT as "Search Patient"
+  usecase UC_ADD_MEDICAL_RECORD as "Add Medical Record"
+  usecase UC_VIEW_ALLERGIES as "View Patient Allergies"
+  usecase UC_ASSIGN_DOCTOR as "Assign Doctor to Patient"
+  usecase UC_ASSIGN_NURSE as "Assign Nurse to Patient"
+  usecase UC_DISCHARGE_PATIENT as "Discharge Patient"
+}
+
+' ==================== ROOM MANAGEMENT SYSTEM ====================
+package "Room Management" {
+  usecase UC_ADD_ROOM as "Add Room"
+  usecase UC_VIEW_ROOMS as "View All Rooms"
+  usecase UC_VIEW_ROOM_DETAILS as "View Room Details"
+  usecase UC_UPDATE_ROOM as "Update Room Status"
+  usecase UC_DELETE_ROOM as "Delete Room"
+  usecase UC_ASSIGN_PATIENT_TO_ROOM as "Assign Patient to Room"
+  usecase UC_DISCHARGE_FROM_ROOM as "Discharge Patient from Room"
+  usecase UC_VIEW_AVAILABLE_ROOMS as "View Available Rooms"
+  usecase UC_RESERVE_BED as "Reserve Bed"
+  usecase UC_TRANSFER_PATIENT as "Transfer Patient to Another Room"
+  usecase UC_VIEW_ROOM_OCCUPANCY as "View Room Occupancy"
+  usecase UC_GET_AVAILABLE_ICU_BEDS as "Get Available ICU Beds"
+  usecase UC_SEARCH_AVAILABLE_BEDS as "Search Available Beds"
+}
+
+' ==================== BED MANAGEMENT SYSTEM ====================
+package "Bed Management" {
+  usecase UC_ADD_BED as "Add Bed"
+  usecase UC_VIEW_BEDS as "View All Beds"
+  usecase UC_UPDATE_BED as "Update Bed Status"
+  usecase UC_DELETE_BED as "Delete Bed"
+  usecase UC_ASSIGN_PATIENT_BED as "Assign Patient to Bed"
+  usecase UC_RELEASE_BED as "Release Patient from Bed"
+}
+
+' ==================== DOCTOR MANAGEMENT SYSTEM ====================
+package "Doctor Management" {
+  usecase UC_ADD_DOCTOR as "Add Doctor"
+  usecase UC_VIEW_DOCTORS as "View All Doctors"
+  usecase UC_VIEW_DOCTOR_DETAILS as "View Doctor Details"
+  usecase UC_UPDATE_DOCTOR as "Update Doctor Info"
+  usecase UC_DELETE_DOCTOR as "Delete Doctor"
+  usecase UC_ADD_CERTIFICATION as "Add Doctor Certification"
+  usecase UC_GET_AVAILABLE_DOCTORS as "Get Available Doctors"
+  usecase UC_VIEW_PATIENTS as "View Doctor's Patients"
+}
+
+' ==================== NURSE MANAGEMENT SYSTEM ====================
+package "Nurse Management" {
+  usecase UC_ADD_NURSE as "Add Nurse"
+  usecase UC_VIEW_NURSES as "View All Nurses"
+  usecase UC_VIEW_NURSE_DETAILS as "View Nurse Details"
+  usecase UC_UPDATE_NURSE as "Update Nurse Info"
+  usecase UC_DELETE_NURSE as "Delete Nurse"
+  usecase UC_ASSIGN_NURSE_ROOM as "Assign Room to Nurse"
+  usecase UC_ASSIGN_NURSE_PATIENT as "Assign Patient to Nurse"
+  usecase UC_GET_NURSE_WORKLOAD as "Get Nurse Workload"
+}
+
+' ==================== APPOINTMENT MANAGEMENT SYSTEM ====================
+package "Appointment Management" {
+  usecase UC_SCHEDULE_APPOINTMENT as "Schedule Appointment"
+  usecase UC_VIEW_APPOINTMENTS as "View All Appointments"
+  usecase UC_UPDATE_APPOINTMENT as "Update Appointment Status"
+  usecase UC_CANCEL_APPOINTMENT as "Cancel Appointment"
+  usecase UC_VIEW_DOCTOR_SCHEDULE as "View Doctor Schedule"
+  usecase UC_CHECK_DOCTOR_AVAILABILITY as "Check Doctor Availability"
+  usecase UC_GET_UPCOMING_APPOINTMENTS as "Get Upcoming Appointments"
+}
+
+' ==================== PRESCRIPTION MANAGEMENT SYSTEM ====================
+package "Prescription Management" {
+  usecase UC_CREATE_PRESCRIPTION as "Create Prescription"
+  usecase UC_VIEW_PRESCRIPTIONS as "View Prescriptions"
+  usecase UC_UPDATE_PRESCRIPTION as "Update Prescription"
+  usecase UC_DELETE_PRESCRIPTION as "Delete Prescription"
+  usecase UC_ADD_MEDICATION as "Add Medication to Prescription"
+  usecase UC_REMOVE_MEDICATION as "Remove Medication"
+  usecase UC_VIEW_PATIENT_MEDICATIONS as "View Patient Medications"
+}
+
+' ==================== EQUIPMENT MANAGEMENT SYSTEM ====================
+package "Equipment Management" {
+  usecase UC_ADD_EQUIPMENT as "Add Equipment"
+  usecase UC_VIEW_EQUIPMENT as "View All Equipment"
+  usecase UC_UPDATE_EQUIPMENT as "Update Equipment Status"
+  usecase UC_REPORT_MAINTENANCE as "Report Equipment Maintenance"
+  usecase UC_REMOVE_EQUIPMENT as "Remove Equipment"
+  usecase UC_GET_OPERATIONAL_EQUIPMENT as "Get Operational Equipment"
+}
+
+' ==================== EMERGENCY MANAGEMENT SYSTEM ====================
+package "Emergency Management" {
+  usecase UC_FIND_EMERGENCY_ROOM as "Find Emergency Room"
+  usecase UC_ASSIGN_EMERGENCY_ROOM as "Assign Emergency Room"
+  usecase UC_GET_AVAILABLE_EMERGENCY_BEDS as "Get Available Emergency Beds"
+  usecase UC_VIEW_EMERGENCY_CASES as "View Emergency Cases"
+}
+
+' ==================== SEARCH & ANALYTICS SYSTEM ====================
+package "Search & Analytics" {
+  usecase UC_SEARCH_APPOINTMENTS as "Search Appointments"
+  usecase UC_SEARCH_PRESCRIPTIONS as "Search Prescriptions"
+  usecase UC_GET_STATISTICS as "View System Statistics"
+  usecase UC_GENERATE_REPORTS as "Generate Reports"
+  usecase UC_FILTER_DATA as "Filter Data"
+}
+
+' ==================== ADMINISTRATIVE STAFF ====================
+package "Administrative Operations" {
+  usecase UC_ADD_ADMIN as "Add Administrative Staff"
+  usecase UC_VIEW_ADMIN as "View Administrative Staff"
+  usecase UC_UPDATE_ADMIN as "Update Admin Info"
+  usecase UC_DELETE_ADMIN as "Delete Admin"
+  usecase UC_MANAGE_RESPONSIBILITIES as "Manage Responsibilities"
+}
+
+' ==================== MEDICATION SYSTEM ====================
+package "Medication Database" {
+  usecase UC_ADD_MEDICATION as "Add Medication"
+  usecase UC_VIEW_MEDICATIONS as "View All Medications"
+  usecase UC_UPDATE_MEDICATION as "Update Medication Info"
+  usecase UC_DELETE_MEDICATION as "Delete Medication"
+  usecase UC_CHECK_SIDE_EFFECTS as "Check Side Effects"
+}
+
+' ==================== ACTOR ASSOCIATIONS ====================
+
+' Admin associations
+Admin --> UC_ADD_PATIENT
+Admin --> UC_ADD_ROOM
+Admin --> UC_ADD_DOCTOR
+Admin --> UC_ADD_NURSE
+Admin --> UC_ADD_ADMIN
+Admin --> UC_VIEW_DOCTORS
+Admin --> UC_VIEW_NURSES
+Admin --> UC_GET_STATISTICS
+
+' Doctor associations
+Doctor --> UC_VIEW_PATIENT
+Doctor --> UC_CREATE_PRESCRIPTION
+Doctor --> UC_SCHEDULE_APPOINTMENT
+Doctor --> UC_VIEW_DOCTOR_SCHEDULE
+Doctor --> UC_ADD_CERTIFICATION
+Doctor --> UC_VIEW_PATIENTS
+
+' Nurse associations
+Nurse --> UC_VIEW_PATIENT
+Nurse --> UC_ASSIGN_PATIENT_BED
+Nurse --> UC_RELEASE_BED
+Nurse --> UC_VIEW_APPOINTMENTS
+Nurse --> UC_VIEW_PATIENT_MEDICATIONS
+
+' Patient associations
+Patient --> UC_VIEW_PATIENT
+Patient --> UC_VIEW_APPOINTMENTS
+Patient --> UC_VIEW_ALLERGIES
+
+' Reception associations
+Reception --> UC_SCHEDULE_APPOINTMENT
+Reception --> UC_VIEW_APPOINTMENTS
+Reception --> UC_SEARCH_PATIENT
+Reception --> UC_UPDATE_PATIENT
+Reception --> UC_ASSIGN_PATIENT_TO_ROOM
+
+@enduml

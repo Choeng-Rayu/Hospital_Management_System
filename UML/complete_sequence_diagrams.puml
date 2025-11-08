@@ -1,0 +1,341 @@
+@startuml Hospital_Complete_Sequence_Diagrams
+
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam sequenceActorBorderColor #333
+skinparam sequenceParticipantBorderColor #333
+skinparam sequenceArrowColor #333
+
+' ==================== SEQUENCE 1: PATIENT ADMISSION ====================
+@enduml
+
+@startuml Patient_Admission_Sequence
+
+title Patient Admission Workflow
+
+participant "Reception" as Reception
+participant "Patient Management\nSystem" as PatientSys
+participant "Room Management\nSystem" as RoomSys
+participant "Bed Management\nSystem" as BedSys
+participant "Nurse" as Nurse
+participant "Database" as DB
+
+Reception -> PatientSys: registerPatient(patientInfo)
+activate PatientSys
+PatientSys -> DB: savePatientData()
+activate DB
+DB --> PatientSys: patientID
+deactivate DB
+PatientSys --> Reception: Patient registered successfully
+
+Reception -> RoomSys: requestAvailableRoom(roomType)
+activate RoomSys
+RoomSys -> DB: getAvailableRooms(roomType)
+activate DB
+DB --> RoomSys: roomList
+deactivate DB
+RoomSys --> Reception: availableRooms
+
+Reception -> BedSys: assignBed(patientID, roomID)
+activate BedSys
+BedSys -> DB: updateBedStatus(occupied)
+activate DB
+DB --> BedSys: success
+deactivate DB
+BedSys -> PatientSys: updatePatientRoom(patientID, roomID, bedID)
+activate PatientSys
+PatientSys -> DB: saveRoomAssignment()
+deactivate PatientSys
+BedSys --> Reception: Bed assigned successfully
+
+Nurse -> PatientSys: getPatientInfo(patientID)
+activate PatientSys
+PatientSys -> DB: fetchPatientDetails()
+activate DB
+DB --> PatientSys: patientDetails
+deactivate DB
+PatientSys --> Nurse: Patient information
+
+@enduml
+
+' ==================== SEQUENCE 2: APPOINTMENT SCHEDULING ====================
+@startuml Appointment_Scheduling_Sequence
+
+title Appointment Scheduling Workflow
+
+participant "Reception" as Reception
+participant "Appointment\nManagement" as AppointmentSys
+participant "Doctor\nManagement" as DoctorSys
+participant "Room\nManagement" as RoomSys
+participant "Doctor" as Doctor
+participant "Database" as DB
+
+Reception -> AppointmentSys: checkDoctorAvailability(doctorID, dateTime)
+activate AppointmentSys
+AppointmentSys -> DoctorSys: getDoctorSchedule(doctorID)
+activate DoctorSys
+DoctorSys -> DB: fetchDoctorWorkingHours(doctorID, date)
+activate DB
+DB --> DoctorSys: workingHours
+deactivate DB
+DoctorSys --> AppointmentSys: availability
+deactivate DoctorSys
+
+alt Doctor is Available
+    Reception -> AppointmentSys: scheduleAppointment(patientID, doctorID, dateTime, reason)
+    activate AppointmentSys
+    AppointmentSys -> RoomSys: requestAppointmentRoom()
+    activate RoomSys
+    RoomSys -> DB: findAvailableRoom()
+    activate DB
+    DB --> RoomSys: roomID
+    deactivate DB
+    RoomSys --> AppointmentSys: roomAssigned
+    deactivate RoomSys
+    
+    AppointmentSys -> DB: createAppointment()
+    activate DB
+    DB --> AppointmentSys: appointmentID
+    deactivate DB
+    AppointmentSys --> Reception: Appointment scheduled successfully
+    
+    AppointmentSys -> Doctor: notifyAppointment(appointmentDetails)
+    activate Doctor
+    Doctor --> AppointmentSys: confirmed
+    deactivate Doctor
+else Doctor not Available
+    AppointmentSys --> Reception: Doctor not available at this time
+end
+
+@enduml
+
+' ==================== SEQUENCE 3: EMERGENCY ROOM ASSIGNMENT ====================
+@startuml Emergency_Room_Assignment_Sequence
+
+title Emergency Room Assignment Workflow
+
+participant "Emergency\nDepartment" as Emergency
+participant "Patient\nManagement" as PatientSys
+participant "Room\nManagement" as RoomSys
+participant "Bed\nManagement" as BedSys
+participant "Doctor" as Doctor
+participant "Nurse" as Nurse
+participant "Database" as DB
+
+Emergency -> PatientSys: registerEmergencyPatient(patientInfo, emergencyLevel)
+activate PatientSys
+PatientSys -> DB: createEmergencyRecord()
+activate DB
+DB --> PatientSys: patientID
+deactivate DB
+PatientSys --> Emergency: Patient registered
+
+Emergency -> RoomSys: findEmergencyRoom(emergencyLevel)
+activate RoomSys
+RoomSys -> DB: getAvailableEmergencyRooms(emergencyLevel)
+activate DB
+DB --> RoomSys: emergencyRooms
+deactivate DB
+RoomSys --> Emergency: availableRooms
+
+Emergency -> BedSys: assignEmergencyBed(patientID, roomID)
+activate BedSys
+BedSys -> DB: updateBedStatus(occupied)
+activate DB
+DB --> BedSys: success
+deactivate DB
+BedSys --> Emergency: Bed assigned
+
+Emergency -> Doctor: notifyEmergency(patientID, emergencyLevel)
+activate Doctor
+Doctor -> PatientSys: getPatientInfo(patientID)
+activate PatientSys
+PatientSys -> DB: fetchPatientDetails()
+activate DB
+DB --> PatientSys: patientData
+deactivate DB
+PatientSys --> Doctor: patientInfo
+deactivate PatientSys
+Doctor --> Emergency: Emergency acknowledged
+deactivate Doctor
+
+Emergency -> Nurse: assignNurseToPatient(patientID, nurseID)
+activate Nurse
+Nurse -> DB: updateNurseAssignment()
+Nurse --> Emergency: Nurse assigned
+deactivate Nurse
+
+@enduml
+
+' ==================== SEQUENCE 4: PRESCRIPTION CREATION ====================
+@startuml Prescription_Creation_Sequence
+
+title Prescription Creation Workflow
+
+participant "Doctor" as Doctor
+participant "Patient\nManagement" as PatientSys
+participant "Prescription\nManagement" as PrescriptionSys
+participant "Medication\nDatabase" as MedDB
+participant "Database" as DB
+
+Doctor -> PatientSys: getPatientInfo(patientID)
+activate PatientSys
+PatientSys -> DB: fetchPatientDetails()
+activate DB
+DB --> PatientSys: patientData, allergies, medicalHistory
+deactivate DB
+PatientSys --> Doctor: Patient information
+
+Doctor -> MedDB: searchMedications(condition)
+activate MedDB
+MedDB -> DB: getMedicationList(condition)
+activate DB
+DB --> MedDB: medicationList
+deactivate DB
+MedDB --> Doctor: medications with dosages & side effects
+
+Doctor -> PrescriptionSys: createPrescription(patientID, medications[], instructions)
+activate PrescriptionSys
+PrescriptionSys -> DB: checkMedicationInteractions(medications[], allergies)
+activate DB
+DB --> PrescriptionSys: interactionWarnings
+deactivate DB
+
+alt No Harmful Interactions
+    PrescriptionSys -> DB: savePrescription(prescriptionData)
+    activate DB
+    DB --> PrescriptionSys: prescriptionID
+    deactivate DB
+    PrescriptionSys -> PatientSys: updatePatientPrescriptions()
+    activate PatientSys
+    PatientSys -> DB: savePrescriptionLink()
+    deactivate PatientSys
+    PrescriptionSys --> Doctor: Prescription created successfully
+else Dangerous Interaction Found
+    PrescriptionSys --> Doctor: Warning: Medication interaction detected. Review required.
+    Doctor -> PrescriptionSys: confirmWithWarning()
+    PrescriptionSys -> DB: savePrescription(withWarning)
+end
+
+@enduml
+
+' ==================== SEQUENCE 5: PATIENT TRANSFER ====================
+@startuml Patient_Transfer_Sequence
+
+title Patient Room Transfer Workflow
+
+participant "Nurse" as Nurse
+participant "Room\nManagement" as RoomSys
+participant "Bed\nManagement" as BedSys
+participant "Patient\nManagement" as PatientSys
+participant "Database" as DB
+
+Nurse -> RoomSys: requestRoomTransfer(patientID, reason)
+activate RoomSys
+RoomSys -> DB: getPatientCurrentRoom(patientID)
+activate DB
+DB --> RoomSys: currentRoomID
+deactivate DB
+
+RoomSys -> RoomSys: findCompatibleAvailableRoom(patientCondition)
+activate RoomSys as RoomSys2
+RoomSys -> DB: getAvailableRooms(roomType)
+activate DB
+DB --> RoomSys: availableRooms
+deactivate DB
+deactivate RoomSys2
+
+RoomSys --> Nurse: suggestedRooms
+
+alt Nurse Approves Transfer
+    Nurse -> BedSys: releasePreviousBed(currentBedID)
+    activate BedSys
+    BedSys -> DB: updateBedStatus(available)
+    activate DB
+    DB --> BedSys: success
+    deactivate DB
+    BedSys --> Nurse: Previous bed released
+    
+    Nurse -> BedSys: assignNewBed(patientID, newRoomID, newBedID)
+    activate BedSys
+    BedSys -> DB: updateBedStatus(occupied)
+    activate DB
+    DB --> BedSys: success
+    deactivate DB
+    BedSys --> Nurse: New bed assigned
+    
+    Nurse -> PatientSys: updatePatientLocation(patientID, newRoomID, newBedID)
+    activate PatientSys
+    PatientSys -> DB: saveTransferRecord()
+    activate DB
+    DB --> PatientSys: success
+    deactivate DB
+    PatientSys --> Nurse: Patient location updated
+    
+    Nurse --> RoomSys: Transfer completed successfully
+else Nurse Cancels Transfer
+    RoomSys --> Nurse: Transfer cancelled
+end
+
+@enduml
+
+' ==================== SEQUENCE 6: DISCHARGE PROCESS ====================
+@startuml Patient_Discharge_Sequence
+
+title Patient Discharge Workflow
+
+participant "Doctor" as Doctor
+participant "Nurse" as Nurse
+participant "Patient\nManagement" as PatientSys
+participant "Room\nManagement" as RoomSys
+participant "Bed\nManagement" as BedSys
+participant "Reception" as Reception
+participant "Database" as DB
+
+Doctor -> PatientSys: initiateDischarge(patientID)
+activate PatientSys
+PatientSys -> DB: markPatientForDischarge(patientID)
+activate DB
+DB --> PatientSys: dischargePending
+deactivate DB
+PatientSys --> Doctor: Discharge initiated
+
+Doctor -> PatientSys: generateDischargeDocumentation(patientID)
+activate PatientSys
+PatientSys -> DB: getMedicalRecords(patientID)
+activate DB
+DB --> PatientSys: medicalHistory, prescriptions
+deactivate DB
+PatientSys --> Doctor: Discharge summary prepared
+
+Nurse -> BedSys: releaseBed(currentBedID)
+activate BedSys
+BedSys -> DB: updateBedStatus(available)
+activate DB
+DB --> BedSys: success
+deactivate DB
+BedSys --> Nurse: Bed released
+
+Nurse -> RoomSys: updateRoomOccupancy(roomID)
+activate RoomSys
+RoomSys -> DB: recalculateOccupancy()
+activate DB
+DB --> RoomSys: newOccupancy
+deactivate DB
+RoomSys --> Nurse: Occupancy updated
+
+Nurse -> PatientSys: finalizeDischarge(patientID)
+activate PatientSys
+PatientSys -> DB: updatePatientStatus(discharged)
+PatientSys -> DB: recordDischargeDate()
+activate DB
+DB --> PatientSys: discharged
+deactivate DB
+PatientSys --> Nurse: Patient discharged from system
+
+Nurse -> Reception: notifyDischarge(patientID)
+activate Reception
+Reception --> Nurse: Discharge processed
+
+@enduml
+

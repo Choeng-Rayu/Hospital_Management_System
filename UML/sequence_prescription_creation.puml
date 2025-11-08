@@ -1,0 +1,64 @@
+@startuml Prescription_Creation_Flow
+
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam backgroundColor #FEFEFE
+
+participant Doctor as "Doctor\n(User)"
+participant PrescriptionMenu as "Prescription Menu\n(UI)"
+participant CreateRxUseCase as "Create\nPrescription\nUse Case"
+participant PatientRepo as "Patient\nRepository"
+participant MedicationRepo as "Medication\nRepository"
+participant PrescriptionRepo as "Prescription\nRepository"
+participant Database as "JSON\nDatabase"
+
+Doctor -> PrescriptionMenu: Select "Create Prescription"
+activate PrescriptionMenu
+
+PrescriptionMenu -> PatientRepo: getPatientById(patientID)
+activate PatientRepo
+PatientRepo -> Database: Read patients.json
+activate Database
+Database --> PatientRepo: Patient + allergies
+deactivate Database
+PatientRepo --> PrescriptionMenu: Patient with allergies
+deactivate PatientRepo
+
+PrescriptionMenu -> PrescriptionMenu: Display patient allergies\nfor reference
+
+PrescriptionMenu -> PrescriptionMenu: Enter medications\n& instructions
+
+PrescriptionMenu -> MedicationRepo: getMedicationByName(name)
+activate MedicationRepo
+MedicationRepo -> Database: Read medications.json
+activate Database
+Database --> MedicationRepo: Medication details
+deactivate Database
+MedicationRepo --> PrescriptionMenu: Medication info
+deactivate MedicationRepo
+
+PrescriptionMenu -> CreateRxUseCase: execute(CreatePrescriptionInput)
+activate CreateRxUseCase
+
+CreateRxUseCase -> CreateRxUseCase: Check drug interactions\nwith patient allergies
+
+CreateRxUseCase -> CreateRxUseCase: Validate medications\nand dosages
+
+CreateRxUseCase -> CreateRxUseCase: Check contraindications\nwith patient history
+
+CreateRxUseCase -> PrescriptionRepo: savePrescription(prescription)
+activate PrescriptionRepo
+PrescriptionRepo -> Database: Write prescriptions.json
+activate Database
+Database --> PrescriptionRepo: Success
+deactivate Database
+PrescriptionRepo --> CreateRxUseCase: Prescription saved
+deactivate PrescriptionRepo
+
+CreateRxUseCase --> PrescriptionMenu: Prescription created\nPrescription ID: RX###
+deactivate CreateRxUseCase
+
+PrescriptionMenu -> Doctor: Display prescription\nwith all medications\nand instructions
+deactivate PrescriptionMenu
+
+@enduml

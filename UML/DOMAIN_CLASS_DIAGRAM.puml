@@ -1,0 +1,36 @@
+@startuml DOMAIN_CLASS_DIAGRAM
+
+abstract class Person
+abstract class Staff extends Person
+
+class Doctor extends Staff
+class Nurse extends Staff
+class Administrative extends Staff
+
+class Patient extends Person
+class Appointment
+class Prescription
+class Medication
+
+class Room
+class Bed
+class Equipment
+
+Patient "*" -- "*" Doctor
+Patient "*" -- "*" Nurse
+Patient "1" -- "*" Prescription
+Patient "1" -- "1" Room
+
+Doctor "1" -- "*" Appointment
+Patient "1" -- "*" Appointment
+
+Prescription "*" -- "*" Medication
+Prescription "1" -- "1" Doctor
+Prescription "1" -- "1" Patient
+
+Room "1" -- "*" Bed
+Room "1" -- "*" Equipment
+
+Nurse "*" -- "*" Patient
+
+@enduml

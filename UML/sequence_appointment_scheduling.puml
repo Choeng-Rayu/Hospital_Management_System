@@ -1,0 +1,62 @@
+@startuml Appointment_Scheduling_Flow
+
+!theme plain
+skinparam sequenceMessageAlign center
+skinparam backgroundColor #FEFEFE
+
+participant Doctor as "Doctor\n(User)"
+participant AppointmentMenu as "Appointment Menu\n(UI)"
+participant ScheduleUseCase as "Schedule\nAppointment\nUse Case"
+participant PatientRepo as "Patient\nRepository"
+participant DoctorRepo as "Doctor\nRepository"
+participant AppointmentRepo as "Appointment\nRepository"
+participant Database as "JSON\nDatabase"
+
+Doctor -> AppointmentMenu: Select "Schedule Appointment"
+activate AppointmentMenu
+
+AppointmentMenu -> AppointmentMenu: Get appointment details\n(Date, Time, Reason, Duration)
+
+AppointmentMenu -> PatientRepo: getPatientById(patientID)
+activate PatientRepo
+PatientRepo -> Database: Read patients.json
+activate Database
+Database --> PatientRepo: Patient
+deactivate Database
+PatientRepo --> AppointmentMenu: Patient retrieved
+deactivate PatientRepo
+
+AppointmentMenu -> DoctorRepo: getDoctorById(doctorID)
+activate DoctorRepo
+DoctorRepo -> Database: Read doctors.json
+activate Database
+Database --> DoctorRepo: Doctor
+deactivate Database
+DoctorRepo --> AppointmentMenu: Doctor retrieved
+deactivate DoctorRepo
+
+AppointmentMenu -> AppointmentMenu: Display confirmation\n(Patient & Doctor details)
+
+AppointmentMenu -> ScheduleUseCase: execute(ScheduleAppointmentInput)
+activate ScheduleUseCase
+
+ScheduleUseCase -> ScheduleUseCase: Validate appointment\n(DateTime not in past,\nDoctor available)
+
+ScheduleUseCase -> ScheduleUseCase: Check for conflicts\nwith existing appointments
+
+ScheduleUseCase -> AppointmentRepo: saveAppointment(appointment)
+activate AppointmentRepo
+AppointmentRepo -> Database: Write appointments.json
+activate Database
+Database --> AppointmentRepo: Success
+deactivate Database
+AppointmentRepo --> ScheduleUseCase: Appointment created
+deactivate AppointmentRepo
+
+ScheduleUseCase --> AppointmentMenu: Success\nAppointment ID: A###
+deactivate ScheduleUseCase
+
+AppointmentMenu -> Doctor: Display appointment confirmation\nwith all details
+deactivate AppointmentMenu
+
+@enduml

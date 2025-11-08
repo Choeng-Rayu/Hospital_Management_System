@@ -1,0 +1,125 @@
+@startuml Hospital_Management_UseCases
+
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam actorBorderColor #333
+skinparam usecaseBorderColor #333
+skinparam arrowColor #333
+
+actor Patient as P
+actor Doctor as D
+actor Nurse as N
+actor Admin as A
+actor Emergency as E
+
+usecase "Manage Patients" as UC1
+usecase "View Patient Profile" as UC1_1
+usecase "Admit Patient" as UC1_2
+usecase "Update Patient Records" as UC1_3
+usecase "Discharge Patient" as UC1_4
+
+usecase "Manage Doctors" as UC2
+usecase "Register Doctor" as UC2_1
+usecase "View Doctor Info" as UC2_2
+usecase "Update Specialization" as UC2_3
+usecase "Assign to Patient" as UC2_4
+
+usecase "Manage Appointments" as UC3
+usecase "Schedule Appointment" as UC3_1
+usecase "Reschedule Appointment" as UC3_2
+usecase "Cancel Appointment" as UC3_3
+usecase "Complete Appointment" as UC3_4
+usecase "View Appointment Schedule" as UC3_5
+
+usecase "Manage Prescriptions" as UC4
+usecase "Create Prescription" as UC4_1
+usecase "View Prescription" as UC4_2
+usecase "Check Drug Interactions" as UC4_3
+usecase "Refill Prescription" as UC4_4
+
+usecase "Manage Rooms" as UC5
+usecase "Add Room" as UC5_1
+usecase "View Available Rooms" as UC5_2
+usecase "Assign Patient to Room" as UC5_3
+usecase "Update Room Status" as UC5_4
+usecase "Manage Equipment" as UC5_5
+
+usecase "Manage Nurses" as UC6
+usecase "Assign Rooms to Nurse" as UC6_1
+usecase "Assign Patients to Nurse" as UC6_2
+usecase "View Nurse Schedule" as UC6_3
+
+usecase "Emergency Operations" as UC7
+usecase "Register Emergency Patient" as UC7_1
+usecase "Find Emergency Room" as UC7_2
+usecase "Assign Emergency Doctor" as UC7_3
+usecase "Priority Assignment" as UC7_4
+
+usecase "Search Operations" as UC8
+usecase "Search Patient" as UC8_1
+usecase "Search Doctor" as UC8_2
+usecase "Search Room" as UC8_3
+usecase "Advanced Search" as UC8_4
+
+' Main actors to main use cases
+P --> UC1
+D --> UC2
+D --> UC3
+D --> UC4
+D --> UC8
+N --> UC6
+N --> UC8
+A --> UC5
+E --> UC7
+E --> UC8
+
+' Patient use case hierarchy
+UC1 --> UC1_1
+UC1 --> UC1_2
+UC1 --> UC1_3
+UC1 --> UC1_4
+
+' Doctor use case hierarchy
+UC2 --> UC2_1
+UC2 --> UC2_2
+UC2 --> UC2_3
+UC2 --> UC2_4
+
+' Appointment use case hierarchy
+UC3 --> UC3_1
+UC3 --> UC3_2
+UC3 --> UC3_3
+UC3 --> UC3_4
+UC3 --> UC3_5
+
+' Prescription use case hierarchy
+UC4 --> UC4_1
+UC4 --> UC4_2
+UC4 --> UC4_3
+UC4 --> UC4_4
+
+' Room use case hierarchy
+UC5 --> UC5_1
+UC5 --> UC5_2
+UC5 --> UC5_3
+UC5 --> UC5_4
+UC5 --> UC5_5
+
+' Nurse use case hierarchy
+UC6 --> UC6_1
+UC6 --> UC6_2
+UC6 --> UC6_3
+
+' Emergency use case hierarchy
+UC7 --> UC7_1
+UC7 --> UC7_2
+UC7 --> UC7_3
+UC7 --> UC7_4
+
+' Search use case hierarchy
+UC8 --> UC8_1
+UC8 --> UC8_2
+UC8 --> UC8_3
+UC8 --> UC8_4
+
+@enduml
