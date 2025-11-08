@@ -84,11 +84,13 @@ class AdmitEmergencyPatient
 
   @override
   Future<bool> validate(AdmitEmergencyPatientInput input) async {
+    // Validate age is reasonable
     final age = DateTime.now().difference(input.dateOfBirth).inDays ~/ 365;
     if (age < 0 || age > 120) {
       throw UseCaseValidationException('Invalid date of birth');
     }
 
+    // Validate required emergency information
     if (input.symptoms.isEmpty) {
       throw UseCaseValidationException('At least one symptom is required');
     }
@@ -97,6 +99,7 @@ class AdmitEmergencyPatient
       throw UseCaseValidationException('Chief complaint is required');
     }
 
+    // Validate emergency contact
     if (input.emergencyContact.trim().isEmpty) {
       throw UseCaseValidationException('Emergency contact is required');
     }
@@ -108,8 +111,10 @@ class AdmitEmergencyPatient
       AdmitEmergencyPatientInput input) async {
     final admissionTime = DateTime.now();
 
+    // Calculate priority score based on emergency level
     final priorityScore = _calculatePriorityScore(input.emergencyLevel);
 
+    // Find appropriate bed
     final findBedUseCase = FindEmergencyBed(roomRepository: roomRepository);
     final bedAssignment = await findBedUseCase.call(FindEmergencyBedInput(
       emergencyLevel: input.emergencyLevel,
@@ -117,6 +122,7 @@ class AdmitEmergencyPatient
       requiredFeatures: _getRequiredFeatures(input),
     ));
 
+    // Create patient record with emergency flag
     final patient = Patient(
       patientID: 'PAT-EMG-${admissionTime.millisecondsSinceEpoch}',
       name: '${input.firstName} ${input.lastName}',
@@ -137,8 +143,10 @@ class AdmitEmergencyPatient
       emergencyContact: input.emergencyContact,
     );
 
+    // Save patient
     await patientRepository.savePatient(patient);
 
+    // Assign bed to patient
     final room = await roomRepository.getRoomById(bedAssignment.roomId);
     final updatedBeds = room.beds.map((bed) {
       if (bed.bedNumber == bedAssignment.bedNumber) {
@@ -147,6 +155,7 @@ class AdmitEmergencyPatient
       return bed;
     }).toList();
 
+    // Create new room instance
     final updatedRoom = Room(
       roomId: room.roomId,
       number: room.number,
@@ -157,6 +166,7 @@ class AdmitEmergencyPatient
     );
     await roomRepository.updateRoom(updatedRoom);
 
+    // Generate tracking number
     final trackingNumber =
         'EMG-${input.emergencyLevel.toString().split('.').last.substring(0, 3)}-${admissionTime.millisecondsSinceEpoch % 100000}';
 

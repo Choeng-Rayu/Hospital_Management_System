@@ -1,1 +1,856 @@
-[{"staffID":"D001","name":"Dr. Sokha Vann","dateOfBirth":"1979-12-30","address":"100 Street 200, Phnom Penh","tel":"012-000-000","hireDate":"2025-07-25T21:17:00.035257","salary":120000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Cardiology","certifications":["Board Certified Cardiology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D002","name":"Dr. Bopha Kheng","dateOfBirth":"1980-07-17","address":"110 Street 201, Phnom Penh","tel":"017-011-013","hireDate":"2025-01-24T21:17:00.035257","salary":120000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"General Surgery","certifications":["Board Certified General Surgery","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D003","name":"Dr. Rachana Kong","dateOfBirth":"1981-02-02","address":"120 Street 202, Phnom Penh","tel":"070-022-026","hireDate":"2024-07-25T21:17:00.035257","salary":120000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Obstetrics and Gynecology","certifications":["Board Certified Obstetrics and Gynecology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D004","name":"Dr. Malica Ouk","dateOfBirth":"1981-08-21","address":"130 Street 203, Phnom Penh","tel":"012-033-039","hireDate":"2024-01-25T21:17:00.035257","salary":120000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Internal Medicine","certifications":["Board Certified Internal Medicine","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D005","name":"Dr. Sreynich Yun","dateOfBirth":"1982-03-09","address":"140 Street 204, Phnom Penh","tel":"017-044-052","hireDate":"2023-07-26T21:17:00.035257","salary":120000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"Emergency Medicine","certifications":["Board Certified Emergency Medicine","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D006","name":"Dr. Kimheng Ros","dateOfBirth":"1982-09-25","address":"150 Street 205, Phnom Penh","tel":"070-055-065","hireDate":"2023-01-25T21:17:00.035257","salary":90000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Radiology","certifications":["Board Certified Radiology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D007","name":"Dr. Pheakdey Sam","dateOfBirth":"1983-04-13","address":"160 Street 206, Phnom Penh","tel":"012-066-078","hireDate":"2022-07-26T21:17:00.035257","salary":100000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Pediatrics","certifications":["Board Certified Pediatrics","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D008","name":"Dr. Channary Khem","dateOfBirth":"1983-10-30","address":"170 Street 207, Phnom Penh","tel":"017-077-091","hireDate":"2022-01-25T21:17:00.035257","salary":135000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"Neurology","certifications":["Board Certified Neurology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D009","name":"Dr. Dara Sorn","dateOfBirth":"1984-05-17","address":"180 Street 208, Phnom Penh","tel":"070-088-104","hireDate":"2021-07-26T21:17:00.035257","salary":133000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Orthopedics","certifications":["Board Certified Orthopedics","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D010","name":"Dr. Sreypov Lim","dateOfBirth":"1984-12-03","address":"190 Street 209, Phnom Penh","tel":"012-099-117","hireDate":"2021-01-25T21:17:00.035257","salary":123000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Dermatology","certifications":["Board Certified Dermatology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D011","name":"Dr. Sophea Heng","dateOfBirth":"1985-06-21","address":"200 Street 210, Phnom Penh","tel":"017-110-130","hireDate":"2020-07-26T21:17:00.035257","salary":98000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"Psychiatry","certifications":["Board Certified Psychiatry","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D012","name":"Dr. Vicheka Kol","dateOfBirth":"1986-01-07","address":"210 Street 211, Phnom Penh","tel":"070-121-143","hireDate":"2020-01-26T21:17:00.035257","salary":135000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Oncology","certifications":["Board Certified Oncology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D013","name":"Dr. Kanha Tan","dateOfBirth":"1986-07-26","address":"220 Street 212, Phnom Penh","tel":"012-132-156","hireDate":"2019-07-27T21:17:00.035257","salary":145000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Anesthesiology","certifications":["Board Certified Anesthesiology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D014","name":"Dr. Rithy Chea","dateOfBirth":"1987-02-11","address":"230 Street 213, Phnom Penh","tel":"017-143-169","hireDate":"2019-01-26T21:17:00.035257","salary":127000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"Urology","certifications":["Board Certified Urology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D015","name":"Dr. Sokunthea Sor","dateOfBirth":"1987-08-30","address":"240 Street 214, Phnom Penh","tel":"070-154-182","hireDate":"2018-07-27T21:17:00.035257","salary":128000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Ophthalmology","certifications":["Board Certified Ophthalmology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D016","name":"Dr. Pisach Vin","dateOfBirth":"1988-03-17","address":"250 Street 215, Phnom Penh","tel":"012-165-195","hireDate":"2018-01-26T21:17:00.035257","salary":102000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"ENT","certifications":["Board Certified ENT","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D017","name":"Dr. Ratana Prum","dateOfBirth":"1988-10-03","address":"260 Street 216, Phnom Penh","tel":"017-176-208","hireDate":"2017-07-27T21:17:00.035257","salary":120000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"Nephrology","certifications":["Board Certified Nephrology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D018","name":"Dr. Bunroeun Meng","dateOfBirth":"1989-04-21","address":"270 Street 217, Phnom Penh","tel":"070-187-221","hireDate":"2017-01-26T21:17:00.035257","salary":120000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Endocrinology","certifications":["Board Certified Endocrinology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D019","name":"Dr. Sreypich Noun","dateOfBirth":"1989-11-07","address":"280 Street 218, Phnom Penh","tel":"012-198-234","hireDate":"2016-07-27T21:17:00.035257","salary":128000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Gastroenterology","certifications":["Board Certified Gastroenterology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D020","name":"Dr. Kosal Kim","dateOfBirth":"1990-05-26","address":"290 Street 219, Phnom Penh","tel":"017-209-247","hireDate":"2016-01-27T21:17:00.035257","salary":129000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"Pulmonology","certifications":["Board Certified Pulmonology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D021","name":"Dr. Narith Peng","dateOfBirth":"1990-12-12","address":"300 Street 220, Phnom Penh","tel":"070-220-260","hireDate":"2015-07-28T21:17:00.035257","salary":106000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Rheumatology","certifications":["Board Certified Rheumatology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D022","name":"Dr. Sarath Hor","dateOfBirth":"1991-06-30","address":"310 Street 221, Phnom Penh","tel":"012-231-273","hireDate":"2015-01-27T21:17:00.035257","salary":116000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Infectious Disease","certifications":["Board Certified Infectious Disease","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D023","name":"Dr. Vibol Chan","dateOfBirth":"1992-01-16","address":"320 Street 222, Phnom Penh","tel":"017-242-286","hireDate":"2014-07-28T21:17:00.035257","salary":127000.0,"schedule":{"Monday":{"start":"2025-11-04T14:00:00.000Z","end":"2025-11-04T22:00:00.000Z"},"Tuesday":{"start":"2025-11-05T14:00:00.000Z","end":"2025-11-05T22:00:00.000Z"},"Wednesday":{"start":"2025-11-06T14:00:00.000Z","end":"2025-11-06T22:00:00.000Z"},"Thursday":{"start":"2025-11-07T14:00:00.000Z","end":"2025-11-07T22:00:00.000Z"},"Friday":{"start":"2025-11-08T14:00:00.000Z","end":"2025-11-08T22:00:00.000Z"}},"specialization":"Hematology","certifications":["Board Certified Hematology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D024","name":"Dr. Phanith Sok","dateOfBirth":"1992-08-03","address":"330 Street 223, Phnom Penh","tel":"070-253-299","hireDate":"2014-01-27T21:17:00.035257","salary":103000.0,"schedule":{"Tuesday":{"start":"2025-11-05T08:00:00.000Z","end":"2025-11-05T16:00:00.000Z"},"Wednesday":{"start":"2025-11-06T08:00:00.000Z","end":"2025-11-06T16:00:00.000Z"},"Thursday":{"start":"2025-11-07T08:00:00.000Z","end":"2025-11-07T16:00:00.000Z"},"Friday":{"start":"2025-11-08T08:00:00.000Z","end":"2025-11-08T16:00:00.000Z"},"Saturday":{"start":"2025-11-09T08:00:00.000Z","end":"2025-11-09T16:00:00.000Z"}},"specialization":"Pathology","certifications":["Board Certified Pathology","ACLS","BLS"],"currentPatientIds":[]},{"staffID":"D025","name":"Dr. Ponlok Seang","dateOfBirth":"1993-02-19","address":"340 Street 224, Phnom Penh","tel":"012-264-312","hireDate":"2013-07-28T21:17:00.035257","salary":105000.0,"schedule":{"Monday":{"start":"2025-11-04T09:00:00.000Z","end":"2025-11-04T17:00:00.000Z"},"Tuesday":{"start":"2025-11-05T09:00:00.000Z","end":"2025-11-05T17:00:00.000Z"},"Wednesday":{"start":"2025-11-06T09:00:00.000Z","end":"2025-11-06T17:00:00.000Z"},"Thursday":{"start":"2025-11-07T09:00:00.000Z","end":"2025-11-07T17:00:00.000Z"},"Friday":{"start":"2025-11-08T09:00:00.000Z","end":"2025-11-08T17:00:00.000Z"}},"specialization":"Family Medicine","certifications":["Board Certified Family Medicine","ACLS","BLS"],"currentPatientIds":[]}]
+[
+  {
+    "staffID": "D001",
+    "name": "Dr. Sokha Vann",
+    "dateOfBirth": "1979-12-30",
+    "address": "100 Street 200, Phnom Penh",
+    "tel": "012-000-000",
+    "hireDate": "2025-07-25T21:17:00.035257",
+    "salary": 120000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Cardiology",
+    "certifications": ["Board Certified Cardiology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D002",
+    "name": "Dr. Bopha Kheng",
+    "dateOfBirth": "1980-07-17",
+    "address": "110 Street 201, Phnom Penh",
+    "tel": "017-011-013",
+    "hireDate": "2025-01-24T21:17:00.035257",
+    "salary": 120000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "General Surgery",
+    "certifications": ["Board Certified General Surgery", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D003",
+    "name": "Dr. Rachana Kong",
+    "dateOfBirth": "1981-02-02",
+    "address": "120 Street 202, Phnom Penh",
+    "tel": "070-022-026",
+    "hireDate": "2024-07-25T21:17:00.035257",
+    "salary": 120000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Obstetrics and Gynecology",
+    "certifications": [
+      "Board Certified Obstetrics and Gynecology",
+      "ACLS",
+      "BLS"
+    ],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D004",
+    "name": "Dr. Malica Ouk",
+    "dateOfBirth": "1981-08-21",
+    "address": "130 Street 203, Phnom Penh",
+    "tel": "012-033-039",
+    "hireDate": "2024-01-25T21:17:00.035257",
+    "salary": 120000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Internal Medicine",
+    "certifications": ["Board Certified Internal Medicine", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D005",
+    "name": "Dr. Sreynich Yun",
+    "dateOfBirth": "1982-03-09",
+    "address": "140 Street 204, Phnom Penh",
+    "tel": "017-044-052",
+    "hireDate": "2023-07-26T21:17:00.035257",
+    "salary": 120000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "Emergency Medicine",
+    "certifications": ["Board Certified Emergency Medicine", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D006",
+    "name": "Dr. Kimheng Ros",
+    "dateOfBirth": "1982-09-25",
+    "address": "150 Street 205, Phnom Penh",
+    "tel": "070-055-065",
+    "hireDate": "2023-01-25T21:17:00.035257",
+    "salary": 90000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Radiology",
+    "certifications": ["Board Certified Radiology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D007",
+    "name": "Dr. Pheakdey Sam",
+    "dateOfBirth": "1983-04-13",
+    "address": "160 Street 206, Phnom Penh",
+    "tel": "012-066-078",
+    "hireDate": "2022-07-26T21:17:00.035257",
+    "salary": 100000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Pediatrics",
+    "certifications": ["Board Certified Pediatrics", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D008",
+    "name": "Dr. Channary Khem",
+    "dateOfBirth": "1983-10-30",
+    "address": "170 Street 207, Phnom Penh",
+    "tel": "017-077-091",
+    "hireDate": "2022-01-25T21:17:00.035257",
+    "salary": 135000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "Neurology",
+    "certifications": ["Board Certified Neurology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D009",
+    "name": "Dr. Dara Sorn",
+    "dateOfBirth": "1984-05-17",
+    "address": "180 Street 208, Phnom Penh",
+    "tel": "070-088-104",
+    "hireDate": "2021-07-26T21:17:00.035257",
+    "salary": 133000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Orthopedics",
+    "certifications": ["Board Certified Orthopedics", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D010",
+    "name": "Dr. Sreypov Lim",
+    "dateOfBirth": "1984-12-03",
+    "address": "190 Street 209, Phnom Penh",
+    "tel": "012-099-117",
+    "hireDate": "2021-01-25T21:17:00.035257",
+    "salary": 123000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Dermatology",
+    "certifications": ["Board Certified Dermatology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D011",
+    "name": "Dr. Sophea Heng",
+    "dateOfBirth": "1985-06-21",
+    "address": "200 Street 210, Phnom Penh",
+    "tel": "017-110-130",
+    "hireDate": "2020-07-26T21:17:00.035257",
+    "salary": 98000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "Psychiatry",
+    "certifications": ["Board Certified Psychiatry", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D012",
+    "name": "Dr. Vicheka Kol",
+    "dateOfBirth": "1986-01-07",
+    "address": "210 Street 211, Phnom Penh",
+    "tel": "070-121-143",
+    "hireDate": "2020-01-26T21:17:00.035257",
+    "salary": 135000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Oncology",
+    "certifications": ["Board Certified Oncology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D013",
+    "name": "Dr. Kanha Tan",
+    "dateOfBirth": "1986-07-26",
+    "address": "220 Street 212, Phnom Penh",
+    "tel": "012-132-156",
+    "hireDate": "2019-07-27T21:17:00.035257",
+    "salary": 145000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Anesthesiology",
+    "certifications": ["Board Certified Anesthesiology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D014",
+    "name": "Dr. Rithy Chea",
+    "dateOfBirth": "1987-02-11",
+    "address": "230 Street 213, Phnom Penh",
+    "tel": "017-143-169",
+    "hireDate": "2019-01-26T21:17:00.035257",
+    "salary": 127000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "Urology",
+    "certifications": ["Board Certified Urology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D015",
+    "name": "Dr. Sokunthea Sor",
+    "dateOfBirth": "1987-08-30",
+    "address": "240 Street 214, Phnom Penh",
+    "tel": "070-154-182",
+    "hireDate": "2018-07-27T21:17:00.035257",
+    "salary": 128000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Ophthalmology",
+    "certifications": ["Board Certified Ophthalmology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D016",
+    "name": "Dr. Pisach Vin",
+    "dateOfBirth": "1988-03-17",
+    "address": "250 Street 215, Phnom Penh",
+    "tel": "012-165-195",
+    "hireDate": "2018-01-26T21:17:00.035257",
+    "salary": 102000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "ENT",
+    "certifications": ["Board Certified ENT", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D017",
+    "name": "Dr. Ratana Prum",
+    "dateOfBirth": "1988-10-03",
+    "address": "260 Street 216, Phnom Penh",
+    "tel": "017-176-208",
+    "hireDate": "2017-07-27T21:17:00.035257",
+    "salary": 120000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "Nephrology",
+    "certifications": ["Board Certified Nephrology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D018",
+    "name": "Dr. Bunroeun Meng",
+    "dateOfBirth": "1989-04-21",
+    "address": "270 Street 217, Phnom Penh",
+    "tel": "070-187-221",
+    "hireDate": "2017-01-26T21:17:00.035257",
+    "salary": 120000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Endocrinology",
+    "certifications": ["Board Certified Endocrinology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D019",
+    "name": "Dr. Sreypich Noun",
+    "dateOfBirth": "1989-11-07",
+    "address": "280 Street 218, Phnom Penh",
+    "tel": "012-198-234",
+    "hireDate": "2016-07-27T21:17:00.035257",
+    "salary": 128000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Gastroenterology",
+    "certifications": ["Board Certified Gastroenterology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D020",
+    "name": "Dr. Kosal Kim",
+    "dateOfBirth": "1990-05-26",
+    "address": "290 Street 219, Phnom Penh",
+    "tel": "017-209-247",
+    "hireDate": "2016-01-27T21:17:00.035257",
+    "salary": 129000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "Pulmonology",
+    "certifications": ["Board Certified Pulmonology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D021",
+    "name": "Dr. Narith Peng",
+    "dateOfBirth": "1990-12-12",
+    "address": "300 Street 220, Phnom Penh",
+    "tel": "070-220-260",
+    "hireDate": "2015-07-28T21:17:00.035257",
+    "salary": 106000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Rheumatology",
+    "certifications": ["Board Certified Rheumatology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D022",
+    "name": "Dr. Sarath Hor",
+    "dateOfBirth": "1991-06-30",
+    "address": "310 Street 221, Phnom Penh",
+    "tel": "012-231-273",
+    "hireDate": "2015-01-27T21:17:00.035257",
+    "salary": 116000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Infectious Disease",
+    "certifications": ["Board Certified Infectious Disease", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D023",
+    "name": "Dr. Vibol Chan",
+    "dateOfBirth": "1992-01-16",
+    "address": "320 Street 222, Phnom Penh",
+    "tel": "017-242-286",
+    "hireDate": "2014-07-28T21:17:00.035257",
+    "salary": 127000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T14:00:00.000Z",
+        "end": "2025-11-04T22:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T14:00:00.000Z",
+        "end": "2025-11-05T22:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T14:00:00.000Z",
+        "end": "2025-11-06T22:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T14:00:00.000Z",
+        "end": "2025-11-07T22:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T14:00:00.000Z",
+        "end": "2025-11-08T22:00:00.000Z"
+      }
+    },
+    "specialization": "Hematology",
+    "certifications": ["Board Certified Hematology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D024",
+    "name": "Dr. Phanith Sok",
+    "dateOfBirth": "1992-08-03",
+    "address": "330 Street 223, Phnom Penh",
+    "tel": "070-253-299",
+    "hireDate": "2014-01-27T21:17:00.035257",
+    "salary": 103000.0,
+    "schedule": {
+      "Tuesday": {
+        "start": "2025-11-05T08:00:00.000Z",
+        "end": "2025-11-05T16:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T08:00:00.000Z",
+        "end": "2025-11-06T16:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T08:00:00.000Z",
+        "end": "2025-11-07T16:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T08:00:00.000Z",
+        "end": "2025-11-08T16:00:00.000Z"
+      },
+      "Saturday": {
+        "start": "2025-11-09T08:00:00.000Z",
+        "end": "2025-11-09T16:00:00.000Z"
+      }
+    },
+    "specialization": "Pathology",
+    "certifications": ["Board Certified Pathology", "ACLS", "BLS"],
+    "currentPatientIds": []
+  },
+  {
+    "staffID": "D025",
+    "name": "Dr. Ponlok Seang",
+    "dateOfBirth": "1993-02-19",
+    "address": "340 Street 224, Phnom Penh",
+    "tel": "012-264-312",
+    "hireDate": "2013-07-28T21:17:00.035257",
+    "salary": 105000.0,
+    "schedule": {
+      "Monday": {
+        "start": "2025-11-04T09:00:00.000Z",
+        "end": "2025-11-04T17:00:00.000Z"
+      },
+      "Tuesday": {
+        "start": "2025-11-05T09:00:00.000Z",
+        "end": "2025-11-05T17:00:00.000Z"
+      },
+      "Wednesday": {
+        "start": "2025-11-06T09:00:00.000Z",
+        "end": "2025-11-06T17:00:00.000Z"
+      },
+      "Thursday": {
+        "start": "2025-11-07T09:00:00.000Z",
+        "end": "2025-11-07T17:00:00.000Z"
+      },
+      "Friday": {
+        "start": "2025-11-08T09:00:00.000Z",
+        "end": "2025-11-08T17:00:00.000Z"
+      }
+    },
+    "specialization": "Family Medicine",
+    "certifications": ["Board Certified Family Medicine", "ACLS", "BLS"],
+    "currentPatientIds": []
+  }
+]

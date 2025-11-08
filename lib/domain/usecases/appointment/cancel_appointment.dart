@@ -14,9 +14,11 @@ class CancelAppointment {
   /// 2. Check if appointment can be cancelled
   /// 3. Update appointment status
   Future<void> execute({required String appointmentId}) async {
+    // 1. Get the appointment
     final appointment =
         await appointmentRepository.getAppointmentById(appointmentId);
 
+    // 2. Check if appointment is already completed or cancelled
     if (appointment.status == AppointmentStatus.COMPLETED) {
       throw CannotCancelCompletedAppointmentException(
         'Cannot cancel a completed appointment',
@@ -29,8 +31,10 @@ class CancelAppointment {
       );
     }
 
+    // 3. Update status to cancelled
     appointment.updateStatus(AppointmentStatus.CANCELLED);
 
+    // 4. Save changes
     await appointmentRepository.updateAppointment(appointment);
   }
 }

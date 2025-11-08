@@ -101,6 +101,7 @@ class GetEquipmentStatus
     final now = DateTime.now();
     final equipmentStatusList = <EquipmentStatusInfo>[];
 
+    // Get rooms to search
     final rooms = input.roomId != null
         ? [await roomRepository.getRoomById(input.roomId!)]
         : await roomRepository.getAllRooms();
@@ -109,31 +110,37 @@ class GetEquipmentStatus
     int maintenanceCount = 0;
     int outOfServiceCount = 0;
 
+    // Process each room's equipment
     for (final room in rooms) {
       for (final equipment in room.equipment) {
+        // Filter by equipment ID if specified
         if (input.equipmentId != null &&
             equipment.equipmentId != input.equipmentId) {
           continue;
         }
 
+        // Filter by status if specified
         if (input.statusFilter != null &&
             equipment.status.toString().split('.').last !=
                 input.statusFilter!) {
           continue;
         }
 
+        // Calculate maintenance metrics
         final daysSinceLastMaintenance =
             now.difference(equipment.lastServiceDate).inDays;
         final daysUntilNextMaintenance =
             equipment.nextServiceDate.difference(now).inDays;
         final maintenanceOverdue = daysUntilNextMaintenance < 0;
 
+        // Calculate health score
         final healthScore = _calculateHealthScore(
           equipment,
           daysSinceLastMaintenance,
           maintenanceOverdue,
         );
 
+        // Count by status
         if (equipment.status == EquipmentStatus.OPERATIONAL) {
           availableCount++;
         } else if (equipment.status == EquipmentStatus.IN_MAINTENANCE) {

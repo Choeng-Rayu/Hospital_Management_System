@@ -69,12 +69,14 @@ class RescheduleAppointment
 
   @override
   Future<bool> validate(RescheduleAppointmentInput input) async {
+    // Validate new date is not in the past
     if (input.newDateTime.isBefore(DateTime.now())) {
       throw UseCaseValidationException(
         'Cannot reschedule to a past date',
       );
     }
 
+    // Validate new date is not too far in future (1 year)
     final maxDate = DateTime.now().add(const Duration(days: 365));
     if (input.newDateTime.isAfter(maxDate)) {
       throw UseCaseValidationException(
@@ -82,6 +84,7 @@ class RescheduleAppointment
       );
     }
 
+    // Validate business hours (8 AM - 6 PM)
     final hour = input.newDateTime.hour;
     if (hour < 8 || hour >= 18) {
       throw UseCaseValidationException(
@@ -89,6 +92,7 @@ class RescheduleAppointment
       );
     }
 
+    // Validate not on weekend
     final weekday = input.newDateTime.weekday;
     if (weekday == DateTime.saturday || weekday == DateTime.sunday) {
       throw UseCaseValidationException(
@@ -101,13 +105,16 @@ class RescheduleAppointment
   @override
   Future<RescheduleAppointmentResult> execute(
       RescheduleAppointmentInput input) async {
+    // Get original appointment
     final originalAppointment =
         await appointmentRepository.getAppointmentById(input.appointmentId);
 
+    // Verify doctor and patient exist
     await doctorRepository.getDoctorById(originalAppointment.doctor.staffID);
     await patientRepository
         .getPatientById(originalAppointment.patient.patientID);
 
+    // Check for scheduling conflicts
     final allAppointments = await appointmentRepository.getAllAppointments();
     final hasConflict = allAppointments.any((apt) =>
         apt.id != input.appointmentId &&
@@ -120,6 +127,7 @@ class RescheduleAppointment
       );
     }
 
+    // Create updated appointment
     final rescheduledAppointment = Appointment(
       id: originalAppointment.id,
       patient: originalAppointment.patient,
@@ -132,8 +140,10 @@ class RescheduleAppointment
           '${originalAppointment.notes ?? ''}\n[Rescheduled from ${originalAppointment.dateTime.toString().split('.')[0]}]${input.reason != null ? ' Reason: ${input.reason}' : ''}',
     );
 
+    // Update appointment
     await appointmentRepository.updateAppointment(rescheduledAppointment);
 
+    // Generate confirmation number
     final confirmationNumber =
         'RSC-${DateTime.now().millisecondsSinceEpoch % 100000}';
 
@@ -154,6 +164,7 @@ class RescheduleAppointment
     final existingEnd = existingTime.add(appointmentDuration);
     final newEnd = newTime.add(appointmentDuration);
 
+    // Check if times overlap
     return (newTime.isBefore(existingEnd) && newEnd.isAfter(existingTime));
   }
 
