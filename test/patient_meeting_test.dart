@@ -22,7 +22,28 @@ void main() {
     late Patient testPatient;
 
     setUp(() {
-      // Create a test doctor with empty schedule
+      // Generate working hours for the next 30 days with exact date keys
+      final now = DateTime.now();
+      final workingHours = <String, Map<String, String>>{};
+
+      for (int i = 0; i < 30; i++) {
+        final date = now.add(Duration(days: i));
+        // Skip weekends
+        if (date.weekday != DateTime.saturday &&
+            date.weekday != DateTime.sunday) {
+          // Use exact date as key (YYYY-MM-DD format)
+          final dateKey =
+              '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+          workingHours[dateKey] = {
+            'start': DateTime(date.year, date.month, date.day, 9, 0)
+                .toIso8601String(),
+            'end': DateTime(date.year, date.month, date.day, 17, 0)
+                .toIso8601String(),
+          };
+        }
+      }
+
+      // Create a test doctor with working hours for the next 30 days
       testDoctor = Doctor(
         name: 'Dr. John Smith',
         dateOfBirth: '1980-01-01',
@@ -35,28 +56,7 @@ void main() {
         specialization: 'Cardiology',
         certifications: ['Board Certified'],
         currentPatients: [],
-        workingHours: {
-          'Monday': {
-            'start': '2025-11-02T09:00:00Z',
-            'end': '2025-11-02T17:00:00Z'
-          },
-          'Tuesday': {
-            'start': '2025-11-02T09:00:00Z',
-            'end': '2025-11-02T17:00:00Z'
-          },
-          'Wednesday': {
-            'start': '2025-11-02T09:00:00Z',
-            'end': '2025-11-02T17:00:00Z'
-          },
-          'Thursday': {
-            'start': '2025-11-02T09:00:00Z',
-            'end': '2025-11-02T17:00:00Z'
-          },
-          'Friday': {
-            'start': '2025-11-02T09:00:00Z',
-            'end': '2025-11-02T17:00:00Z'
-          },
-        },
+        workingHours: workingHours,
       );
 
       // Create a test patient
@@ -83,9 +83,9 @@ void main() {
       // First assign the doctor
       testPatient.assignDoctor(testDoctor);
 
-      // Schedule a meeting during working hours (10 AM)
-      final now = DateTime.now();
-      final meetingDate = DateTime(now.year, now.month, now.day + 7, 10, 0);
+      // Use the helper function to get a valid working hours date
+      final meetingDate = getWorkingHoursDate(7);
+
       testPatient.scheduleNextMeeting(
         doctor: testDoctor,
         meetingDate: meetingDate,
