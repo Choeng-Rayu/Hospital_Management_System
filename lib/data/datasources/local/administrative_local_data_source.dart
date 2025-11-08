@@ -1,10 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/administrative_model.dart';
+import 'json_data_source.dart';
+import '../../models/administrative_model.dart';
+import '../interfaces/administrative_data_source.dart';
 
 /// Local data source for Administrative entity
 /// Provides specialized queries for administrative staff data
-class AdministrativeLocalDataSource
-    extends JsonDataSource<AdministrativeModel> {
+class AdministrativeLocalDataSource extends JsonDataSource<AdministrativeModel>
+    implements AdministrativeDataSource {
   AdministrativeLocalDataSource()
       : super(
           fileName: 'administrative.json',

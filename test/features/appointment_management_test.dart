@@ -4,9 +4,9 @@ import 'package:test/test.dart';
 import 'package:hospital_management/data/repositories/appointment_repository_impl.dart';
 import 'package:hospital_management/data/repositories/patient_repository_impl.dart';
 import 'package:hospital_management/data/repositories/doctor_repository_impl.dart';
-import 'package:hospital_management/data/datasources/appointment_local_data_source.dart';
-import 'package:hospital_management/data/datasources/patient_local_data_source.dart';
-import 'package:hospital_management/data/datasources/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/appointment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
 import 'package:hospital_management/domain/entities/appointment.dart';
 import 'package:hospital_management/domain/entities/enums/appointment_status.dart';
 

@@ -1,9 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/equipment_model.dart';
+import 'json_data_source.dart';
+import '../../models/equipment_model.dart';
+import '../interfaces/equipment_data_source.dart';
 
 /// Local data source for Equipment entity
 /// Provides specialized queries for equipment data
-class EquipmentLocalDataSource extends JsonDataSource<EquipmentModel> {
+class EquipmentLocalDataSource extends JsonDataSource<EquipmentModel>
+    implements EquipmentDataSource {
   EquipmentLocalDataSource()
       : super(
           fileName: 'equipment.json',

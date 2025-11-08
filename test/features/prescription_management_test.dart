@@ -4,10 +4,10 @@ import 'package:test/test.dart';
 import 'package:hospital_management/data/repositories/prescription_repository_impl.dart';
 import 'package:hospital_management/data/repositories/patient_repository_impl.dart';
 import 'package:hospital_management/data/repositories/doctor_repository_impl.dart';
-import 'package:hospital_management/data/datasources/prescription_local_data_source.dart';
-import 'package:hospital_management/data/datasources/patient_local_data_source.dart';
-import 'package:hospital_management/data/datasources/doctor_local_data_source.dart';
-import 'package:hospital_management/data/datasources/medication_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/prescription_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/medication_local_data_source.dart';
 import 'package:hospital_management/domain/entities/prescription.dart';
 import 'package:hospital_management/domain/entities/medication.dart';
 

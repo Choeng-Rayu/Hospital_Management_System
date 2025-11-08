@@ -2,10 +2,10 @@
 /// Tests for View, Availability, Assignment, Release, Filter, and Status Operations
 import 'package:test/test.dart';
 import 'package:hospital_management/data/repositories/room_repository_impl.dart';
-import 'package:hospital_management/data/datasources/room_local_data_source.dart';
-import 'package:hospital_management/data/datasources/bed_local_data_source.dart';
-import 'package:hospital_management/data/datasources/equipment_local_data_source.dart';
-import 'package:hospital_management/data/datasources/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/room_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/bed_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/equipment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
 import 'package:hospital_management/domain/entities/enums/room_type.dart';
 import 'package:hospital_management/domain/entities/enums/room_status.dart';
 

@@ -1,6 +1,6 @@
 import '../../domain/entities/equipment.dart';
 import '../../domain/repositories/equipment_repository.dart';
-import '../datasources/equipment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/equipment_local_data_source.dart';
 import '../models/equipment_model.dart';
 
 /// Implementation of EquipmentRepository using local JSON data source

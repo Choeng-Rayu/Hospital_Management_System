@@ -1,8 +1,8 @@
 import 'package:test/test.dart';
 import 'package:hospital_management/domain/entities/patient.dart';
 import 'package:hospital_management/data/repositories/patient_repository_impl.dart';
-import 'package:hospital_management/data/datasources/patient_local_data_source.dart';
-import 'package:hospital_management/data/datasources/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
 
 void main() {
   group('Patient Admission Integration Tests', () {

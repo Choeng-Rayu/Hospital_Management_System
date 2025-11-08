@@ -5,13 +5,13 @@ import 'package:hospital_management/data/repositories/patient_repository_impl.da
 import 'package:hospital_management/data/repositories/doctor_repository_impl.dart';
 import 'package:hospital_management/data/repositories/appointment_repository_impl.dart';
 import 'package:hospital_management/data/repositories/nurse_repository_impl.dart';
-import 'package:hospital_management/data/datasources/patient_local_data_source.dart';
-import 'package:hospital_management/data/datasources/doctor_local_data_source.dart';
-import 'package:hospital_management/data/datasources/appointment_local_data_source.dart';
-import 'package:hospital_management/data/datasources/nurse_local_data_source.dart';
-import 'package:hospital_management/data/datasources/room_local_data_source.dart';
-import 'package:hospital_management/data/datasources/bed_local_data_source.dart';
-import 'package:hospital_management/data/datasources/equipment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/appointment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/nurse_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/room_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/bed_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/equipment_local_data_source.dart';
 
 void main() {
   group('Search Operations Tests', () {

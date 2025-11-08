@@ -1,9 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/room_model.dart';
+import 'json_data_source.dart';
+import '../../models/room_model.dart';
+import '../interfaces/room_data_source.dart';
 
 /// Local data source for Room entity
 /// Provides specialized queries for room data
-class RoomLocalDataSource extends JsonDataSource<RoomModel> {
+class RoomLocalDataSource extends JsonDataSource<RoomModel>
+    implements RoomDataSource {
   RoomLocalDataSource()
       : super(
           fileName: 'rooms.json',

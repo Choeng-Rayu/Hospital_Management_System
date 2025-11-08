@@ -1,9 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/appointment_model.dart';
+import 'json_data_source.dart';
+import '../../models/appointment_model.dart';
+import '../interfaces/appointment_data_source.dart';
 
 /// Local data source for Appointment entity
 /// Provides specialized queries for appointment data
-class AppointmentLocalDataSource extends JsonDataSource<AppointmentModel> {
+class AppointmentLocalDataSource extends JsonDataSource<AppointmentModel>
+    implements AppointmentDataSource {
   AppointmentLocalDataSource()
       : super(
           fileName: 'appointments.json',

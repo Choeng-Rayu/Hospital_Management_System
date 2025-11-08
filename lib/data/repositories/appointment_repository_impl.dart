@@ -2,9 +2,9 @@ import '../../domain/repositories/appointment_repository.dart';
 import '../../domain/entities/appointment.dart';
 import '../../domain/entities/enums/appointment_status.dart';
 import '../../domain/entities/room.dart';
-import '../datasources/appointment_local_data_source.dart';
-import '../datasources/patient_local_data_source.dart';
-import '../datasources/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/appointment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
 import '../datasources/id_generator.dart';
 import '../models/appointment_model.dart';
 

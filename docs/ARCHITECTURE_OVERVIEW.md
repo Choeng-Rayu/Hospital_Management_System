@@ -35,40 +35,40 @@ This Hospital Management System is built using **Clean Architecture** principles
 ┌──────────────────────────────────────────────────────────────┐
 │                     CLEAN ARCHITECTURE                       │
 │                                                              │
-│   ┌──────────────────────────────────────────────────┐     │
-│   │         PRESENTATION LAYER (Outer)               │     │
-│   │                                                  │     │
-│   │  • Console Menus (8 menus)                      │     │
-│   │  • Input Validation                             │     │
-│   │  • UI Formatting                                │     │
-│   │  • Main Controller                              │     │
-│   │                                                  │     │
-│   │  Dependencies: Domain                           │     │
-│   └────────────────────┬─────────────────────────────┘     │
-│                        │ depends on                        │
-│   ┌────────────────────▼─────────────────────────────┐     │
-│   │          DOMAIN LAYER (Core)                     │     │
-│   │                                                  │     │
-│   │  • Entities (12)                                │     │
-│   │  • Repository Interfaces (8)                    │     │
-│   │  • Use Cases (50+)                              │     │
-│   │  • Business Rules                               │     │
-│   │  • Enumerations (6)                             │     │
-│   │                                                  │     │
-│   │  Dependencies: NONE ✨                          │     │
-│   └────────────────────▲─────────────────────────────┘     │
-│                        │ implements                        │
-│   ┌────────────────────┴─────────────────────────────┐     │
-│   │           DATA LAYER (Outer)                     │     │
-│   │                                                  │     │
-│   │  • Models/DTOs (10)                             │     │
-│   │  • Repository Implementations (8)               │     │
-│   │  • Data Sources (9)                             │     │
-│   │  • JSON File I/O                                │     │
-│   │  • AUTO ID Generation                           │     │
-│   │                                                  │     │
-│   │  Dependencies: Domain                           │     │
-│   └──────────────────────────────────────────────────┘     │
+│   ┌──────────────────────────────────────────────────┐       │
+│   │         PRESENTATION LAYER (Outer)               │       │
+│   │                                                  │       │
+│   │  • Console Menus (8 menus)                       │       │
+│   │  • Input Validation                              │       │
+│   │  • UI Formatting                                 │       │
+│   │  • Main Controller                               │       │
+│   │                                                  │       │
+│   │  Dependencies: Domain                            │       │
+│   └────────────────────┬─────────────────────────────┘       │
+│                        │ depends on                          │
+│   ┌────────────────────▼─────────────────────────────┐       │
+│   │          DOMAIN LAYER (Core)                     │       │
+│   │                                                  │       │
+│   │  • Entities (12)                                 │       │
+│   │  • Repository Interfaces (8)                     │       │
+│   │  • Use Cases (50+)                               │       │
+│   │  • Business Rules                                │       │
+│   │  • Enumerations (6)                              │       │
+│   │                                                  │       │
+│   │  Dependencies: NONE ✨                           │       │
+│   └────────────────────▲─────────────────────────────┘       │
+│                        │ implements                          │
+│   ┌────────────────────┴─────────────────────────────┐       │
+│   │           DATA LAYER (Outer)                     │       │
+│   │                                                  │       │
+│   │  • Models/DTOs (10)                              │       │
+│   │  • Repository Implementations (8)                │       │
+│   │  • Data Sources (9)                              │       │
+│   │  • JSON File I/O                                 │       │
+│   │  • AUTO ID Generation                            │       │
+│   │                                                  │       │
+│   │  Dependencies: Domain                            │       │
+│   └──────────────────────────────────────────────────┘       │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 

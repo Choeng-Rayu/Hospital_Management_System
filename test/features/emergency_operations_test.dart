@@ -4,11 +4,11 @@ import 'package:test/test.dart';
 import 'package:hospital_management/data/repositories/patient_repository_impl.dart';
 import 'package:hospital_management/data/repositories/doctor_repository_impl.dart';
 import 'package:hospital_management/data/repositories/room_repository_impl.dart';
-import 'package:hospital_management/data/datasources/patient_local_data_source.dart';
-import 'package:hospital_management/data/datasources/doctor_local_data_source.dart';
-import 'package:hospital_management/data/datasources/room_local_data_source.dart';
-import 'package:hospital_management/data/datasources/bed_local_data_source.dart';
-import 'package:hospital_management/data/datasources/equipment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/doctor_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/room_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/bed_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/equipment_local_data_source.dart';
 import 'package:hospital_management/domain/entities/patient.dart';
 import 'package:hospital_management/domain/entities/enums/room_type.dart';
 

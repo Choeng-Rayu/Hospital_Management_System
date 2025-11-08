@@ -1,9 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/nurse_model.dart';
+import 'json_data_source.dart';
+import '../../models/nurse_model.dart';
+import '../interfaces/nurse_data_source.dart';
 
 /// Local data source for Nurse entity
 /// Provides specialized queries for nurse data
-class NurseLocalDataSource extends JsonDataSource<NurseModel> {
+class NurseLocalDataSource extends JsonDataSource<NurseModel>
+    implements NurseDataSource {
   NurseLocalDataSource()
       : super(
           fileName: 'nurses.json',

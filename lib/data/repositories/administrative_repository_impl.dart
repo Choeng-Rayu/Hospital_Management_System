@@ -1,6 +1,6 @@
 import '../../domain/repositories/administrative_repository.dart';
 import '../../domain/entities/administrative.dart';
-import '../datasources/administrative_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/administrative_local_data_source.dart';
 import '../models/administrative_model.dart';
 
 /// Implementation of AdministrativeRepository using local JSON data sources

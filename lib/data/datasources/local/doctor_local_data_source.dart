@@ -1,9 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/doctor_model.dart';
+import 'json_data_source.dart';
+import '../../models/doctor_model.dart';
+import '../interfaces/doctor_data_source.dart';
 
 /// Local data source for Doctor entity
 /// Provides specialized queries for doctor data
-class DoctorLocalDataSource extends JsonDataSource<DoctorModel> {
+class DoctorLocalDataSource extends JsonDataSource<DoctorModel>
+    implements DoctorDataSource {
   DoctorLocalDataSource()
       : super(
           fileName: 'doctors.json',

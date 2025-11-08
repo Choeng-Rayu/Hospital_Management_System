@@ -1,9 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/medication_model.dart';
+import 'json_data_source.dart';
+import '../../models/medication_model.dart';
+import '../interfaces/medication_data_source.dart';
 
 /// Local data source for Medication entity
 /// Provides specialized queries for medication data
-class MedicationLocalDataSource extends JsonDataSource<MedicationModel> {
+class MedicationLocalDataSource extends JsonDataSource<MedicationModel>
+    implements MedicationDataSource {
   MedicationLocalDataSource()
       : super(
           fileName: 'medications.json',

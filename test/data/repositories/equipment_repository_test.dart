@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:hospital_management/data/datasources/equipment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/equipment_local_data_source.dart';
 import 'package:hospital_management/data/models/equipment_model.dart';
 import 'package:hospital_management/data/repositories/equipment_repository_impl.dart';
 import 'package:hospital_management/domain/entities/equipment.dart';

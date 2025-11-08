@@ -1,9 +1,11 @@
-import 'local/json_data_source.dart';
-import '../models/bed_model.dart';
+import 'json_data_source.dart';
+import '../../models/bed_model.dart';
+import '../interfaces/bed_data_source.dart';
 
 /// Local data source for Bed entity
 /// Provides specialized queries for bed data
-class BedLocalDataSource extends JsonDataSource<BedModel> {
+class BedLocalDataSource extends JsonDataSource<BedModel>
+    implements BedDataSource {
   BedLocalDataSource()
       : super(
           fileName: 'beds.json',

@@ -2,11 +2,11 @@ import '../../domain/repositories/nurse_repository.dart';
 import '../../domain/entities/nurse.dart';
 import '../../domain/entities/patient.dart';
 import '../../domain/entities/room.dart';
-import '../datasources/nurse_local_data_source.dart';
-import '../datasources/patient_local_data_source.dart';
-import '../datasources/room_local_data_source.dart';
-import '../datasources/bed_local_data_source.dart';
-import '../datasources/equipment_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/nurse_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/patient_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/room_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/bed_local_data_source.dart';
+import 'package:hospital_management/data/datasources/local/equipment_local_data_source.dart';
 import '../models/nurse_model.dart';
 
 /// Implementation of NurseRepository using local JSON data sources
